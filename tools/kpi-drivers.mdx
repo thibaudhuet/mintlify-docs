@@ -1,0 +1,40 @@
+---
+title: KPI drivers
+description: Visualize relationships and dependencies between your business KPIs.
+---
+
+The KPI Drivers tool helps you understand how different KPIs relate to and influence each other. It displays a tree-like visualization of KPI dependencies.
+
+## How to access
+
+Navigate to **Tools > KPI Drivers** from the sidebar.
+
+## What it shows
+
+A visual map of how your KPIs connect:
+
+- **Input KPIs** (drivers) feed into **output KPIs** (results)
+- Follow the chain from revenue through costs to profit
+- Understand which levers to pull to impact a specific metric
+
+## Example driver chain
+
+```
+Gross FIE Sales
+  └── - FIE Trade Expenses
+       └── = Net FIE Sales
+            └── - Distributor COGS
+                 └── = Gross Profit
+                      └── - Supply Chain Cost
+                           └── - Promotion
+                                └── - Medical Affairs
+                                     └── = DPM
+                                          └── - Administration
+                                               └── = EBIT
+```
+
+## How to use it
+
+1. **Identify root causes** - If EBIT is declining, trace back through the driver tree to find which input KPI is causing the change
+2. **Impact analysis** - See which downstream KPIs will be affected when a driver changes
+3. **Planning focus** - Determine which KPIs to prioritize in your planning based on their influence on final outcomes

@@ -1,0 +1,90 @@
+---
+title: Demand Planning
+description: Forecast demand, analyze trends, and model event impacts across your product portfolio.
+---
+
+The Demand Planning module is where you build, analyze, and refine your demand forecasts. It provides a comprehensive view of expected demand across products, customers, and time periods.
+
+## What you'll see
+
+### Demand chart
+A line chart showing demand trends over time. Each scenario is plotted as a separate line with its own color, making it easy to compare forecasts visually.
+
+### Demand tracker table
+A hierarchical tree table that breaks down demand by:
+- **Scenario** (top level)
+  - **Brand**
+    - **SKU / Product**
+      - **Segment**
+
+Each row shows demand values across time periods (months or fiscal years), allowing you to drill down from high-level totals to individual product detail.
+
+## Page controls
+
+| Control | Options | What it does |
+|---------|---------|-------------|
+| **Period** | Monthly / Fiscal Year | Switch the time granularity of the chart and table |
+| **UOM** | Gross Value, Units, Net Value, etc. | Change the unit of measure for displayed values |
+| **Numeric scale** | D / B / M / k / U | Format large numbers (e.g., 1,000,000 as 1M) |
+| **Decimal places** | 0-4 | Adjust the precision of displayed values |
+
+## Analytics columns
+
+The demand table includes powerful analytics columns that you can toggle on or off:
+
+| Column | Description |
+|--------|-------------|
+| **Q1 - Q4** | Quarterly totals |
+| **Q1 Avg - Q4 Avg** | Average monthly value within each quarter |
+| **H1 / H2** | First half and second half totals |
+| **H1 Avg / H2 Avg** | Half-year monthly averages |
+| **Y** | Full year total |
+| **Y Avg** | Full year monthly average |
+| **YTD** | Year-to-date cumulative total |
+| **Avg YTD** | Year-to-date average |
+| **YTG** | Year-to-go projection for remaining months |
+| **Var** | Variance between YTD and YTG (absolute) |
+| **Var%** | Variance as a percentage |
+
+<Tip>
+Use the **Var%** column to quickly identify products or segments where your actual performance is significantly deviating from your remaining plan.
+</Tip>
+
+## Comparison modes
+
+You can change how values are displayed using comparison modes:
+
+| Mode | What it shows |
+|------|--------------|
+| **Contribution** | Each item as a percentage of the total |
+| **Growth %** | Period-over-period percentage change |
+| **Growth Abs** | Period-over-period absolute change |
+| **Comparison %** | Difference versus the base scenario as a percentage |
+| **Comparison Abs** | Difference versus the base scenario in absolute terms |
+
+## Run rates
+
+SIMCEL calculates run rates to help you project future demand based on recent trends:
+
+- **3M Run Rate** - Based on the last 3 months
+- **6M Run Rate** - Based on the last 6 months
+- **9M Run Rate** - Based on the last 9 months
+- **12M Run Rate** - Based on the last 12 months
+
+## Key demand KPIs
+
+| KPI | Description |
+|-----|-------------|
+| **Primary Demand Value (FIE)** | Factory import entry demand in monetary value |
+| **Primary Demand Volume (FIE)** | Factory import entry demand in units |
+| **Secondary Demand Value (Local)** | Local market demand in monetary value |
+| **Secondary Demand Volume (Local)** | Local market demand in units |
+| **Distributor Demand Value** | Distributor-level demand in monetary value |
+| **Distributor Demand Volume** | Distributor-level demand in units |
+| **Gross Sales** | Total gross sales value (Primary, Secondary, Distributor) |
+| **Net Sales** | Gross sales minus trade expenses |
+| **Case Fill Rate** | Percentage of demand fulfilled (Primary and Secondary) |
+
+## Navigating to Forecast Accuracy
+
+From the Demand page, click the **Forecast Accuracy** button to navigate to a detailed view of how your forecasts compare against actual outcomes. See [Forecast Accuracy](/demand/forecast-accuracy) for more details.

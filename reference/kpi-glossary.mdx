@@ -1,0 +1,122 @@
+---
+title: KPI glossary
+description: Complete reference of all 51+ KPIs available in SIMCEL with definitions, formulas, and units.
+---
+
+SIMCEL automatically calculates over 51 KPIs from your simulation results. Each KPI is classified by category and direction (whether higher or lower values are favorable).
+
+## Understanding KPI direction
+
+| Direction | Meaning | Color when increasing |
+|-----------|---------|----------------------|
+| **Profit type** | Higher values are better | Green |
+| **Lost type** | Lower values are better | Red |
+
+---
+
+## Demand KPIs
+
+| KPI | Direction | Description |
+|-----|-----------|-------------|
+| **FIE Demand Value** | Profit | Factory import entry demand in monetary value |
+| **FIE Demand Volume** | Profit | Factory import entry demand in units |
+| **FIE Sales Volume** | Profit | Dispatched volume at FIE level |
+| **Gross FIE Sales** | Profit | Total gross sales at factory import entry level |
+| **Net FIE Sales** | Profit | Gross FIE Sales minus FIE Trade Expenses |
+| **FIE Trade Expenses** | Lost | Trade-related expenses at FIE level |
+| **FIE Case Fill Rate** | Profit | Percentage of FIE demand fulfilled |
+| **Local Demand Value** | Profit | Local market demand in monetary value |
+| **Local Demand Volume** | Profit | Local market demand in units |
+| **Gross Local Sales** | Profit | Total gross sales at local market level |
+| **Local Sales Volume** | Profit | Dispatched volume at local level |
+| **Net Local Sales** | Profit | Gross Local Sales minus Local Trade Expenses |
+| **Local Trade Expenses** | Lost | Trade-related expenses at local level |
+| **Local Case Fill Rate** | Profit | Percentage of local demand fulfilled |
+
+## Distributor KPIs
+
+| KPI | Direction | Description |
+|-----|-----------|-------------|
+| **Distributor COGS** | Lost | Cost of goods sold at distributor level |
+| **Distributor Distribution Cost** | Lost | Distribution costs at distributor level |
+| **Distributor Transfer Cost** | Lost | Transfer costs between distributor facilities |
+| **Distributor Storage Cost** | Lost | Storage costs at distributor facilities |
+| **Distributor Handling Cost** | Lost | Handling costs at distributor facilities |
+| **Distributor Net Sales Value** | Profit | Net sales value at distributor level |
+| **Distributor Gross Sales Value** | Profit | Gross sales value at distributor level |
+| **Distributor Demand Value** | Profit | Demand in monetary value at distributor level |
+| **Distributor Demand Volume** | Profit | Demand in units at distributor level |
+
+## Finance KPIs
+
+| KPI | Direction | Formula | Description |
+|-----|-----------|---------|-------------|
+| **COGS** | Lost | Direct from data | Cost of Goods Sold |
+| **Transport** | Lost | Sum where cost type = Transport | Transportation costs |
+| **Storage & Handling** | Lost | Sum where cost type = Storage & Handling | Warehouse costs |
+| **Promotion** | Lost | Sum where cost type = Promotion | Promotional costs |
+| **Medical Affairs** | Lost | Sum where cost type = Medical Affairs | Medical-related costs |
+| **Administration** | Lost | Sum where cost type = Administration | Admin overhead |
+| **Gross Profit** | Profit | Net FIE Sales - Distributor COGS | Profit after COGS |
+| **Gross Margin %** | Profit | (Gross Profit / Net FIE Sales) x 100 | Gross profitability ratio |
+| **Supply Chain Cost** | Lost | Transport + Storage & Handling | Total supply chain expenses |
+| **DPM** | Lost | Supply Chain Cost + Promotion + Medical Affairs | Distribution, promotion & medical total |
+| **DPM %** | Lost | (DPM / Net FIE Sales) x 100 | DPM as percentage of net sales |
+| **DPMA** | Lost | DPM + Administration | Total operating expenses |
+| **DPMA %** | Lost | (DPMA / Net FIE Sales) x 100 | DPMA as percentage of net sales |
+| **EBIT** | Profit | Gross Profit - Transport - S&H - Promotion - Medical - Admin | Operating earnings |
+| **EBIT %** | Profit | (EBIT / Net FIE Sales) x 100 | Operating margin |
+| **COGS %** | Lost | (COGS / Net FIE Sales) x 100 | COGS as percentage of net sales |
+
+## Inventory KPIs
+
+| KPI | Direction | Description |
+|-----|-----------|-------------|
+| **Average Inventory Value** | Lost | Average monetary value of inventory held |
+| **Average Inventory Volume** | Lost | Average physical quantity of inventory |
+| **DIO** | Lost | Days Inventory Outstanding - days of sales in inventory |
+| **Unconstrained SIT** | Lost | Safety inventory target without supply constraints |
+| **Constrained SIT** | Lost | Safety inventory with supply constraints applied |
+| **Closing Stock (Gross Value)** | Lost | End-of-period inventory in monetary terms |
+| **Closing Stock (Volume)** | Lost | End-of-period inventory in physical units |
+
+## Working Capital KPIs
+
+| KPI | Direction | Description |
+|-----|-----------|-------------|
+| **AR (Accounts Receivable)** | Lost | Outstanding customer payments |
+| **DSO (Days Sales Outstanding)** | Lost | Average days to collect payment |
+| **CCC (Cash Conversion Cycle)** | Lost | Full cash cycle: DSO + DIO - DPO |
+
+## Emissions KPIs
+
+| KPI | Direction | Unit | Description |
+|-----|-----------|------|-------------|
+| **CO2 (Total)** | Lost | Kilograms | Total emissions across all operations |
+| **Inbound CO2** | Lost | Kilograms | Emissions from inbound logistics |
+| **Storage CO2** | Lost | Kilograms | Emissions from warehouse operations |
+| **Outbound CO2** | Lost | Kilograms | Emissions from outbound distribution |
+
+---
+
+## Dimensional breakdowns
+
+All KPIs can be analyzed across the following dimensions:
+
+| Dimension | Available levels |
+|-----------|-----------------|
+| **Product** | Name, ID, Category, Range, Brand, Type, Strategic Segment |
+| **Customer** | Name, Type, Channel, Region, City, Country |
+| **Location** | Facility type (Factory, DC, Distributor, Customer) |
+| **Time** | Daily, Weekly, Monthly, Quarterly, Half-year, Fiscal Year |
+
+## KPI aggregation
+
+KPIs are calculated using two methods:
+
+| Method | Speed | Detail level | Best for |
+|--------|-------|-------------|----------|
+| **Lightweight** | Fast | Scenario-level totals | Dashboard widgets, quick overviews |
+| **Atomic** | Detailed | Full dimensional breakdown | Drill-down analysis, pivot tables |
+
+Lightweight KPIs load 50-70% faster and use 60% less data, making them ideal for dashboards and summary views. Atomic KPIs provide the full granularity needed for detailed analysis.

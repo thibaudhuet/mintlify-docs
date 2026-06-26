@@ -1,0 +1,87 @@
+---
+title: Event management
+description: Model the impact of promotions, market changes, and disruptions on your business plan.
+---
+
+Events in SIMCEL represent anything that can change your demand or supply — promotions, product launches, market disruptions, seasonal campaigns, and more. The Event Management page lets you create, organize, and apply these events to your scenarios.
+
+## What is an event?
+
+An event is a planned or anticipated change that impacts your demand forecast. Each event has:
+
+- **Name** and description
+- **Date range** - When the event takes effect
+- **Impact type** - How it affects demand (percentage change, absolute volume, etc.)
+- **Target scope** - Which products, customers, or segments it applies to
+- **Version history** - Multiple versions to track evolving estimates
+
+## Accessing Event Management
+
+Navigate to **Events** in the sidebar under the IBP section. You'll see:
+
+- A list of all events for the current plan
+- Event groups for organizing related events
+- Controls to create, edit, and delete events
+
+## Creating an event
+
+<Steps>
+  <Step title="Open event creator">
+    Click the **Create Event** button on the Event Management page.
+  </Step>
+  <Step title="Define the event">
+    Enter the event name, description, date range, and select the products/customers it affects.
+  </Step>
+  <Step title="Set the impact">
+    Define how the event changes demand — as a percentage uplift/decline or an absolute volume change.
+  </Step>
+  <Step title="Assign to a scenario">
+    Attach the event to one or more scenarios. The event's impact will be reflected when you view those scenarios.
+  </Step>
+</Steps>
+
+## Event versions
+
+Events support versioning so you can refine your estimates over time without losing previous assumptions:
+
+- **Version 1** might be your initial rough estimate
+- **Version 2** could be updated with market research data
+- **Version 3** might reflect final confirmed numbers
+
+Each version maintains the full impact definition, allowing you to compare how your estimates evolved.
+
+## Event groups
+
+Organize related events into groups for better management:
+
+- Group all Q4 promotional events together
+- Create a group for product launch activities
+- Bundle seasonal adjustment events
+
+Groups help keep your event list organized, especially when managing dozens of events across a planning cycle.
+
+## Demand shaper
+
+The **Demand Shaper** is a specialized tool within event management that lets you shape demand curves. Use it to:
+
+- Apply percentage-based adjustments to specific time periods
+- Model gradual ramp-up or wind-down effects
+- Create complex multi-period impact patterns
+
+## How events affect your plan
+
+```
+Scenario Demand = Forecast Base + Sum of Event Impacts + Pricing Adjustments
+```
+
+When you run a simulation, events flow through the entire planning process:
+
+1. **Base forecast** provides the starting demand
+2. **Events** modify the demand up or down
+3. **Pricing adjustments** apply any price-related changes
+4. **Simulation** calculates fulfillment against the modified demand
+5. **KPIs** are recomputed based on the simulation output
+
+<Tip>
+Create two scenarios — one with a promotional event and one without. Compare them to see the expected uplift from the promotion and whether your supply chain can support it.
+</Tip>

@@ -1,0 +1,108 @@
+---
+title: Finance
+description: Track profitability, margins, and cost breakdowns with a full P&L view.
+---
+
+The Finance module in SIMCEL provides a complete view of your financial performance through the **Business Explorer** dashboard. Track revenue, costs, margins, and profitability across your planning scenarios.
+
+## Business Explorer
+
+The Business Explorer is your financial command center. It consolidates all financial KPIs into a single dashboard with multiple widgets.
+
+### What you'll see
+
+#### KPI table widget
+A comprehensive table showing all financial KPIs with values for each active scenario. Compare scenarios side by side to evaluate their financial impact.
+
+#### P&L chart widget
+A visual profit and loss breakdown showing how revenue flows through costs to arrive at profit metrics like Gross Profit, DPM, DPMA, and EBIT.
+
+#### Sales and profit evolution chart
+A time-series chart showing how sales and profit metrics evolve over your planning horizon. Spot trends, seasonality, and the impact of planned events.
+
+#### KPI tracker table
+A detailed table with hierarchical drill-down by product, customer, or location. Analyze financial performance at any level of granularity.
+
+## Financial KPI structure
+
+SIMCEL calculates financial KPIs following this P&L waterfall:
+
+```
+Gross FIE Sales
+  - FIE Trade Expenses
+= Net FIE Sales
+  - Distributor COGS
+= Gross Profit
+  - Transport
+  - Storage & Handling
+= Supply Chain Cost
+  - Promotion
+  - Medical Affairs
+= DPM (Distribution, Promotion & Medical)
+  - Administration
+= DPMA
+= EBIT (Earnings Before Interest & Tax)
+```
+
+## Key financial KPIs
+
+### Revenue metrics
+
+| KPI | Description |
+|-----|-------------|
+| **Gross FIE Sales** | Total gross sales at factory import entry level |
+| **Net FIE Sales** | Gross FIE Sales minus FIE Trade Expenses |
+| **Gross Local Sales** | Total gross sales at local market level |
+| **Net Local Sales** | Gross Local Sales minus Local Trade Expenses |
+
+### Cost metrics
+
+| KPI | Description |
+|-----|-------------|
+| **COGS** | Cost of Goods Sold |
+| **Transport** | Transportation and logistics costs |
+| **Storage & Handling** | Warehouse storage and handling costs |
+| **Promotion** | Promotional activity costs |
+| **Medical Affairs** | Medical affairs related expenses |
+| **Administration** | Administrative overhead |
+| **Supply Chain Cost** | Transport + Storage & Handling |
+
+### Profitability metrics
+
+| KPI | Formula | Description |
+|-----|---------|-------------|
+| **Gross Profit** | Net FIE Sales - Distributor COGS | Profit after cost of goods |
+| **Gross Margin %** | (Gross Profit / Net FIE Sales) x 100 | Profitability as a percentage of net sales |
+| **DPM** | Supply Chain Cost + Promotion + Medical Affairs | Distribution, promotion, and medical expenses |
+| **DPM %** | (DPM / Net FIE Sales) x 100 | DPM as a percentage of net sales |
+| **DPMA** | DPM + Administration | Total operating expenses |
+| **DPMA %** | (DPMA / Net FIE Sales) x 100 | DPMA as a percentage of net sales |
+| **EBIT** | Gross Profit - Transport - Storage & Handling - Promotion - Medical Affairs - Administration | Operating earnings |
+| **EBIT %** | (EBIT / Net FIE Sales) x 100 | Operating margin percentage |
+| **COGS %** | (COGS / Net FIE Sales) x 100 | Cost of goods as a percentage of net sales |
+
+### Working capital metrics
+
+| KPI | Description |
+|-----|-------------|
+| **AR (Accounts Receivable)** | Outstanding customer payments |
+| **DSO (Days Sales Outstanding)** | Average days to collect payment |
+| **DIO (Days Inventory Outstanding)** | Average days of inventory on hand |
+| **CCC (Cash Conversion Cycle)** | DSO + DIO - days payable outstanding |
+
+## Scenario comparison
+
+The Business Explorer highlights differences between scenarios using color coding:
+
+- **Green** - Favorable movement (higher revenue, lower costs)
+- **Red** - Unfavorable movement (lower revenue, higher costs)
+
+The percentage difference between scenarios is calculated as:
+
+```
+% Difference = ((Scenario Value - Active Scenario Value) / |Active Scenario Value|) x 100
+```
+
+<Note>
+The direction of "favorable" depends on the KPI type. For revenue KPIs, an increase is favorable. For cost KPIs, a decrease is favorable.
+</Note>

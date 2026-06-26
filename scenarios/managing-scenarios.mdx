@@ -1,0 +1,73 @@
+---
+title: Managing scenarios
+description: Create, compare, and manage planning scenarios to explore different business outcomes.
+---
+
+Scenarios are at the heart of SIMCEL's planning capabilities. They allow you to model different assumptions and compare their impact on your business.
+
+## Creating a scenario
+
+1. Click the **+** button in the **Scenario Bar** at the top of the screen
+2. Enter a name for your scenario
+3. Optionally choose a color for easy identification
+4. Click **Create**
+
+Your new scenario inherits the base forecast data and is ready for you to apply events, adjustments, and run simulations.
+
+## Scenario types
+
+| Type | Auto-created? | Editable? | Purpose |
+|------|:---:|:---:|---------|
+| **Forecast Base** | Yes | No | Statistical baseline forecast generated when a plan is created |
+| **Primary** | Yes | Yes | Your main working scenario for reporting |
+| **Custom** | No | Yes | Additional what-if scenarios for analysis |
+| **Actual** | Yes | No | Imported actual performance data |
+| **Committed** | No | Yes | A supply plan you've committed to execute |
+
+## Comparing scenarios
+
+### Side-by-side view
+Toggle multiple scenario chips **on** in the Scenario Bar. All charts and tables will display data for every active scenario simultaneously.
+
+### KPI comparison cards
+On the Supply Planning page, KPI cards include navigation arrows to cycle through scenarios and see how each performs on key metrics.
+
+### Color coding
+- **Green** indicates a favorable difference (higher revenue or lower costs)
+- **Red** indicates an unfavorable difference
+
+The comparison formula:
+
+```
+% Difference = ((Scenario Value - Active Value) / |Active Value|) x 100
+```
+
+## Editing a scenario
+
+- **Change color** - Click on the scenario chip and select a new color
+- **Rename** - Edit the scenario details from the scenario management dialog
+- **Add events** - Attach demand or supply events to model specific business impacts
+
+## Downloading and exporting
+
+You can export scenario data for offline analysis:
+
+- **Download scenario** - Export the full scenario dataset including demand, facilities, products, and KPIs
+- **Export scenario** - Generate a summary export in CSV/Excel format
+
+## Best practices
+
+<AccordionGroup>
+  <Accordion title="Use meaningful names">
+    Name scenarios based on the assumption they test, like "Q3 Promo Push" or "Conservative Demand". This makes comparison more intuitive.
+  </Accordion>
+  <Accordion title="Keep a clean baseline">
+    Use the Forecast Base as your unchanged reference point. Apply changes only to custom scenarios so you always have a clean comparison.
+  </Accordion>
+  <Accordion title="Limit active scenarios">
+    While you can create many scenarios, showing more than 3-4 at once can make charts hard to read. Toggle off scenarios you're not actively comparing.
+  </Accordion>
+  <Accordion title="Re-run simulations after changes">
+    After modifying events or assumptions in a scenario, always re-run the simulation to update all KPIs with the latest data.
+  </Accordion>
+</AccordionGroup>

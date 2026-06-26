@@ -1,0 +1,63 @@
+---
+title: Running a simulation
+description: Run supply chain simulations to calculate fulfillment, inventory, and KPIs for your scenarios.
+---
+
+SIMCEL's simulation engine (DRP - Distribution Requirements Planning) calculates how your supply chain performs under the demand and constraints defined in each scenario.
+
+## What does a simulation do?
+
+When you run a simulation, SIMCEL:
+
+1. Takes the demand forecast from your scenario
+2. Applies supply constraints (production capacity, lead times, inventory policies)
+3. Calculates distribution requirements across your physical network
+4. Determines what can be fulfilled and what cannot
+5. Computes all supply, finance, and carbon KPIs from the results
+
+## How to run a simulation
+
+1. Navigate to **Supply Planning**
+2. Select the scenario you want to simulate
+3. Click the **Run Simulation** button
+4. A progress dialog appears showing the simulation steps
+
+## Simulation progress
+
+The progress dialog shows each step of the simulation with real-time status:
+
+| Status | Meaning |
+|--------|---------|
+| **Pending** | Step has not started yet |
+| **Running** | Step is currently being processed |
+| **Success** | Step completed successfully |
+| **Error** | Step encountered an issue |
+
+If an error occurs, you can expand the error message to see details about what went wrong.
+
+<Warning>
+Simulations can take several minutes depending on the size of your network and the number of products. Do not close the browser tab while a simulation is running.
+</Warning>
+
+## When to re-run a simulation
+
+You should re-run your simulation when:
+
+- You **add or modify events** in your scenario
+- You **change demand assumptions** or apply demand shaping
+- You **update master data** (products, facilities, network)
+- You want to **refresh KPIs** after any planning change
+
+## What gets calculated
+
+After a successful simulation, the following are updated for the scenario:
+
+- **Order fulfillment** rates and details
+- **Inventory levels** (constrained SIT, closing stock)
+- **Financial KPIs** (COGS, margins, P&L metrics)
+- **Carbon emissions** (inbound, storage, outbound CO2)
+- **All 51+ KPIs** across every dimension
+
+<Tip>
+Create multiple scenarios with different assumptions, run simulations on each, and use the scenario comparison features to evaluate which plan delivers the best outcomes.
+</Tip>

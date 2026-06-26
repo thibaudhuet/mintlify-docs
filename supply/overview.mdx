@@ -1,0 +1,73 @@
+---
+title: Supply Planning
+description: Track order fulfillment, run simulations, and optimize your supply chain performance.
+---
+
+The Supply Planning module gives you full visibility into how well your supply chain meets demand. Monitor fulfillment rates, identify gaps, run simulations, and track inventory evolution across your network.
+
+## What you'll see
+
+### Order fulfillment chart
+A stacked bar chart showing **fulfilled** (green) and **unfulfilled** (red) quantities for each time period. This gives you an immediate visual of supply performance.
+
+You can double-click on any bar to drill down into the details for that specific period.
+
+### KPI cards
+Three summary cards at the top of the page, each with scenario comparison navigation:
+
+| KPI | Unit | Direction |
+|-----|------|-----------|
+| **Order Fulfillment %** | Percentage | Higher is better |
+| **Unfulfilled Value** | Currency | Lower is better |
+| **Unfulfilled Volume** | Units | Lower is better |
+
+Each card shows the value for your active scenario and arrows to navigate between scenarios for quick comparison.
+
+### Inventory evolution chart
+A line chart tracking inventory levels over time across your network. Use this to spot trends, seasonal patterns, and potential stockout risks.
+
+### Order fulfillment details table
+A detailed table breaking down fulfillment by product, customer, and facility. Expand rows to see granular fulfillment data at the SKU level.
+
+## Page controls
+
+| Control | Options | What it does |
+|---------|---------|-------------|
+| **Scope** | All, Secondary Sales, Primary Sales, Stock Transfers, Supply Sources | Filter by order type |
+| **Granularity** | Daily, Weekly, Monthly, Quarterly, Fiscal Year | Change the time aggregation |
+| **UOM** | Carton, Unit, Pallet, Kg | Change the unit of measure |
+
+### Scope definitions
+
+| Scope | What it includes |
+|-------|-----------------|
+| **All** | All order types combined |
+| **Secondary Sales** | Customer orders (end-customer demand) |
+| **Primary Sales** | Distribution center to warehouse orders |
+| **Stock Transfers** | Inter-facility inventory movements |
+| **Supply Sources** | Production and procurement orders |
+
+## Key formulas
+
+### Order fulfillment rate
+
+```
+Order Fulfillment % = (Fulfilled Quantity / Total Demand) x 100
+```
+
+A fulfillment rate of 100% means all demand was met. Anything below 100% indicates supply shortfalls.
+
+### Unfulfilled metrics
+
+```
+Unfulfilled Volume = Total Demand - Fulfilled Quantity
+Unfulfilled Value = Unfulfilled Volume x Unit Price
+```
+
+## Drill-down
+
+Double-click on any bar in the fulfillment chart to filter the details table to that specific time period. A filter chip appears above the table showing your active drill-down. Click the **X** on the chip to clear the filter and return to the full view.
+
+<Tip>
+Use the **Scope** selector to isolate specific parts of your supply chain. For example, select "Secondary Sales" to focus on customer-facing fulfillment, or "Supply Sources" to check production output.
+</Tip>
