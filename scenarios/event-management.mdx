@@ -1,6 +1,6 @@
 ---
-title: Event management
-description: Model the impact of promotions, market changes, pricing adjustments, and trade terms on your business plan.
+title: "Event management"
+description: "Model the impact of promotions, market changes, pricing adjustments, and trade terms on your business plan."
 ---
 
 Events in SIMCEL represent anything that can change your demand, pricing, or trade economics. The Event Management page lets you create, organize, and apply these events to your scenarios.
@@ -10,7 +10,7 @@ Events in SIMCEL represent anything that can change your demand, pricing, or tra
 SIMCEL supports five types of events:
 
 | Type | Purpose |
-|------|---------|
+| --- | --- |
 | **Demand Adjustment** | Increase or decrease demand due to internal or external factors |
 | **New Demand Stream** | Create future demand for new products without historical data |
 | **Forecast Override** | Override the statistical forecast with top-down sales targets |
@@ -35,11 +35,12 @@ A Demand Adjustment event models a change in demand caused by a planned activity
   </Step>
   <Step title="Add impact">
     Click **Add Impacts** and configure:
+
     - **Period** - The date range for the impact
     - **Product scope** - Select product segments in the product search box
     - **Customer scope** - Select customer segments in the customer search box
     - **Adjustment type** - Choose **% Percent** (percentage change) or **# Units** (absolute volume)
-    - **Delta Adjustment** - Set the value (e.g., +30% or -40%)
+    - **Delta Adjustment** - Set the value (e.g., \+30% or -40%)
   </Step>
   <Step title="Save">
     Save the impact, then save the event.
@@ -64,14 +65,14 @@ A New Demand Stream (NDS) event creates demand for products that have no histori
 
 SIMCEL calculates allocation percentages from the proxy product's historical sales:
 
-```
+```text
 Allocation % = Proxy sales to Customer X / Total proxy sales across all customers
 ```
 
 For example, if the proxy product historically sold 30% to Customer X and 70% to Customer Y, a new demand of 4,000 units would be split as 1,200 to Customer X and 2,800 to Customer Y.
 
 <Note>
-The proxy product must have historical demand in the selected customer segments. If the proxy lacks data for a segment, no demand will be generated for that segment.
+  The proxy product must have historical demand in the selected customer segments. If the proxy lacks data for a segment, no demand will be generated for that segment.
 </Note>
 
 ### Creating a new demand stream
@@ -127,7 +128,7 @@ Pricing Adjustment events let you modify prices and immediately see the financia
 ### Price types
 
 | Price type | Scope | Used for |
-|-----------|-------|----------|
+| --- | --- | --- |
 | **Listed Price** | Product level (same for all customers) | Catalog price before discounts. Use when changing general product price across markets |
 | **Secondary Customer Price** | Product x Secondary Customer | Customer-specific prices overriding the listed price. Use when you need exact pricing per customer |
 | **Primary Customer Price (Distributor Price)** | Product x Primary Customer | Negotiated selling price to distributors. Impacts Primary Sales, P&L through to EBIT |
@@ -145,10 +146,10 @@ When both Product Value Master (PVM) data and pricing events exist, SIMCEL appli
 Adjustments are applied in this order:
 
 1. **Set Price** - Replace the baseline with a fixed value (e.g., 120,000 VND)
-2. **Absolute Adjustment** - Increase or decrease by a fixed amount (e.g., +20,000 VND)
+2. **Absolute Adjustment** - Increase or decrease by a fixed amount (e.g., \+20,000 VND)
 3. **Percentage Adjustment** - Increase or decrease by a percentage (e.g., -30%)
 
-**Example**: Baseline 100,000 VND -> Set to 90,000 -> +5,000 absolute = 95,000 -> +10% = **104,500 VND final price**
+**Example**: Baseline 100,000 VND -\> Set to 90,000 -\> \+5,000 absolute = 95,000 -\> \+10% = **104,500 VND final price**
 
 ---
 
@@ -159,7 +160,7 @@ Trade Terms model trade expenses such as distributor margins, seasonal discounts
 ### Key concepts
 
 | Term | Definition |
-|------|-----------|
+| --- | --- |
 | **Unconstrained Sales In** | Total demand for products from distributors |
 | **Constrained Sales In** | Actual sales to distributors, accounting for supply constraints |
 | **Sales Out with Distributor Reimbursement** | Discounts offered to end buyers, reimbursed by the company to distributors |
@@ -173,7 +174,8 @@ Trade Terms model trade expenses such as distributor margins, seasonal discounts
     A fixed percentage or value discount from the original price.
 
     **Formula:**
-    ```
+
+    ```text
     Trade Expense = Sales GSV x Discount % x Achievement Rate %
     ```
 
@@ -184,7 +186,8 @@ Trade Terms model trade expenses such as distributor margins, seasonal discounts
     A discount triggered when a buyer reaches a purchase volume threshold.
 
     **Formula (when condition met):**
-    ```
+
+    ```text
     Trade Expense = Sales GSV of impact products x Discount % x Achievement Rate %
     ```
 
@@ -195,7 +198,8 @@ Trade Terms model trade expenses such as distributor margins, seasonal discounts
     A "buy X, get Y" style offer tied to purchase quantities.
 
     **Formula:**
-    ```
+
+    ```text
     Trade Expense = Sales GSV of impact products x Discount % x Times condition met x Achievement Rate %
     ```
 
@@ -206,7 +210,7 @@ Trade Terms model trade expenses such as distributor margins, seasonal discounts
 ### Impacted sales options
 
 | Option | Description |
-|--------|------------|
+| --- | --- |
 | **Sales In** | Trade term applied directly to Sales In (company to first-line buyers) |
 | **Sales Out with Distributor Reimbursement** | Based on Sales Out transactions but applied to both Sales Out and Sales In; company reimburses distributors |
 | **Sales Out** | Impact applied to Sales Out data only |
@@ -214,6 +218,21 @@ Trade Terms model trade expenses such as distributor margins, seasonal discounts
 ---
 
 ## Event versions
+
+<Steps>
+  <Step title="Open event creator">
+    Click the **Create Event** button on the Event Management page.
+  </Step>
+  <Step title="Define the event">
+    Enter the event name, description, date range, and select the products/customers it affects.
+  </Step>
+  <Step title="Set the impact">
+    Define how the event changes demand — as a percentage uplift/decline or an absolute volume change.
+  </Step>
+  <Step title="Assign to a scenario">
+    Attach the event to one or more scenarios. The event's impact will be reflected when you view those scenarios.
+  </Step>
+</Steps>
 
 Events support versioning so you can refine estimates over time:
 
@@ -229,7 +248,7 @@ Organize related events into groups for easier management. Group by campaign, qu
 
 ## How events affect your plan
 
-```
+```text
 Scenario Demand = Forecast Base + Demand Adjustments + New Demand Streams + Forecast Overrides
 Scenario Price = Base Price + Pricing Adjustments
 Net Sales Value = Gross Sales Value - Trade Expenses
