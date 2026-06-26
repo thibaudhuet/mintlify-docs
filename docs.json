@@ -32,6 +32,7 @@
         "group": "Demand",
         "pages": [
           "demand/overview",
+          "demand/forecast-algorithms",
           "demand/forecast-accuracy",
           "demand/stock-in-trade"
         ]
@@ -68,7 +69,14 @@
           "tools/pivot-table",
           "tools/kpi-drivers",
           "tools/portfolio-explorer",
-          "tools/plan-realization"
+          "tools/plan-realization",
+          "tools/spreadsheets"
+        ]
+      },
+      {
+        "group": "Collaboration",
+        "pages": [
+          "collaboration/overview"
         ]
       },
       {

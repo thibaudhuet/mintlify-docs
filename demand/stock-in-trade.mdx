@@ -7,14 +7,14 @@ The Stock-In-Trade (SIT) page provides a comprehensive view of your inventory pl
 
 ## What is Stock-In-Trade?
 
-Stock-In-Trade represents the inventory held across your distribution network. SIMCEL provides two perspectives:
+Stock-In-Trade represents the inventory held across your distribution network, measured in **days of sales**. SIMCEL provides two perspectives:
 
 | View | Description |
 |------|-------------|
-| **Unconstrained SIT** | Ideal inventory levels without supply constraints |
+| **Unconstrained SIT** | Target inventory levels without supply constraints |
 | **Constrained SIT** | Realistic inventory levels accounting for supply limitations |
 
-Toggle between these views using the switch at the top of the page to understand the gap between your ideal and achievable inventory.
+Toggle between these views using the switch at the top of the page.
 
 ## What you'll see
 
@@ -22,27 +22,90 @@ Toggle between these views using the switch at the top of the page to understand
 A visual representation of inventory levels over time. Select your preferred UOM (units, value, etc.) to view the data in the most meaningful way.
 
 ### SIT table
-A detailed table showing inventory levels grouped by your organizational hierarchy. Expand rows to drill down from aggregate levels to individual product and location combinations.
+A detailed table showing inventory levels grouped by your organizational hierarchy. Expand rows to drill down to individual product and distributor combinations.
+
+## Calculation logic
+
+### Actual SIT
+
+For historical periods, SIT is calculated from uploaded data:
+
+```
+Actual SIT (Days) = Closing Stock Value / (Sum of Sales Out Volume x Product Value per month) x Number of months x 30
+```
+
+Where:
+- Closing Stock Value = from distributor inventory upload
+- Sales Out = from actual sales out upload
+- Product Value = Listed Price or Distributor GSV (per workspace setting)
+
+### Unconstrained (Future) SIT
+
+For future periods without supply constraints:
+
+```
+Future Sales In = (Sum of Future Sales Out / (N x 30)) x Future SIT Target
+                  - Previous Closing Stock + Future Sales Out
+
+Future Closing Stock = Previous Closing Stock - Future Sales Out + Future Sales In
+
+Future SIT (Days) = Closing Stock Value / (Sum of Future Sales Out x Product Value per month) x N x 30
+```
+
+Where:
+- Future SIT Target = from the distributor SIT target file (editable)
+- N = number of months in the calculation window
+
+### Constrained (Simulated) SIT
+
+After running a simulation:
+
+```
+Constrained Sales In = from simulation Demand Fulfillment Metrics
+
+Constrained Closing Stock = Previous Closing Stock - Constrained Sales Out + Constrained Sales In
+
+Constrained SIT (Days) = Closing Stock Value / (Sum of Constrained Sales Out x Product Value per month) x N x 30
+```
+
+<Note>
+- If sales out for 3 consecutive periods is null, SIT will not be calculated and displays "NAN"
+- Constrained Sales Out is limited to available stock when inventory is insufficient to meet demand
+- SIT values are calculated at month-end only
+</Note>
+
+## Editable fields
+
+In the unconstrained view, you can manually adjust:
+
+| Field | What you can edit |
+|-------|------------------|
+| **Future Sales In** | Adjust inbound volumes (boxes or value) |
+| **Future Closing Stock** | Adjust target inventory levels |
+| **Future SIT Target** | Set days of stock targets per distributor-product |
+
+<Warning>
+If an editable value is "0" at an aggregated level, it cannot redistribute to lower levels (based on child ratio). In this case, edit at the atomic level (Distributor-Product) directly.
+</Warning>
+
+If adjustments result in negative numbers, the table displays a warning icon. Address discrepancies before simulating, as negatives are treated as "0" during simulation.
 
 ## Key inventory KPIs
 
 | KPI | Description |
 |-----|-------------|
-| **Unconstrained SIT** | Target inventory without supply constraints (month-end) |
-| **Constrained SIT** | Expected inventory with supply constraints applied (month-end) |
+| **Unconstrained SIT** | Target inventory without supply constraints (month-end, days) |
+| **Constrained SIT** | Expected inventory with supply constraints (month-end, days) |
 | **Average Inventory Value** | Average monetary value of inventory held |
 | **Average Inventory Volume** | Average physical quantity of inventory held |
 | **DIO (Days Inventory Outstanding)** | Number of days of sales covered by current inventory |
 | **Closing Stock (Gross Value)** | End-of-period inventory in monetary terms |
 | **Closing Stock (Volume)** | End-of-period inventory in physical units |
 
-<Note>
-SIT values are calculated at month-end only, reflecting the closing inventory position for each period.
-</Note>
-
 ## How to use it
 
 1. **Compare constrained vs. unconstrained** - Toggle between views to understand where supply constraints impact your inventory
-2. **Identify gaps** - Large differences between constrained and unconstrained SIT highlight areas where you may need to secure additional supply
-3. **Monitor trends** - Watch inventory levels over time to prevent stockouts or excess inventory
-4. **Check pending tasks** - The page shows if there are pending DRP (Distribution Requirements Planning) tasks that need to complete before data is fully available
+2. **Identify gaps** - Large differences highlight areas needing additional supply
+3. **Adjust SIT targets** - Edit future SIT targets per distributor-product to optimize inventory levels
+4. **Monitor trends** - Watch inventory over time to prevent stockouts or excess
+5. **Check pending tasks** - The page shows if pending DRP tasks need to complete before data is fully available

@@ -1,0 +1,59 @@
+---
+title: Forecast algorithms
+description: Understand the forecasting methods available in SIMCEL and how to configure them.
+---
+
+Demand forecasting is the starting point of supply chain planning. SIMCEL uses historical demand (Base Demand) as input and offers multiple forecasting methods to project future demand.
+
+## Available forecasting models
+
+| Model | Type | Description |
+|-------|------|-------------|
+| **Prophet** | Time series | Meta's algorithm that decomposes data into trend, seasonality, and holiday components |
+| **STL** | Time series | Seasonal-Trend decomposition using Loess, separating trend, seasonal, and residual components |
+| **LightGBM** | Machine learning | Gradient-boosting framework with leaf-wise tree growth. Faster training than XGBoost with comparable or improved accuracy |
+| **XGBoost (XGB)** | Machine learning | Extreme Gradient Boosting for large/complex datasets, building ensembles of weak decision trees |
+| **AdaBoost (ADA)** | Machine learning | Adaptive Boosting combining multiple weak learners by iteratively adjusting weights |
+| **Random Forest (RF)** | Machine learning | Ensemble of multiple decision trees on randomly selected subsets of features and data |
+| **Extra Trees (ETR)** | Machine learning | Similar to Random Forest but with different tree construction methodology |
+| **Decision Trees (DT)** | Machine learning | Tree-like models where leaf nodes represent demand forecasts |
+| **Naive** | Baseline | Uses previous period values (lag-1, last observation, or seasonal lag) as the forecast. Often used as a comparison baseline |
+
+## Forecast strategies
+
+### Recursive vs. non-recursive forecasting
+
+| Strategy | How it works | Trade-offs |
+|----------|-------------|------------|
+| **Recursive** | Model predicts the next value; predictions are used as new training data for subsequent steps | Faster but bias compounds over time, lowering accuracy |
+| **Non-recursive** | N different models are trained for N steps ahead | More time-consuming but provides better results |
+
+### Target transform
+
+A pre-processing technique that accounts for seasonality by taking the difference at the seasonal period. This captures seasonality better at the cost of additional computational resources.
+
+## Forecast settings
+
+Access forecast settings by clicking **+ Plan** and then **Open Forecast Settings**.
+
+### Forecast aggregation
+
+Controls the granularity at which forecasts are generated. This involves a strategic balance:
+
+| Level | Pros | Cons |
+|-------|------|------|
+| **Higher aggregation** | Faster forecasting, denser data representation | Reduces precision, loses nuances and patterns |
+| **Finer granularity** | More detail, higher precision | Requires more computational resources, may create discontinuities with insufficient data points |
+
+Configurable dimensions: **Product**, **Customer/Location**, and **Time**.
+
+<Tip>
+Strike a balance that preserves critical information while ensuring computational feasibility. Excessive aggregation obscures vital trends; overly detailed data creates unreliable forecasts.
+</Tip>
+
+### Explore products/customers
+
+A feature within forecast settings that lets you review actual demand for selected products/customers from the most recent year. Useful for:
+
+- Identifying customers or products removed from the active list but not updated in master records
+- Determining whether items should be delisted

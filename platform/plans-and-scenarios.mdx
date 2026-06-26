@@ -13,20 +13,38 @@ A **plan** represents a planning cycle with a defined time horizon. Each plan co
 
 | Type | Purpose | Typical horizon |
 |------|---------|----------------|
-| **Budget** | Annual strategic planning | 12-18 months |
-| **Tactical** | Short-term operational adjustments | 3-6 months |
+| **Budget** | Annual strategic planning focused on broad business goals across brands, channels, and regions | 12-24 months |
+| **Tactical** | Regularly created plans (weekly or monthly) used to build the committed plan | 6-12 months |
 
-### Creating a plan
+### Creating a tactical plan
 
-When you create a new plan, you define:
-
-1. **Plan type** - Budget or Tactical
-2. **Forecast method** - The statistical method used to generate the base forecast
-3. **Date range** - The start and end dates for the planning period
+<Steps>
+  <Step title="Open plan creator">
+    Click **+ Plan** and select **Tactical plan**.
+  </Step>
+  <Step title="Configure the plan">
+    Set the plan title (e.g., "Feb 2026"), select a forecasting method (e.g., LightGBM), and choose the plan period (e.g., Feb 2026 - Jan 2027). Add an optional description.
+  </Step>
+  <Step title="Wait for forecast generation">
+    SIMCEL runs the forecaster to generate a demand projection. This may take several minutes. A loading page shows the forecaster progress.
+  </Step>
+  <Step title="Review the Forecast Base">
+    Once complete, the default **Forecast Base** scenario appears, showing the unbiased demand projection free from event influence.
+  </Step>
+</Steps>
 
 <Note>
-Once a plan is created, SIMCEL automatically generates a **Forecast Base** scenario using the selected forecast method. This serves as your starting point.
+Once a plan is created, SIMCEL automatically generates a **Forecast Base** scenario using the selected forecast method. This serves as your starting point for building scenarios.
 </Note>
+
+### Plan initialization and continuity
+
+When a new plan is created, SIMCEL ensures seamless continuity with previous planning cycles:
+
+1. **Forecast generation** - The forecaster runs using historical data and the selected method
+2. **Event carry-forward** - If the primary scenario of the previous plan had events applied, those events shape the new Forecast Base
+3. **Inventory continuity** - Ending stock from the reference data (actual or previous plan) becomes the initial inventory for the new plan
+4. **Data source priority** - SIMCEL uses actual data when available; when actual data is missing for a period, it falls back to the primary scenario of the preceding plan ("Update Current")
 
 ### Managing plans
 
@@ -43,40 +61,58 @@ A **scenario** is a version of your plan with specific assumptions and events ap
 | Type | Description | Editable? |
 |------|-------------|-----------|
 | **Forecast Base** | Auto-generated baseline forecast | No |
-| **Primary** | Your main working scenario | Yes |
-| **Custom** | Additional what-if scenarios | Yes |
+| **Primary** | Your main working scenario selected for execution | Yes |
+| **Custom** | Additional what-if scenarios for analysis | Yes |
 | **Actual** | Real performance data imported from your systems | No |
+| **Committed** | Events and actions the organization has decided to execute | Yes |
 
-### Scenario flags
+### Creating a scenario
 
-Scenarios carry flags that determine their role:
+<Steps>
+  <Step title="Add new scenario">
+    Click **+ Add New Scenario** in the demand planning page.
+  </Step>
+  <Step title="Configure">
+    Set the scenario name, select a supply plan, and choose the event versions to apply.
+  </Step>
+  <Step title="Save">
+    Click **Save**. The events are now reflected in the scenario demand.
+  </Step>
+</Steps>
 
-- **PRIMARY** - The main scenario used for reporting and comparison
-- **ACTUAL** - Contains actual performance data
-- **COMMITTED** - A committed supply plan
-- **FORECAST_BASE** - The automatically generated base forecast
+### Making a scenario primary
 
-### Working with scenarios
+The **primary scenario** becomes the execution plan used as the reference for your entire business:
 
-#### Creating a scenario
-Click the **+** button in the Scenario Bar to create a new scenario. Give it a name and optionally a color for easy identification on charts.
+1. Click the **three-dot menu** next to the scenario
+2. Select **Make Primary**
+3. A "Primary" badge appears on the scenario
 
-#### Comparing scenarios
-Toggle multiple scenarios on using the chips in the Scenario Bar. Charts and tables will display all active scenarios side by side, making it easy to compare outcomes.
+### Committed plan
 
-#### Scenario colors
-Each scenario is assigned a color that is used consistently across all charts and tables. You can customize the color by editing the scenario.
+The **Committed Plan** is created by concatenating the non-overlapping initial periods of primary scenarios from different plans. It represents what your organization has decided to execute, based on evaluating the impact on:
 
-<Tip>
-Use scenario comparison to evaluate the impact of different events or assumptions. For example, create one scenario with a promotional event and another without to measure the expected uplift.
-</Tip>
+- Revenue
+- Cost
+- Profit
+- Service Level
+- Working Capital
+
+**Planning Adherence** compares the Committed Plan with historical performance to measure how well the plan aligns with actual results and evaluate execution quality.
+
+### Comparing scenarios
+
+Toggle multiple scenario chips **on** in the Scenario Bar. Charts and tables display all active scenarios side by side. Color coding highlights differences:
+
+- **Green** - Favorable movement (higher revenue, lower costs)
+- **Red** - Unfavorable movement (lower revenue, higher costs)
 
 ## How plans and scenarios work together
 
 ```
 Plan (Budget 2025)
 ├── Forecast Base (auto-generated)
-├── Primary Scenario (your main plan)
+├── Primary Scenario (your execution plan)
 ├── Scenario A: "Best Case" (optimistic assumptions)
 ├── Scenario B: "Conservative" (cautious assumptions)
 └── Actual (imported real data)
@@ -87,5 +123,3 @@ Each scenario within a plan shares the same time horizon and master data but can
 - **Demand adjustments** (manual overrides, shaping)
 - **Simulation results** (supply chain outcomes)
 - **KPI values** (calculated from the above)
-
-This structure allows you to maintain a single source of truth (the plan) while exploring multiple possible outcomes (scenarios).

@@ -1,34 +1,67 @@
 ---
 title: Homepage
-description: Your personalized landing page with key metrics and projections.
+description: Your personalized landing page with fiscal year performance metrics and projections.
 ---
 
-The Homepage is the first screen you see when you log in to SIMCEL. It provides a high-level snapshot of your business performance.
+The Homepage is the first screen you see when you log in to SIMCEL. It provides an at-a-glance view of your fiscal year performance without needing to open any plan or scenario.
 
-## What you'll see
+## Key metric cards
 
-### Welcome message
-A personalized greeting with your name and the current date.
+Three cards at the top display your most critical financial KPIs:
 
-### Key metrics widget
-A summary of your most important KPIs at a glance. These metrics are pulled from your active plan and primary scenario.
+| Card | What it shows |
+|------|--------------|
+| **Net Sales Value** | Total net sales in currency |
+| **Gross Margin** | Gross profit as a percentage of net sales |
+| **EBIT** | Earnings before interest and tax |
 
-### Projections chart
-A visual representation of projected performance across your planning horizon. Use this to quickly spot trends and potential issues.
+Each card includes:
 
-### Fiscal year achievement
-Track your progress against fiscal year targets. The widget shows how your current trajectory compares to your annual goals.
+- **YTD** (Year-To-Date) - Actual data up to the latest actual date
+- **YTG** (Year-To-Go) - Remaining months projected from your Tactical plan
+- **FY Total** - Combined YTD + YTG
+- **vs. last year** - Trend indicator (red when below prior year)
+- **Sparkline** - A mini chart with a solid line (actual portion), a transition dot, and a dashed line (forecast portion)
+
+## YTD and YTG projections chart
+
+A bar chart that groups your fiscal year into 12 months, comparing three data series:
+
+- **Actual (YTD)** - Consolidated actuals for months up to the latest actual date
+- **Budget Plan** - Shown in grey for year-to-go months
+- **Tactical Plan** - Shown in red for year-to-go months
+
+The transition month (where actual data ends and projections begin) shows all three bars side by side. Use the metric dropdown to switch between **Net Sales Value** and **EBIT**. Hover over any bar to see the variance versus other series.
+
+## Fiscal year achievement donut
+
+A concentric ring chart tracking your progress toward fiscal year targets:
+
+- **Outer ring: Time Elapsed** - Portion of fiscal year that has passed (days elapsed / total days)
+- **Middle ring: Net Sales Value** - Actual YTD / (Actual YTD + Plan YTG)
+- **Inner ring: EBIT** - Same achievement formula applied to EBIT
 
 <Tip>
-The fiscal year start month is configured in your workspace settings. All fiscal year calculations across SIMCEL use this setting.
+If the metric ring extends beyond the Time Elapsed ring, your performance is tracking ahead of pace.
 </Tip>
 
-## Using the homepage
+### View options
 
-The Homepage is designed for quick orientation:
+| Toggle | What it shows |
+|--------|--------------|
+| **FY** | Full fiscal year achievement in one donut |
+| **Quarterly** | Four mini donuts (Q1 - Q4) with Net Sales and EBIT achievement |
+| **Monthly** | Twelve mini donuts spanning all months |
 
-- **Check the pulse** - Glance at key metrics to understand current performance
-- **Spot trends** - Use the projections chart to identify upward or downward movements
-- **Track progress** - See how far along you are toward your fiscal year targets
+### Dataset toggle
 
-From here, use the sidebar to dive into any specific module for detailed analysis.
+Switch between **Budget** and **Tactical** to change which plan drives the year-to-go denominator.
+
+## Edge cases
+
+| Situation | What happens |
+|-----------|-------------|
+| No actual data yet | Cards show zero, achievement rings show 0%, no Actual bars in chart |
+| No Tactical plan | Donut defaults to Budget mode, Tactical option hidden |
+| No Budget plan | Donut defaults to Tactical mode, Budget option hidden |
+| Start of fiscal year | YTD values near zero, sparkline dot held at minimum, Time Elapsed ring shows ~8% |

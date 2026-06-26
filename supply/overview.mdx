@@ -1,43 +1,34 @@
 ---
 title: Supply Planning
-description: Track order fulfillment, run simulations, and optimize your supply chain performance.
+description: Track order fulfillment, monitor inventory evolution, and optimize your supply chain performance.
 ---
 
-The Supply Planning module gives you full visibility into how well your supply chain meets demand. Monitor fulfillment rates, identify gaps, run simulations, and track inventory evolution across your network.
+The Supply Planning module gives you full visibility into how well your supply chain meets demand. Access it via **Supply** under the IBP section in the sidebar.
 
-## What you'll see
+## Filters
 
-### Order fulfillment chart
-A stacked bar chart showing **fulfilled** (green) and **unfulfilled** (red) quantities for each time period. This gives you an immediate visual of supply performance.
+Before exploring, apply filters to focus your view:
 
-You can double-click on any bar to drill down into the details for that specific period.
+| Filter | Description |
+|--------|-------------|
+| **Product** | Filter by product, product group, or all products |
+| **Origin** | Filter by supplying location(s) or all origins |
+| **Destination** | Filter by receiving location(s) or all destinations |
+| **Date range** | Focus on a specific planning horizon |
 
-### KPI cards
-Three summary cards at the top of the page, each with scenario comparison navigation:
+## Order fulfillment chart
 
-| KPI | Unit | Direction |
-|-----|------|-----------|
-| **Order Fulfillment %** | Percentage | Higher is better |
-| **Unfulfilled Value** | Currency | Lower is better |
-| **Unfulfilled Volume** | Units | Lower is better |
+A stacked bar chart showing **fulfilled** (green) and **unfulfilled** (red) quantities for each time period. Hover over any bar to see a tooltip with:
 
-Each card shows the value for your active scenario and arrows to navigate between scenarios for quick comparison.
+- Order Quantity
+- Fulfilled Quantity
+- Unfulfilled Quantity
+- Unfulfilled Value
+- Order Fulfillment %
 
-### Inventory evolution chart
-A line chart tracking inventory levels over time across your network. Use this to spot trends, seasonal patterns, and potential stockout risks.
+Double-click on any bar to drill down into the details for that specific period.
 
-### Order fulfillment details table
-A detailed table breaking down fulfillment by product, customer, and facility. Expand rows to see granular fulfillment data at the SKU level.
-
-## Page controls
-
-| Control | Options | What it does |
-|---------|---------|-------------|
-| **Scope** | All, Secondary Sales, Primary Sales, Stock Transfers, Supply Sources | Filter by order type |
-| **Granularity** | Daily, Weekly, Monthly, Quarterly, Fiscal Year | Change the time aggregation |
-| **UOM** | Carton, Unit, Pallet, Kg | Change the unit of measure |
-
-### Scope definitions
+### Scope selector
 
 | Scope | What it includes |
 |-------|-----------------|
@@ -47,6 +38,60 @@ A detailed table breaking down fulfillment by product, customer, and facility. E
 | **Stock Transfers** | Inter-facility inventory movements |
 | **Supply Sources** | Production and procurement orders |
 
+### Granularity
+
+Switch between **Daily (D)**, **Weekly (W)**, **Monthly (M)**, **Quarterly (Q)**, and **Fiscal Year (FY)** views.
+
+## KPI comparison cards
+
+Three summary cards at the top of the page with scenario comparison navigation:
+
+| KPI | Unit | Direction |
+|-----|------|-----------|
+| **Order Fulfillment %** | Percentage | Higher is better |
+| **Unfulfilled Value** | Currency | Lower is better |
+| **Unfulfilled Volume** | Units | Lower is better |
+
+Each card shows the value for your active scenario and a delta comparison against other scenarios. Use the arrows to navigate between scenarios.
+
+## Order fulfillment details table
+
+A detailed table breaking down fulfillment by product, customer, and facility.
+
+### View modes
+
+| Mode | Description |
+|------|-------------|
+| **Aggregated** | Expandable hierarchy - drill down from totals to product level |
+| **Atomic** | Flat individual records, paginated |
+
+### Customizing columns
+
+Click the **settings gear** icon to open the **Organize Detail Results** dialog:
+
+- **Select Segments** tab - Choose dimensions: Brands, Sub Category, Product ID, Product Name, Product Range, Product Type, Strategic Segment, Sub Channel
+- **Select Analytics** tab - Choose metrics: Fulfilled Quantity, Unfulfilled Volume (UoM), Root Cause
+
+## Inventory evolution chart
+
+A dual-axis chart showing three data series:
+
+| Series | Axis | Description |
+|--------|------|-------------|
+| **On-Hand Inventory** | Left (blue line) | Current inventory levels over time |
+| **Storage Capacity** | Left (dotted line) | Maximum storage capacity for comparison |
+| **Unfulfilled Demand** | Right (red bands) | Periods with supply shortfalls |
+
+Warning markers appear for periods with unfulfilled demand.
+
+### Inventory summary cards
+
+| Card | Description |
+|------|-------------|
+| **Avg Inventory Value** | Average monetary value of inventory held over the period |
+| **Average DIO** | Average Days Inventory Outstanding |
+| **Stockout** | Share of periods/demand affected by stockout |
+
 ## Key formulas
 
 ### Order fulfillment rate
@@ -54,8 +99,6 @@ A detailed table breaking down fulfillment by product, customer, and facility. E
 ```
 Order Fulfillment % = (Fulfilled Quantity / Total Demand) x 100
 ```
-
-A fulfillment rate of 100% means all demand was met. Anything below 100% indicates supply shortfalls.
 
 ### Unfulfilled metrics
 
@@ -66,8 +109,8 @@ Unfulfilled Value = Unfulfilled Volume x Unit Price
 
 ## Drill-down
 
-Double-click on any bar in the fulfillment chart to filter the details table to that specific time period. A filter chip appears above the table showing your active drill-down. Click the **X** on the chip to clear the filter and return to the full view.
+Double-click on any bar in the fulfillment chart to filter the details table to that period. A filter chip appears above the table. Click the **X** to clear the filter.
 
 <Tip>
-Use the **Scope** selector to isolate specific parts of your supply chain. For example, select "Secondary Sales" to focus on customer-facing fulfillment, or "Supply Sources" to check production output.
+Use the **Scope** selector to isolate specific parts of your supply chain. Select "Secondary Sales" to focus on customer-facing fulfillment, or "Supply Sources" to check production output.
 </Tip>

@@ -5,59 +5,110 @@ description: Run supply chain simulations to calculate fulfillment, inventory, a
 
 SIMCEL's simulation engine (DRP - Distribution Requirements Planning) calculates how your supply chain performs under the demand and constraints defined in each scenario.
 
-## What does a simulation do?
+## Prerequisites
 
-When you run a simulation, SIMCEL:
+Before running a simulation:
 
-1. Takes the demand forecast from your scenario
-2. Applies supply constraints (production capacity, lead times, inventory policies)
-3. Calculates distribution requirements across your physical network
-4. Determines what can be fulfilled and what cannot
-5. Computes all supply, finance, and carbon KPIs from the results
+- **SIT levels** must be set per distributor and product
+- The scenario should be **associated with a supply plan**
+- If needed, upload the supply plan via **Data Management (ETL)**
 
 ## How to run a simulation
 
-1. Navigate to **Supply Planning**
-2. Select the scenario you want to simulate
-3. Click the **Run Simulation** button
-4. A progress dialog appears showing the simulation steps
+<Steps>
+  <Step title="Open scenario menu">
+    Click the **three-dot menu** next to the scenario you want to simulate.
+  </Step>
+  <Step title="Click Run Simulation">
+    Select **Run Simulation** from the menu.
+  </Step>
+  <Step title="Validate Sales In">
+    SIMCEL performs a sanity check on Primary Sales for negative values. If negatives are found, a popup warning appears. Confirm to continue or cancel to adjust.
+  </Step>
+  <Step title="Monitor progress">
+    A progress dialog shows each simulation step with real-time status. You can click **Keep working** to temporarily hide the dialog and continue using SIMCEL. A loading indicator appears next to the scenario being simulated.
+  </Step>
+</Steps>
 
 ## Simulation progress
-
-The progress dialog shows each step of the simulation with real-time status:
 
 | Status | Meaning |
 |--------|---------|
 | **Pending** | Step has not started yet |
 | **Running** | Step is currently being processed |
 | **Success** | Step completed successfully |
-| **Error** | Step encountered an issue |
-
-If an error occurs, you can expand the error message to see details about what went wrong.
+| **Error** | Step encountered an issue (expand to see details) |
 
 <Warning>
-Simulations can take several minutes depending on the size of your network and the number of products. Do not close the browser tab while a simulation is running.
+Simulations can take several minutes depending on the size of your network and the number of products.
 </Warning>
+
+## What happens during simulation
+
+SIMCEL runs the simulation in daily steps, progressing one day at a time from the initial dataset:
+
+### Step 1: Initial stock determination
+Uses the closing stock from the period before the simulation start date as the opening inventory.
+
+### Step 2: Sales and inventory simulation
+
+For each month in the planning horizon:
+
+1. **Add supply** - Supply quantity is added to beginning inventory
+2. **Compare against demand** - Inventory is compared with unconstrained Sales In
+3. **Calculate constrained output**:
+   - If inventory meets or exceeds demand: **Constrained Sales In = Unconstrained Sales In**
+   - If inventory is insufficient: **Constrained Sales In = Available stock**
+4. **Calculate closing stock**:
+   ```
+   Closing Stock = Opening Stock + Supply Quantity - Constrained Sales In
+   ```
+
+### Step 3: Metrics calculation
+
+SIMCEL computes all downstream metrics:
+
+- **Constrained Primary Sales** - Volume the company can supply to distributors
+- **Constrained Secondary Sales** - Sales to end customers considering available distributor supply
+- **Constrained Stock Value** - Inventory levels at period end
+- **Constrained SIT (Stock Days)** - Stock at distributors expressed in days of sales
+- **All financial KPIs** - COGS, margins, P&L metrics
+- **Carbon emissions** - Inbound, storage, outbound CO2
+- **Atomic KPIs** - Granular data with product, distributor, and location details
+
+## Simulation output
+
+After a successful simulation, the following are available:
+
+| Output | Description |
+|--------|-------------|
+| **Simulation Sales In** | Constrained Sales In per distributor |
+| **Demand Fulfillment Metric** | Distributor demand broken into orders with fulfillment status |
+| **Inventory Metrics** | Opening/closing stocks, quantities received/shipped |
+| **Atomic KPIs** | Granular data with product, distributor, location details |
+| **All 51+ KPIs** | Fully calculated across every dimension |
 
 ## When to re-run a simulation
 
-You should re-run your simulation when:
+Re-run your simulation when:
 
 - You **add or modify events** in your scenario
 - You **change demand assumptions** or apply demand shaping
-- You **update master data** (products, facilities, network)
-- You want to **refresh KPIs** after any planning change
+- You **update the supply plan** or master data
+- You **upload a new supply plan** via ETL
 
-## What gets calculated
+<Note>
+Unsimulated scenarios show no data when switching to **Constrained** mode. Always run a simulation after making changes to see updated results.
+</Note>
 
-After a successful simulation, the following are updated for the scenario:
+## Interpreting results
 
-- **Order fulfillment** rates and details
-- **Inventory levels** (constrained SIT, closing stock)
-- **Financial KPIs** (COGS, margins, P&L metrics)
-- **Carbon emissions** (inbound, storage, outbound CO2)
-- **All 51+ KPIs** across every dimension
+After simulation, navigate to:
+
+- **Supply Planning** - Review order fulfillment rates and inventory evolution
+- **Business Explorer** - Review financial KPIs and P&L impact
+- **CO2 Report** - Review carbon emissions
 
 <Tip>
-Create multiple scenarios with different assumptions, run simulations on each, and use the scenario comparison features to evaluate which plan delivers the best outcomes.
+Create multiple scenarios with different supply plans or events, run simulations on each, and use scenario comparison to find the optimal plan.
 </Tip>

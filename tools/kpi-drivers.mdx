@@ -1,40 +1,65 @@
 ---
 title: KPI drivers
-description: Visualize relationships and dependencies between your business KPIs.
+description: Explore best and worst-performing segments and visualize KPI relationships.
 ---
 
-The KPI Drivers tool helps you understand how different KPIs relate to and influence each other. It displays a tree-like visualization of KPI dependencies.
+The KPI Drivers tool helps you explore segment performance and understand how different KPIs relate to each other.
 
 ## How to access
 
 Navigate to **Tools > KPI Drivers** from the sidebar.
 
-## What it shows
+## Configuring the chart
 
-A visual map of how your KPIs connect:
+Define five parameters to build your analysis:
 
-- **Input KPIs** (drivers) feed into **output KPIs** (results)
-- Follow the chain from revenue through costs to profit
-- Understand which levers to pull to impact a specific metric
+| Parameter | Description |
+|-----------|-------------|
+| **Dimension 1** (x-axis) | First category to segment data (e.g., Product ID, Category) |
+| **Dimension 2** (x-axis) | Second category for further segmentation (e.g., Country, Channel) |
+| **Display** | Show **Top 10** or **Bottom 10** values for KPI 1 or KPI 2 |
+| **KPI 1** (bar, left y-axis) | First key performance indicator |
+| **KPI 2** (line, right y-axis) | Second key performance indicator |
 
-## Example driver chain
+The chart updates automatically as you adjust parameters.
+
+## Example use case
+
+**Goal**: Identify products with the highest demand and evaluate their service levels countrywide.
+
+| Parameter | Setting |
+|-----------|---------|
+| Dimension 1 | Product ID |
+| Dimension 2 | Country |
+| Display | KPI 1 - Top 10 |
+| KPI 1 | Unconstrained Gross Sales In Value |
+| KPI 2 | Service Level |
+
+**Insight**: If a top-selling product shows a low service level, you can investigate root causes, alert headquarters to increase supply, and develop a corrective action plan.
+
+## KPI driver chain
+
+The P&L waterfall shows how KPIs cascade from revenue to profit:
 
 ```
 Gross FIE Sales
-  └── - FIE Trade Expenses
-       └── = Net FIE Sales
-            └── - Distributor COGS
-                 └── = Gross Profit
-                      └── - Supply Chain Cost
-                           └── - Promotion
-                                └── - Medical Affairs
-                                     └── = DPM
-                                          └── - Administration
-                                               └── = EBIT
+  - FIE Trade Expenses
+  = Net FIE Sales
+    - Distributor COGS
+    = Gross Profit
+      - Transport
+      - Storage & Handling
+      = Supply Chain Cost
+        - Promotion
+        - Medical Affairs
+        = DPM
+          - Administration
+          = EBIT
 ```
 
 ## How to use it
 
-1. **Identify root causes** - If EBIT is declining, trace back through the driver tree to find which input KPI is causing the change
+1. **Identify root causes** - If EBIT is declining, trace back through the driver chain to find which input KPI is causing the change
 2. **Impact analysis** - See which downstream KPIs will be affected when a driver changes
-3. **Planning focus** - Determine which KPIs to prioritize in your planning based on their influence on final outcomes
+3. **Segment performance** - Identify your best and worst performers across any dimension
+4. **Planning focus** - Determine which KPIs to prioritize based on their influence on outcomes

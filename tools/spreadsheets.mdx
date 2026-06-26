@@ -1,0 +1,136 @@
+---
+title: Spreadsheets
+description: An in-app spreadsheet editor wired into SIMCEL's planning model.
+---
+
+SIMCEL Sheets is a familiar spreadsheet editor built for supply chain work. Data you enter can feed directly into plans, scenarios, and events without leaving the platform.
+
+## How to access
+
+Navigate to **Tools > Spreadsheets** from the sidebar.
+
+## What is a SIMCEL Sheet?
+
+A grid of cells (rows x columns) where each cell can hold:
+- **Plain text or numbers** - Displayed as entered
+- **Formulas** - Prefixed with `=`, evaluated automatically
+- **Formatting** - Bold, italic, font size, alignment, number format, colors, borders
+
+Sheets are named documents saved to your workspace, and can optionally be linked to a plan or scenario for downstream use.
+
+## Editing
+
+### Grid interactions
+
+| Action | How |
+|--------|-----|
+| Select cell | Click |
+| Select range | Click and drag, or Shift+click |
+| Select whole column/row | Click the header |
+| Edit cell | Start typing (overwrite) or F2 (edit without clearing) |
+| Confirm and move | Enter (down), Tab (right), Escape (cancel) |
+| Navigate | Arrow keys when not editing |
+
+### Toolbar
+
+Font family, size, bold/italic/underline/strikethrough, text alignment, number format (currency, percentage, decimal places), text and background colors, borders, and format painter.
+
+### Fill handle
+
+Drag the small square at the bottom-right of a selection to auto-fill copies. Formula references increment automatically (e.g., `=MASTER(A2)` becomes `=MASTER(A3)`).
+
+### Copy and paste
+
+Standard shortcuts (Ctrl+C / V / X). Paste supports CSV data from Excel or Google Sheets.
+
+## Formulas
+
+Start any formula with `=`. Available categories:
+
+| Category | Functions |
+|----------|----------|
+| **Math** | SUM, PRODUCT, ROUND, ABS, SQRT, POWER, MOD |
+| **Statistical** | AVERAGE, MIN, MAX, COUNT, COUNTA, MEDIAN |
+| **Text** | UPPER, LOWER, LEN, CONCATENATE, LEFT, RIGHT, MID, TRIM |
+| **Logical** | IF |
+
+### The MASTER() formula
+
+`=MASTER(ref)` fuzzy-matches a cell value against your workspace master data (products, customers, locations) and returns the best canonical match.
+
+```
+=MASTER(A2)                    → Best-matching canonical name
+=MASTER(A2, "brands")          → Brand of the matched product
+=MASTER(A2, "productId")       → Product ID of the matched product
+=MASTER(A2, "category")        → Category of the matched product
+```
+
+**Match confidence:**
+- **80%+** - Confident match, resolved value shown directly
+- **20-79%** - Uncertain match, shown with `~` prefix
+- **Below 20%** - `#NO_MATCH` error
+- **In progress** - `#RESOLVING` while lookup runs
+
+### Match to Master workflow
+
+For bulk matching:
+1. Select cells containing raw values
+2. Right-click > **Match to SIMCEL**
+3. Pick entity type (Products / Customers / Locations)
+4. Click **Search** - results show original value, best match with score %, and dropdown for alternatives
+5. Review, accept or reject per row, click **Apply**
+
+Matched cells update with a subtle green highlight. Use **Fix All** to auto-apply best suggestions for uncertain matches.
+
+## Normal sheets vs. system sheets
+
+| Type | Purpose | Downstream integration |
+|------|---------|----------------------|
+| **Normal Sheet** | Free-form spreadsheet for calculations, notes, scratch work | None |
+| **System Sheet** | Created from a template, linked to SIMCEL's planning model | Creates/updates plans, events, or scenarios on submission |
+
+### System sheet templates
+
+<AccordionGroup>
+  <Accordion title="Forecast Input">
+    Enter demand targets by product and sub-channel across time. Once verified, the sheet becomes a selectable data source in the Plan Drawer.
+
+    - Layout: Header row with Product / Sub-Channel / month columns (Mon-YY format)
+    - Submit: Click **Verify Forecast Input**
+    - System checks: at least one data row, valid month headers, sheet saved
+    - Success: Green "Validated" badge appears
+  </Accordion>
+
+  <Accordion title="Pricing Adjustment">
+    Capture price changes across products and date range. On submission, creates an event version in Event Management.
+
+    - Metadata: Event name, version name, description in dedicated cells
+    - Data: Product x price type x monthly values (YYYY-MM format)
+    - Supported price types: Listed Price, Distributor Price, Secondary Price
+    - Submit: Click **Submit** to create/update the event version
+  </Accordion>
+
+  <Accordion title="Forecast Override">
+    Override statistical forecasts with manual targets. Same metadata structure and submission mechanism as other templates.
+  </Accordion>
+
+  <Accordion title="New Demand Stream">
+    Define demand for new products without historical data. Same metadata structure and submission mechanism.
+  </Accordion>
+</AccordionGroup>
+
+## Saving and opening
+
+- **Save** - Click Save (top-right); first save prompts for a sheet name
+- **Open** - Click Open to see the sheet list: New Blank Sheet, New System Sheet (templates), and My Sheets
+- **Clear** - Empties the current grid
+
+## Lana AI assistant
+
+An embedded AI assistant that can read selected cells and suggest values:
+
+1. Select cells
+2. Right-click > **Ask Lana**
+3. Describe what you need
+4. Lana returns cell-level suggestions
+5. Click **Apply All** to write suggestions into the grid

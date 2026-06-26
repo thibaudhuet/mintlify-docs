@@ -1,9 +1,9 @@
 ---
 title: KPI glossary
-description: Complete reference of all 51+ KPIs available in SIMCEL with definitions, formulas, and units.
+description: Complete reference of all KPIs available in SIMCEL with definitions, formulas, and units.
 ---
 
-SIMCEL automatically calculates over 51 KPIs from your simulation results. Each KPI is classified by category and direction (whether higher or lower values are favorable).
+SIMCEL automatically calculates 50+ KPIs from your simulation results. Each KPI is classified by category and direction (whether higher or lower values are favorable).
 
 ## Understanding KPI direction
 
@@ -14,71 +14,90 @@ SIMCEL automatically calculates over 51 KPIs from your simulation results. Each 
 
 ---
 
-## Demand KPIs
+## Primary (FIE) KPIs
 
-| KPI | Direction | Description |
-|-----|-----------|-------------|
-| **FIE Demand Value** | Profit | Factory import entry demand in monetary value |
-| **FIE Demand Volume** | Profit | Factory import entry demand in units |
-| **FIE Sales Volume** | Profit | Dispatched volume at FIE level |
-| **Gross FIE Sales** | Profit | Total gross sales at factory import entry level |
-| **Net FIE Sales** | Profit | Gross FIE Sales minus FIE Trade Expenses |
-| **FIE Trade Expenses** | Lost | Trade-related expenses at FIE level |
-| **FIE Case Fill Rate** | Profit | Percentage of FIE demand fulfilled |
-| **Local Demand Value** | Profit | Local market demand in monetary value |
-| **Local Demand Volume** | Profit | Local market demand in units |
-| **Gross Local Sales** | Profit | Total gross sales at local market level |
-| **Local Sales Volume** | Profit | Dispatched volume at local level |
-| **Net Local Sales** | Profit | Gross Local Sales minus Local Trade Expenses |
-| **Local Trade Expenses** | Lost | Trade-related expenses at local level |
-| **Local Case Fill Rate** | Profit | Percentage of local demand fulfilled |
+KPIs related to Factory Import Entry - the primary sales channel through distributors.
+
+| KPI | Direction | Formula |
+|-----|-----------|---------|
+| **Primary Demand Value** | Profit | Sum(DemandValue) where FacilityType = Distributor |
+| **Primary Demand Volume** | Profit | Sum(OrderQuantity) where FacilityType = Distributor |
+| **Primary Gross Sales Value** | Profit | Sum(ConstrainedSalesInGSV) where FacilityType = Distributor |
+| **Primary Sales Volume** | Profit | Sum(DispatchQuantity) where FacilityType = Distributor |
+| **Primary Trade Expenses** | Lost | Sum(TradeExpense) where FacilityType = Distributor |
+| **Primary Net Sales Value** | Profit | Primary Gross Sales - Primary Trade Expenses |
+| **Primary Case Fill Rate** | Profit | Primary Sales Volume / Primary Demand Volume |
+
+## Secondary (Local) KPIs
+
+KPIs related to local market sales to end customers.
+
+| KPI | Direction | Formula |
+|-----|-----------|---------|
+| **Secondary Demand Value** | Profit | Secondary Demand Volume x Listed Price |
+| **Secondary Demand Volume** | Profit | Sum(UnconstrainedSalesOut) where FacilityType = Customer |
+| **Secondary Gross Sales** | Profit | Sum(ConstrainedSalesOutGSV) where FacilityType = Customer |
+| **Secondary Sales Volume** | Profit | Sum(ConstrainedSalesOut) where FacilityType = Customer |
+| **Secondary Trade Expenses** | Lost | Sum(TradeExpense) where FacilityType = Customer |
+| **Secondary Net Sales** | Profit | Secondary Gross Sales - Secondary Trade Expenses |
+| **Secondary Case Fill Rate** | Profit | Secondary Sales Volume / Secondary Demand Volume |
 
 ## Distributor KPIs
 
-| KPI | Direction | Description |
-|-----|-----------|-------------|
-| **Distributor COGS** | Lost | Cost of goods sold at distributor level |
+| KPI | Direction | Formula |
+|-----|-----------|---------|
+| **Distributor Secondary Demand Volume** | Profit | Sum(UnconstrainedSalesOut) where Origin = Distributor |
+| **Distributor Secondary Gross Demand Value** | Profit | Distributor Secondary Demand Volume x Listed Price |
+| **Distributor Secondary Gross Sales Value** | Profit | Sum(ConstrainedSalesOutGSV) where Origin = Distributor |
+| **Distributor Secondary Sales Volume** | Profit | Sum(ConstrainedSalesOut) where Origin = Distributor |
+| **Distributor COGS** | Lost | COGS at distributor level |
 | **Distributor Distribution Cost** | Lost | Distribution costs at distributor level |
 | **Distributor Transfer Cost** | Lost | Transfer costs between distributor facilities |
 | **Distributor Storage Cost** | Lost | Storage costs at distributor facilities |
 | **Distributor Handling Cost** | Lost | Handling costs at distributor facilities |
 | **Distributor Net Sales Value** | Profit | Net sales value at distributor level |
-| **Distributor Gross Sales Value** | Profit | Gross sales value at distributor level |
-| **Distributor Demand Value** | Profit | Demand in monetary value at distributor level |
-| **Distributor Demand Volume** | Profit | Demand in units at distributor level |
 
 ## Finance KPIs
 
-| KPI | Direction | Formula | Description |
-|-----|-----------|---------|-------------|
-| **COGS** | Lost | Direct from data | Cost of Goods Sold |
-| **Transport** | Lost | Sum where cost type = Transport | Transportation costs |
-| **Storage & Handling** | Lost | Sum where cost type = Storage & Handling | Warehouse costs |
-| **Promotion** | Lost | Sum where cost type = Promotion | Promotional costs |
-| **Medical Affairs** | Lost | Sum where cost type = Medical Affairs | Medical-related costs |
-| **Administration** | Lost | Sum where cost type = Administration | Admin overhead |
-| **Gross Profit** | Profit | Net FIE Sales - Distributor COGS | Profit after COGS |
-| **Gross Margin %** | Profit | (Gross Profit / Net FIE Sales) x 100 | Gross profitability ratio |
-| **Supply Chain Cost** | Lost | Transport + Storage & Handling | Total supply chain expenses |
-| **DPM** | Lost | Supply Chain Cost + Promotion + Medical Affairs | Distribution, promotion & medical total |
-| **DPM %** | Lost | (DPM / Net FIE Sales) x 100 | DPM as percentage of net sales |
-| **DPMA** | Lost | DPM + Administration | Total operating expenses |
-| **DPMA %** | Lost | (DPMA / Net FIE Sales) x 100 | DPMA as percentage of net sales |
-| **EBIT** | Profit | Gross Profit - Transport - S&H - Promotion - Medical - Admin | Operating earnings |
-| **EBIT %** | Profit | (EBIT / Net FIE Sales) x 100 | Operating margin |
-| **COGS %** | Lost | (COGS / Net FIE Sales) x 100 | COGS as percentage of net sales |
+### Cost breakdown
+
+| KPI | Direction | Formula |
+|-----|-----------|---------|
+| **COGS** | Lost | Cost of Goods Sold (direct from data) |
+| **Transport** | Lost | Sum(CostMaster) where GroupLevel2 = Transport |
+| **Storage & Handling** | Lost | Sum(CostMaster) where GroupLevel2 = Storage & Handling |
+| **Promotion** | Lost | Sum(CostMaster) where GroupLevel2 = Promotion |
+| **Medical Affairs** | Lost | Sum(CostMaster) where GroupLevel2 = Medical Affairs |
+| **Administration** | Lost | Sum(CostMaster) where GroupLevel2 = Administration |
+
+### Derived financial metrics
+
+| KPI | Direction | Formula |
+|-----|-----------|---------|
+| **Supply Chain Cost** | Lost | Transport + Storage & Handling |
+| **Gross Profit** | Profit | ConstrainedSalesInGSV - TradeExpenses - COGS |
+| **Gross Margin %** | Profit | Gross Profit / Net FIE Sales x 100 |
+| **DPM** | Lost | Supply Chain Cost + Promotion + Medical Affairs |
+| **DPM %** | Lost | DPM / Net FIE Sales x 100 |
+| **DPMA** | Lost | DPM + Administration |
+| **DPMA %** | Lost | DPMA / Net FIE Sales x 100 |
+| **EBIT** | Profit | Gross Profit - Transport - Storage & Handling - Promotion - Medical Affairs - Administration |
+| **EBIT %** | Profit | EBIT / Net FIE Sales x 100 |
+| **COGS %** | Lost | COGS / Net FIE Sales x 100 |
 
 ## Inventory KPIs
 
-| KPI | Direction | Description |
-|-----|-----------|-------------|
-| **Average Inventory Value** | Lost | Average monetary value of inventory held |
-| **Average Inventory Volume** | Lost | Average physical quantity of inventory |
-| **DIO** | Lost | Days Inventory Outstanding - days of sales in inventory |
-| **Unconstrained SIT** | Lost | Safety inventory target without supply constraints |
-| **Constrained SIT** | Lost | Safety inventory with supply constraints applied |
-| **Closing Stock (Gross Value)** | Lost | End-of-period inventory in monetary terms |
-| **Closing Stock (Volume)** | Lost | End-of-period inventory in physical units |
+| KPI | Direction | Formula |
+|-----|-----------|---------|
+| **Average Inventory Value** | Lost | Sum(Month-End Inventory Volume x COGS) / Number of months |
+| **Average Inventory Volume** | Lost | Average physical quantity of inventory held |
+| **DIO (Days Inventory Outstanding)** | Lost | Days of sales covered by current inventory |
+| **Unconstrained SIT** | Lost | Target inventory without supply constraints (month-end, days) |
+| **Constrained SIT** | Lost | Expected inventory with supply constraints (month-end, days) |
+| **Unconstrained Closing Stock (GSV)** | Lost | See [SIT Calculation Logic](/demand/stock-in-trade#calculation-logic) |
+| **Unconstrained Closing Stock (Volume)** | Lost | See [SIT Calculation Logic](/demand/stock-in-trade#calculation-logic) |
+| **Constrained Closing Stock (GSV)** | Lost | See [SIT Calculation Logic](/demand/stock-in-trade#calculation-logic) |
+| **Constrained Closing Stock (Volume)** | Lost | See [SIT Calculation Logic](/demand/stock-in-trade#calculation-logic) |
 
 ## Working Capital KPIs
 
@@ -90,12 +109,39 @@ SIMCEL automatically calculates over 51 KPIs from your simulation results. Each 
 
 ## Emissions KPIs
 
-| KPI | Direction | Unit | Description |
-|-----|-----------|------|-------------|
-| **CO2 (Total)** | Lost | Kilograms | Total emissions across all operations |
-| **Inbound CO2** | Lost | Kilograms | Emissions from inbound logistics |
-| **Storage CO2** | Lost | Kilograms | Emissions from warehouse operations |
-| **Outbound CO2** | Lost | Kilograms | Emissions from outbound distribution |
+| KPI | Direction | Unit | Formula |
+|-----|-----------|------|---------|
+| **Total CO2** | Lost | Kilograms | Inbound CO2 + Storage CO2 + Outbound CO2 |
+| **Inbound CO2** | Lost | Kilograms | Aggregated from DC-level inbound logistics data |
+| **Storage CO2** | Lost | Kilograms | Aggregated from facility-level warehouse data |
+| **Outbound CO2** | Lost | Kilograms | Aggregated from outbound distribution data |
+
+---
+
+## SIT calculation formulas
+
+### Actual SIT
+
+```
+Actual SIT (Days) = Closing Stock Value / Sum(Sales Out Volume x Product Value) x N x 30
+```
+
+### Unconstrained (Future) SIT
+
+```
+Future Sales In = (Sum(Future Sales Out) / (N x 30)) x SIT Target - Previous Closing Stock + Future Sales Out
+Future Closing Stock = Previous Closing Stock - Future Sales Out + Future Sales In
+Future SIT (Days) = Closing Stock Value / Sum(Future Sales Out x Product Value) x N x 30
+```
+
+### Constrained SIT
+
+```
+Constrained Closing Stock = Previous Closing Stock - Constrained Sales Out + Constrained Sales In
+Constrained SIT (Days) = Closing Stock Value / Sum(Constrained Sales Out x Product Value) x N x 30
+```
+
+Where N = number of months in the calculation window, and Product Value = Listed Price or Distributor GSV per workspace setting.
 
 ---
 
@@ -109,14 +155,3 @@ All KPIs can be analyzed across the following dimensions:
 | **Customer** | Name, Type, Channel, Region, City, Country |
 | **Location** | Facility type (Factory, DC, Distributor, Customer) |
 | **Time** | Daily, Weekly, Monthly, Quarterly, Half-year, Fiscal Year |
-
-## KPI aggregation
-
-KPIs are calculated using two methods:
-
-| Method | Speed | Detail level | Best for |
-|--------|-------|-------------|----------|
-| **Lightweight** | Fast | Scenario-level totals | Dashboard widgets, quick overviews |
-| **Atomic** | Detailed | Full dimensional breakdown | Drill-down analysis, pivot tables |
-
-Lightweight KPIs load 50-70% faster and use 60% less data, making them ideal for dashboards and summary views. Atomic KPIs provide the full granularity needed for detailed analysis.

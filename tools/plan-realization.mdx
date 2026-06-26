@@ -1,9 +1,9 @@
 ---
 title: Plan realization
-description: Compare actual performance against your planned targets.
+description: Compare any mix of datasets across the full fiscal year with variance analysis.
 ---
 
-The Plan Realization tool helps you track how well your actual business performance aligns with what you planned. It's essential for measuring planning effectiveness and accountability.
+The Plan Realization report lets you compare any mix of datasets selected in the plan over the entire fiscal year, with YTD and YTG breakdowns.
 
 ## How to access
 
@@ -11,22 +11,52 @@ Navigate to **Tools > Plan Realization** from the sidebar.
 
 ## What it shows
 
-A comparison between:
-- **Planned values** - The KPI targets from your primary scenario
-- **Actual values** - Real performance data imported into your workspace
+A comprehensive dataset comparison report with:
 
-## Key insights
+- **FY total** - Full fiscal year values
+- **YTD total** - Year-to-date values
+- **YTG total** - Year-to-go values
+- **Monthly averages** for both YTD and YTG
+- **YTD vs. YTG gap** in value and percentage
 
-- **On track** - Where actuals are meeting or exceeding the plan
-- **At risk** - Where actuals are falling short of planned targets
-- **Variance** - The absolute and percentage difference between plan and actual
+## Display controls
+
+| Control | What it does |
+|---------|-------------|
+| **Rename columns** | Rename dataset columns for clarity |
+| **Drag-and-drop** | Reorder columns |
+| **Hide/show columns** | Toggle column visibility |
+| **Average YTD/YTG blocks** | Show or hide monthly average sections |
+| **Segment hierarchy** | Choose how to group data |
+
+## Period logic
+
+| Period | Definition |
+|--------|-----------|
+| **FY** | Set based on workspace configuration (e.g., January to December) |
+| **YTD** | From FY start month to the plan's start month - 1 |
+| **YTG** | From the plan's start month to FY end month |
+
+The plan's start month is applied consistently for every fiscal year when calculating YTD/YTG.
+
+<Note>
+**Automatic full-year stitching**: When a dataset has no value for a past period, the report auto-fills with Actual or Last Plan value to provide a complete fiscal year view.
+</Note>
+
+## Comparison engine
+
+The report shows absolute and percentage variances between displayed and referenced datasets, helping you quickly identify:
+
+- **On track** - Where actuals meet or exceed the plan
+- **At risk** - Where actuals fall short of targets
+- **Variance** - The magnitude and direction of deviation
 
 ## How to use it
 
 1. **Monitor execution** - Check regularly to see if your business is tracking to plan
 2. **Identify gaps early** - Spot deviations before they become significant
-3. **Adjust plans** - Use insights to update your tactical plan or create corrective scenarios
-4. **Report to stakeholders** - Provide evidence-based updates on planning accuracy
+3. **Compare datasets** - Mix Actual, Budget, Tactical, and Last Plan data in a single view
+4. **Report to stakeholders** - Provide evidence-based updates on planning adherence
 
 <Tip>
 Combine Plan Realization insights with Forecast Accuracy data to understand whether gaps are due to forecasting errors or execution issues.
