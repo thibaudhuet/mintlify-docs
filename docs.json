@@ -98,7 +98,11 @@
     "links": [
       {
         "label": "Support",
-        "href": "mailto:info@simcel.com"
+        "href": "mailto:info@simcel.io"
+      },
+      {
+        "href": "https://developers.simcel.io",
+        "label": "Developers"
       }
     ],
     "primary": {
