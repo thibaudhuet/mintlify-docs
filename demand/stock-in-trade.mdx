@@ -21,8 +21,16 @@ Toggle between these views using the switch at the top of the page.
 ### SIT chart
 A visual representation of inventory levels over time. Select your preferred UOM (units, value, etc.) to view the data in the most meaningful way.
 
+<Frame caption="Screenshot: SIT chart showing inventory levels over time with UOM selector and constrained/unconstrained toggle">
+  <img src="/images/demand/sit-chart.png" alt="Line or bar chart displaying inventory levels (days of sales) over monthly time periods. A UOM selector dropdown is visible for switching between units and value. A toggle at the top switches between Unconstrained and Constrained views." />
+</Frame>
+
 ### SIT table
 A detailed table showing inventory levels grouped by your organizational hierarchy. Expand rows to drill down to individual product and distributor combinations.
+
+<Frame caption="Screenshot: SIT table showing hierarchical breakdown with expandable rows, inventory values by period, and editable cells highlighted">
+  <img src="/images/demand/sit-table.png" alt="Hierarchical table with expand/collapse row controls. Rows group inventory data by organizational hierarchy (Brand, SKU, Distributor). Columns display inventory values per time period. Editable cells are visually highlighted to indicate they can be modified." />
+</Frame>
 
 ## Calculation logic
 
@@ -73,6 +81,10 @@ Constrained SIT (Days) = Closing Stock Value / (Sum of Constrained Sales Out x P
 - Constrained Sales Out is limited to available stock when inventory is insufficient to meet demand
 - SIT values are calculated at month-end only
 </Note>
+
+<Frame caption="Screenshot: Toggle switch showing Unconstrained vs Constrained view with visual difference in the chart below">
+  <img src="/images/demand/sit-constrained-toggle.png" alt="Top of the SIT page showing a toggle switch with two states: Unconstrained and Constrained. Below the toggle, the SIT chart visually reflects the selected mode, demonstrating the difference in inventory levels between the supply-unlimited and supply-limited perspectives." />
+</Frame>
 
 ## Editable fields
 

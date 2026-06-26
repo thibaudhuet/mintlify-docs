@@ -47,6 +47,10 @@ A Demand Adjustment event models a change in demand caused by a planned activity
   </Step>
 </Steps>
 
+<Frame caption="Screenshot: Demand Adjustment event creation form showing period date range, product scope selector, customer scope selector, adjustment type toggle (% Percent / # Units), and delta adjustment value field">
+  <img src="/images/scenarios/demand-adjustment-event-form.png" alt="Demand Adjustment event creation form with a period date range picker for selecting the impact start and end dates, a product scope selector for choosing product segments, a customer scope selector for choosing customer segments, an adjustment type toggle between % Percent for percentage change and # Units for absolute volume, and a delta adjustment value input field for entering the change amount such as +30% or -40 units." />
+</Frame>
+
 You can add **multiple impacts** to a single event to affect different segments. For example, decrease Tiger Beer demand by 15% for Modern Trade while increasing Hanoi Beer by 12% for the same channel.
 
 ---
@@ -92,6 +96,10 @@ For example, if the proxy product historically sold 30% to Customer X and 70% to
   </Step>
 </Steps>
 
+<Frame caption="Screenshot: New Demand Stream event form showing new product selector, product reference (proxy) dropdown, monthly demand value inputs, and target customer scope section">
+  <img src="/images/scenarios/new-demand-stream-event-form.png" alt="New Demand Stream event form with a new product selector for choosing the product without historical data, a product reference proxy dropdown for selecting an existing product whose historical demand pattern will be used for allocation, a grid of monthly demand value input fields for entering demand per month, and a target customer scope section for selecting specific customer segments for the new product launch." />
+</Frame>
+
 ---
 
 ## Forecast Override events
@@ -118,6 +126,10 @@ A Forecast Override lets planners set top-down sales targets rather than relying
     Open the relevant scenario, click **Edit**, and assign the Forecast Override event. SIMCEL recomputes the demand forecast incorporating the override logic.
   </Step>
 </Steps>
+
+<Frame caption="Screenshot: Forecast Override event showing segment selector with override value input and the disaggregation preview">
+  <img src="/images/scenarios/forecast-override-event-form.png" alt="Forecast Override event form showing a segment selector for choosing the aggregation level such as national, regional, customer group, or product family, an override value input field for entering the absolute units or monetary target, and a disaggregation preview panel showing how SIMCEL automatically distributes the top-down override value down to transaction level using historical trend, seasonality, and distribution behavior." />
+</Frame>
 
 ---
 
@@ -150,6 +162,10 @@ Adjustments are applied in this order:
 3. **Percentage Adjustment** - Increase or decrease by a percentage (e.g., -30%)
 
 **Example**: Baseline 100,000 VND -\> Set to 90,000 -\> \+5,000 absolute = 95,000 -\> \+10% = **104,500 VND final price**
+
+<Frame caption="Screenshot: Pricing Adjustment event form showing price type selector (Listed Price / Secondary Customer Price / Primary Customer Price), adjustment type options (Set Price / Absolute / Percentage), and value fields per product per month">
+  <img src="/images/scenarios/pricing-adjustment-event-form.png" alt="Pricing Adjustment event form with a price type selector offering three options: Listed Price for catalog price applying to all customers, Secondary Customer Price for customer-specific prices per product, and Primary Customer Price (Distributor Price) for negotiated distributor selling prices. Below the price type selector are adjustment type options for Set Price to replace the baseline with a fixed value, Absolute Adjustment to increase or decrease by a fixed amount, and Percentage Adjustment to increase or decrease by a percentage, along with value input fields organized per product per month." />
+</Frame>
 
 ---
 
@@ -207,6 +223,10 @@ Trade Terms model trade expenses such as distributor margins, seasonal discounts
   </Accordion>
 </AccordionGroup>
 
+<Frame caption="Screenshot: Trade Terms configuration showing policy type selector (Flat Discount / Target Rebate / Bundle Discount), condition fields, discount percentage, achievement rate, and impacted sales option dropdown">
+  <img src="/images/scenarios/trade-terms-configuration.png" alt="Trade Terms event configuration panel showing a policy type selector with options for Flat Discount, Target Rebate Incentive, and Bundle Discount. Below the policy selector are condition fields for setting purchase volume thresholds or trigger criteria, a discount percentage input, an achievement rate percentage field for accounting for realistic target attainment, and an impacted sales option dropdown for choosing between Sales In, Sales Out with Distributor Reimbursement, or Sales Out." />
+</Frame>
+
 ### Impacted sales options
 
 | Option | Description |
@@ -245,6 +265,10 @@ Each version maintains the full impact definition.
 ## Event groups
 
 Organize related events into groups for easier management. Group by campaign, quarter, or business objective.
+
+<Frame caption="Screenshot: Event Management page showing event groups with expandable group folders containing related events, and version badges">
+  <img src="/images/scenarios/event-groups-overview.png" alt="Event Management page displaying a list of event groups shown as expandable folder rows. Each group folder can be expanded to reveal the related events contained within it, organized by campaign, quarter, or business objective. Individual events show version badges indicating the current version number such as Version 1, Version 2, or Version 3." />
+</Frame>
 
 ## How events affect your plan
 

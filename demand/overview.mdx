@@ -12,6 +12,10 @@ A line chart showing demand trends over time. Each scenario is plotted as a sepa
 
 Toggle specific scenario lines on or off by clicking their legend labels.
 
+<Frame caption="Screenshot: The demand chart showing multiple scenario lines (different colors) over monthly time periods, with totals on the left per scenario">
+  <img src="/images/demand/demand-chart.png" alt="Line chart with time on x-axis and demand value on y-axis. Multiple colored lines represent different scenarios (Forecast Base, Primary, custom). Legend labels below the chart. Period totals shown on the left side" />
+</Frame>
+
 ### Demand tracker table
 A hierarchical tree table that breaks down demand by:
 - **Scenario** (top level)
@@ -20,6 +24,10 @@ A hierarchical tree table that breaks down demand by:
       - **Segment**
 
 Each row shows demand values across time periods. Use the **>** button to expand segment details and view deeper breakdowns.
+
+<Frame caption="Screenshot: Demand tracker table showing hierarchical tree with Scenario > Brand > SKU > Segment breakdown, expand buttons, and time period columns">
+  <img src="/images/demand/demand-tracker-table.png" alt="Hierarchical tree table with expand/collapse buttons on the left. Top-level rows show Scenario names, expanding into Brand rows, then SKU/Product rows, then Segment rows. Columns to the right display demand values for each monthly time period." />
+</Frame>
 
 ## Exploring actual data
 
@@ -55,6 +63,10 @@ Click **Add Dataset** to display multiple data series simultaneously. You can sh
 ## Segment hierarchy
 
 Click the **settings** icon to define your segment hierarchy for the demand breakdown. Navigate to the **Select Segments** tab to configure which dimensions (Brand, Category, Channel, Product ID, etc.) appear in the tree view.
+
+<Frame caption="Screenshot: Settings dialog showing the Select Segments tab with dimension checkboxes (Brand, Category, Channel, Product ID, etc.)">
+  <img src="/images/demand/segment-settings-dialog.png" alt="Settings dialog open on the Select Segments tab. A list of dimension options is displayed with checkboxes, including Brand, Category, Channel, and Product ID. Some checkboxes are checked to indicate active dimensions in the tree view." />
+</Frame>
 
 ## Analytics columns
 
@@ -95,6 +107,10 @@ Change how values are displayed:
 
 Switch to **Year-To-Year (Y2Y)** mode by clicking the Y2Y icon to compare demand values on an annual basis.
 
+<Frame caption="Screenshot: Demand page showing comparison mode toggle with Y2Y view comparing annual values">
+  <img src="/images/demand/comparison-mode-y2y.png" alt="Demand page with the Y2Y (Year-To-Year) mode active. The comparison mode toggle is visible in the toolbar. The table or chart displays demand values compared on an annual basis, with growth or absolute difference columns visible." />
+</Frame>
+
 ## Run rates
 
 SIMCEL calculates run rates based on the most recent actual sales data within the chosen period:
@@ -119,6 +135,10 @@ Save a combination of filters (customer, product, location) as a **Saved Segment
 3. Retrieve via the saved segments dropdown
 
 Saved segments can also be used when creating events, automatically applying the predefined filters.
+
+<Frame caption="Screenshot: Saved segments dropdown showing a list of saved segment filters with names">
+  <img src="/images/demand/saved-segments-dropdown.png" alt="Dropdown menu opened from the saved segments control, listing multiple saved segment entries by name (e.g., Non Tender Pharmacy Chain). Each entry is selectable to instantly apply the saved filter combination." />
+</Frame>
 
 ## Key demand KPIs
 

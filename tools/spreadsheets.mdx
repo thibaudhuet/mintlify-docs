@@ -18,6 +18,10 @@ A grid of cells (rows x columns) where each cell can hold:
 
 Sheets are named documents saved to your workspace, and can optionally be linked to a plan or scenario for downstream use.
 
+<Frame caption="Screenshot: SIMCEL Sheets editor showing the grid, toolbar, and formula bar">
+  <img src="/images/tools/spreadsheets-editor.png" alt="SIMCEL Sheets editor showing the grid with cells containing text, numbers, and formulas, with the toolbar visible above including font controls, formatting options, and number format selectors, and a formula bar displaying the active cell's formula" />
+</Frame>
+
 ## Editing
 
 ### Grid interactions
@@ -71,6 +75,10 @@ Start any formula with `=`. Available categories:
 - **Below 20%** - `#NO_MATCH` error
 - **In progress** - `#RESOLVING` while lookup runs
 
+<Frame caption="Screenshot: MASTER formula results showing matched, uncertain, and unmatched cells">
+  <img src="/images/tools/spreadsheets-master-formula.png" alt="Spreadsheet cells showing MASTER formula results: cells with a green highlight for confident matches at 80% or above, cells with a tilde prefix indicating uncertain matches between 20 and 79%, and a #NO_MATCH error for values below the confidence threshold" />
+</Frame>
+
 ### Match to Master workflow
 
 For bulk matching:
@@ -81,6 +89,10 @@ For bulk matching:
 5. Review, accept or reject per row, click **Apply**
 
 Matched cells update with a subtle green highlight. Use **Fix All** to auto-apply best suggestions for uncertain matches.
+
+<Frame caption="Screenshot: Match to Master dialog showing match suggestions with scores and Accept/Reject controls">
+  <img src="/images/tools/spreadsheets-match-to-master.png" alt="Match to Master dialog showing a table with original raw values in one column, best match suggestions with score percentages in another, a dropdown for selecting alternative matches, and Accept and Reject buttons for each row" />
+</Frame>
 
 ## Normal sheets vs. system sheets
 
@@ -118,6 +130,10 @@ Matched cells update with a subtle green highlight. Use **Fix All** to auto-appl
     Define demand for new products without historical data. Same metadata structure and submission mechanism.
   </Accordion>
 </AccordionGroup>
+
+<Frame caption="Screenshot: System sheet template selector showing available templates and a preview">
+  <img src="/images/tools/spreadsheets-system-sheet-templates.png" alt="System sheet template selector showing available templates including Forecast Input, Pricing Adjustment, Forecast Override, and New Demand Stream, with a preview of the Forecast Input template layout showing the header row and column structure" />
+</Frame>
 
 ## Saving and opening
 

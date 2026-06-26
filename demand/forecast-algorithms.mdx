@@ -32,9 +32,17 @@ Demand forecasting is the starting point of supply chain planning. SIMCEL uses h
 
 A pre-processing technique that accounts for seasonality by taking the difference at the seasonal period. This captures seasonality better at the cost of additional computational resources.
 
+<Frame caption="Screenshot: Forecast strategy configuration showing recursive/non-recursive toggle and target transform option">
+  <img src="/images/demand/forecast-strategy-config.png" alt="Forecast strategy configuration panel with a toggle switch between Recursive and Non-Recursive modes and a Target Transform checkbox or toggle beneath it." />
+</Frame>
+
 ## Forecast settings
 
 Access forecast settings by clicking **+ Plan** and then **Open Forecast Settings**.
+
+<Frame caption="Screenshot: The forecast settings dialog showing aggregation options for Product, Customer/Location, and Time dimensions">
+  <img src="/images/demand/forecast-settings-dialog.png" alt="Forecast settings dialog with aggregation configuration sections for three dimensions: Product, Customer/Location, and Time. Each dimension has selectable granularity levels to control the detail of the generated forecast." />
+</Frame>
 
 ### Forecast aggregation
 
@@ -57,3 +65,7 @@ A feature within forecast settings that lets you review actual demand for select
 
 - Identifying customers or products removed from the active list but not updated in master records
 - Determining whether items should be delisted
+
+<Frame caption="Screenshot: The explore products/customers panel showing product list with demand sparklines">
+  <img src="/images/demand/explore-products-customers.png" alt="Panel within forecast settings listing products and/or customers. Each row displays the item name alongside a small sparkline chart showing its actual demand over the most recent year, helping identify items with low or no activity." />
+</Frame>
