@@ -1,6 +1,6 @@
 ---
-title: Plans and scenarios
-description: Understand how plans and scenarios work in SIMCEL to model different business outcomes.
+title: "Plans and scenarios"
+description: "Understand how plans and scenarios work in SIMCEL to model different business outcomes."
 ---
 
 Plans and scenarios are the foundation of planning in SIMCEL. They allow you to create, compare, and evaluate different versions of your business plan.
@@ -12,7 +12,7 @@ A **plan** represents a planning cycle with a defined time horizon. Each plan co
 ### Plan types
 
 | Type | Purpose | Typical horizon |
-|------|---------|----------------|
+| --- | --- | --- |
 | **Budget** | Annual strategic planning focused on broad business goals across brands, channels, and regions | 12-24 months |
 | **Tactical** | Regularly created plans (weekly or monthly) used to build the committed plan | 6-12 months |
 
@@ -20,7 +20,7 @@ A **plan** represents a planning cycle with a defined time horizon. Each plan co
 
 <Steps>
   <Step title="Open plan creator">
-    Click **+ Plan** and select **Tactical plan**.
+    Click **\+ Plan** and select **Tactical plan**.
   </Step>
   <Step title="Configure the plan">
     Set the plan title (e.g., "Feb 2026"), select a forecasting method (e.g., LightGBM), and choose the plan period (e.g., Feb 2026 - Jan 2027). Add an optional description.
@@ -29,7 +29,11 @@ A **plan** represents a planning cycle with a defined time horizon. Each plan co
     SIMCEL runs the forecaster to generate a demand projection. This may take several minutes. A loading page shows the forecaster progress.
 
     <Frame caption="Screenshot: The plan creation dialog with plan type, title, forecasting method dropdown, and date range picker">
-      <img src="/images/platform/create-plan-dialog.png" alt="Plan creation dialog showing fields: Plan type (Tactical selected), Title text input, Forecasting method dropdown (e.g. LightGBM), Plan period date range selector, Description textarea, and Create button" />
+      ![Plan creation dialog showing fields: Plan type (Tactical selected), Title text input, Forecasting method dropdown (e.g. LightGBM), Plan period date range selector, Description textarea, and Create button](/images/platform/create-plan-dialog.png)
+    </Frame>
+
+    <Frame caption="Screenshot: The plan creation dialog with plan type, title, forecasting method dropdown, and date range picker">
+      ![Plan creation dialog showing fields: Plan type (Tactical selected), Title text input, Forecasting method dropdown (e.g. LightGBM), Plan period date range selector, Description textarea, and Create button](/images/platform/create-plan-dialog.png)
     </Frame>
   </Step>
   <Step title="Review the Forecast Base">
@@ -38,7 +42,7 @@ A **plan** represents a planning cycle with a defined time horizon. Each plan co
 </Steps>
 
 <Note>
-Once a plan is created, SIMCEL automatically generates a **Forecast Base** scenario using the selected forecast method. This serves as your starting point for building scenarios.
+  Once a plan is created, SIMCEL automatically generates a **Forecast Base** scenario using the selected forecast method. This serves as your starting point for building scenarios.
 </Note>
 
 ### Plan initialization and continuity
@@ -63,7 +67,7 @@ A **scenario** is a version of your plan with specific assumptions and events ap
 ### Scenario types
 
 | Type | Description | Editable? |
-|------|-------------|-----------|
+| --- | --- | --- |
 | **Forecast Base** | Auto-generated baseline forecast | No |
 | **Primary** | Your main working scenario selected for execution | Yes |
 | **Custom** | Additional what-if scenarios for analysis | Yes |
@@ -74,7 +78,7 @@ A **scenario** is a version of your plan with specific assumptions and events ap
 
 <Steps>
   <Step title="Add new scenario">
-    Click **+ Add New Scenario** in the demand planning page.
+    Click **\+ Add New Scenario** in the demand planning page.
   </Step>
   <Step title="Configure">
     Set the scenario name, select a supply plan, and choose the event versions to apply.
@@ -93,7 +97,11 @@ The **primary scenario** becomes the execution plan used as the reference for yo
 3. A "Primary" badge appears on the scenario
 
 <Frame caption="Screenshot: The scenario three-dot menu showing 'Make Primary' option, and a scenario chip with the 'Primary' badge">
-  <img src="/images/platform/make-primary-scenario.png" alt="Scenario Bar showing a scenario chip with three-dot menu expanded, highlighting the 'Make Primary' option. Another scenario chip displays the green 'Primary' badge" />
+  ![Scenario Bar showing a scenario chip with three-dot menu expanded, highlighting the 'Make Primary' option. Another scenario chip displays the green 'Primary' badge](/images/platform/make-primary-scenario.png)
+</Frame>
+
+<Frame caption="Screenshot: The scenario three-dot menu showing 'Make Primary' option, and a scenario chip with the 'Primary' badge">
+  ![Scenario Bar showing a scenario chip with three-dot menu expanded, highlighting the 'Make Primary' option. Another scenario chip displays the green 'Primary' badge](/images/platform/make-primary-scenario.png)
 </Frame>
 
 ### Committed plan
@@ -117,7 +125,7 @@ Toggle multiple scenario chips **on** in the Scenario Bar. Charts and tables dis
 
 ## How plans and scenarios work together
 
-```
+```text
 Plan (Budget 2025)
 ├── Forecast Base (auto-generated)
 ├── Primary Scenario (your execution plan)
@@ -127,6 +135,7 @@ Plan (Budget 2025)
 ```
 
 Each scenario within a plan shares the same time horizon and master data but can have different:
+
 - **Events** applied (promotions, market changes, disruptions)
 - **Demand adjustments** (manual overrides, shaping)
 - **Simulation results** (supply chain outcomes)
