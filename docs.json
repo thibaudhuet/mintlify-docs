@@ -3,9 +3,9 @@
   "theme": "mint",
   "name": "SIMCEL Knowledge Base",
   "colors": {
-    "primary": "#16A34A",
-    "light": "#07C983",
-    "dark": "#15803D"
+    "primary": "#C0392B",
+    "light": "#C0392B",
+    "dark": "#C0392B"
   },
   "favicon": {
     "light": "/images/favicon.ico",
@@ -90,7 +90,7 @@
     "links": [
       {
         "label": "Support",
-        "href": "mailto:support@simcel.com"
+        "href": "mailto:info@simcel.com"
       }
     ],
     "primary": {
