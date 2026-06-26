@@ -92,8 +92,7 @@
   },
   "logo": {
     "light": "/images/logo.png",
-    "dark": "/images/SIMCELLogo2024_white(1).svg",
-    "href": "https://app.simcel.io"
+    "dark": "/images/SIMCELLogo2024_white(1).svg"
   },
   "navbar": {
     "links": [
