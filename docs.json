@@ -104,7 +104,7 @@
     "primary": {
       "type": "button",
       "label": "Open SIMCEL",
-      "href": "https://app.simcel.com"
+      "href": "https://app.simcel.io"
     }
   },
   "contextual": {
