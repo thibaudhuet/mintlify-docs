@@ -1,51 +1,51 @@
 ---
-title: KPI drivers
-description: Explore best and worst-performing segments and visualize KPI relationships.
+title: "KPI drivers"
+description: "Explore the best and worst-performing segments by comparing two KPIs across two dimensions."
 ---
 
-The KPI Drivers tool helps you explore segment performance and understand how different KPIs relate to each other.
+To access the Business Drivers widget, click **KPI Drivers** under the Tools section on the left-side panel.
 
-## How to access
-
-Navigate to **Tools > KPI Drivers** from the sidebar.
-
-## Configuring the chart
-
-Define five parameters to build your analysis:
-
-| Parameter | Description |
-|-----------|-------------|
-| **Dimension 1** (x-axis) | First category to segment data (e.g., Product ID, Category) |
-| **Dimension 2** (x-axis) | Second category for further segmentation (e.g., Country, Channel) |
-| **Display** | Show **Top 10** or **Bottom 10** values for KPI 1 or KPI 2 |
-| **KPI 1** (bar, left y-axis) | First key performance indicator |
-| **KPI 2** (line, right y-axis) | Second key performance indicator |
-
-The chart updates automatically as you adjust parameters.
-
-## Example use case
-
-**Goal**: Identify products with the highest demand and evaluate their service levels countrywide.
-
-| Parameter | Setting |
-|-----------|---------|
-| Dimension 1 | Product ID |
-| Dimension 2 | Country |
-| Display | KPI 1 - Top 10 |
-| KPI 1 | Unconstrained Gross Sales In Value |
-| KPI 2 | Service Level |
-
-**Insight**: If a top-selling product shows a low service level, you can investigate root causes, alert headquarters to increase supply, and develop a corrective action plan.
-
-<Frame caption="Screenshot: KPI Drivers chart with bar and line overlay and parameter selectors">
-  <img src="/images/tools/kpi-drivers-chart.png" alt="KPI Drivers chart showing bar chart for KPI 1 on the left y-axis overlaid with a line chart for KPI 2 on the right y-axis, with top 10 products on the x-axis grouped by dimension, and parameter selectors visible above the chart" />
+<Frame caption="Opening KPI Drivers from the Tools section of the left-side panel">
+  ![The SIMCEL left-side navigation panel with the Tools section expanded and KPI Drivers highlighted](/images/tools/kpi-drivers-1.png)
 </Frame>
+
+This widget lets you explore the best and worst-performing segments according to the KPIs you select.
+
+## How to use it
+
+<Steps>
+  <Step title="Define parameters">
+    - **Dimension 1 (x-axis)**: Select the first category to segment data (for example, product ID or category).
+    - **Dimension 2 (x-axis)**: Select the second category for further segmentation.
+    - **Display**: Choose the top 10 or bottom 10 values for KPI 1 or KPI 2.
+    - **KPI 1 (bar, left y-axis)**: Choose the first key performance indicator.
+    - **KPI 2 (line, right y-axis)**: Choose the second key performance indicator.
+  </Step>
+  <Step title="Analyze results">
+    The chart updates automatically to display the relevant data.
+  </Step>
+</Steps>
+
+<Frame caption="The KPI Drivers chart, with KPI 1 as bars and KPI 2 as a line">
+  ![KPI Drivers chart showing KPI 1 as bars against the left y-axis and KPI 2 as a line against the right y-axis, with the selected dimensions on the x-axis and the parameter selectors above the chart](/images/tools/kpi-drivers-2.png)
+</Frame>
+
+## Example
+
+**Scenario**: Identify the products with the highest demand and evaluate their service levels country wide.
+
+- **Dimension 1**: Product ID
+- **Dimension 2**: Country
+- **Display**: KPI 1 - Top 10
+- **KPI 1**: Unconstrained Gross Sales In Value
+- **KPI 2**: Service Level
+- **Action**: Investigate low service levels, alert headquarters to increase supply, and develop a plan to improve service levels.
 
 ## KPI driver chain
 
 The P&L waterfall shows how KPIs cascade from revenue to profit:
 
-```
+```text
 Gross FIE Sales
   - FIE Trade Expenses
   = Net FIE Sales
@@ -61,9 +61,4 @@ Gross FIE Sales
           = EBIT
 ```
 
-## How to use it
-
-1. **Identify root causes** - If EBIT is declining, trace back through the driver chain to find which input KPI is causing the change
-2. **Impact analysis** - See which downstream KPIs will be affected when a driver changes
-3. **Segment performance** - Identify your best and worst performers across any dimension
-4. **Planning focus** - Determine which KPIs to prioritize based on their influence on outcomes
+Use the chain to trace a change in an outcome KPI such as EBIT back to the input KPI driving it, to see which downstream KPIs a driver affects, and to decide which KPIs to prioritize in planning.

@@ -1,0 +1,118 @@
+---
+title: "Trade Terms"
+description: "Model and apply trade discounts to calculate net sales and demand impacts."
+---
+
+## Important terms
+
+- **Unconstrained Sales In** — the total demand for products from distributors.
+- **Constrained Sales In** — the actual sales made to distributors, taking into account supply constraints such as production capacity, available stock, and product shelf-life, which reduce the goods available for sale compared to unconstrained demand.
+- **Sales Out with Distributor Reimbursement** — a process where the company offers discounts to its secondary customers (end buyers who purchase from distributors). The distributors initially cover the cost of these discounts, and the company reimburses them later. In SIMCEL, this means trade terms are based on sales out (distributor to secondary customer) but applied to sales in (company to distributor), so the financial impact of discounts is managed appropriately.
+- **Achievement Rate** — a metric used when dealing with aggregated customer data. It adjusts target achievement expectations to account for customer aggregation, ensuring more accurate and realistic target setting. This rate is applied in trade term events.
+- **Trade Expense** — the funds a company allocates to boost or support demand for its products, including promotions, distributor margins, and other marketing or sales activities.
+- **Volume Rebate Incentive** — a financial reward offered to buyers based on the volume of goods purchased within a specified timeframe, encouraging larger orders.
+
+## Purpose
+
+This feature ensures accurate calculation of net sales value in SIMCEL by accounting for trade terms and discount policies such as:
+
+- Distributor margin
+- Seasonal discounts
+- Bundle discounts
+- Volume rebate incentives
+- Value rebate incentives
+
+These elements model trade expenses and, consequently, calculate the Net Sales Value.
+
+## Create a trade term event
+
+<Steps>
+  <Step title="Open the Event Management page">
+    Click **Event Management** in the left side panel.
+
+    <Frame caption="The Event Management page">
+      ![Event Management page reached from the left side panel, showing the event timeline](/images/demand-events/trade-terms-1.png)
+    </Frame>
+  </Step>
+
+  <Step title="Create the event">
+    Create a new event, then choose **Trade Terms** in the **Event Type** dropdown list.
+
+    <Frame caption="Selecting Trade Terms as the event type">
+      ![New event dialog with the Event Type dropdown open and Trade Terms selected](/images/demand-events/trade-terms-2.png)
+    </Frame>
+  </Step>
+
+  <Step title="Configure the trade term policy">
+    Click **+ Add** to open the config panel, then select a **trade term policy**:
+
+    - **Flat Discount** — discount a fixed percentage or value from the original price. For example, offer a 10% discount on all products during a specific period.
+    - **Target Rebate Incentive** — incentivize larger orders by offering discounts based on the quantity purchased. For example, a distributor receives a 5% discount for buying 10,000,000 VND over a period.
+    - **Bundle Discount** — offer a discount in the form of buy-one-get-one-free, or buy an amount X and get Y% discount on a selection of products. For example, a 15% discount if 3 boxes of a specific brand are bought.
+
+    <Frame caption="Selecting the trade term policy">
+      ![Trade term config panel showing the Flat Discount, Target Rebate Incentive and Bundle Discount policy options](/images/demand-events/trade-terms-3.png)
+    </Frame>
+  </Step>
+
+  <Step title="Choose the impacted sales">
+    Select which sales the trade term applies to:
+
+    - **Sales In** — the effect is applied directly to sales in, meaning the initial transaction between the company and its first-line buyers, such as distributors.
+    - **Sales Out with Distributor Reimbursement** — trade terms are based on the sales out transaction (distributor to secondary customer) but applied back to both sales out and sales in. This ensures the company reimburses distributors for the discounts they pass on, maintaining margin integrity.
+    - **Sales Out** — the impact is applied to sales out data only.
+  </Step>
+</Steps>
+
+## Examples
+
+### Flat discount
+
+A Flat Discount event, using **Sales Out with Distributor Reimbursement**, that reduces the price of all products in Category Water by 10%. The campaign runs from April to July 2026 and is anticipated with a 75% achievement rate.
+
+<Frame caption="A flat discount event on Category Water">
+  ![Flat Discount event configuration reducing Category Water prices by 10% from April to July 2026 at a 75% achievement rate](/images/demand-events/trade-terms-4.png)
+</Frame>
+
+### Target rebate incentive
+
+A Target Rebate Incentive event, using **Sales Out with Distributor Reimbursement**, for Ref CUST-004, where purchasing 1,000 units of Category Water over April to July 2026 qualifies for a 10% discount on Category Water products. Anticipated with a 75% achievement rate.
+
+<Frame caption="A target rebate incentive event for CUST-004">
+  ![Target Rebate Incentive configuration where 1,000 units of Category Water qualifies for a 10% discount](/images/demand-events/trade-terms-5.png)
+</Frame>
+
+### Bundle discount
+
+A Bundle Discount event, applied to **Sales In**, for CUST-011, where purchasing 3 units of Category Water products qualifies for 1 unit of Category Water at 100% off. Available April to July 2026, anticipated with a 75% achievement rate.
+
+<Frame caption="A bundle discount event for CUST-011">
+  ![Bundle Discount configuration where buying 3 units of Category Water grants 1 unit at 100% off](/images/demand-events/trade-terms-6.png)
+</Frame>
+
+## Trade term policy impacts
+
+### Flat Discount event
+
+| Section | Requirement | Note |
+| --- | --- | --- |
+| Apply **Flat Discount** to `Sales In` using a `% decrease` | `Sales In Trade Expenses = Sales In GSV * %Discount * Achievement Rate %` | Applied per product. Example: a 10% decrease is set for Distributor 1, Brand A. The 10% decrease applies to every product belonging to Brand A and sold to Distributor 1. |
+| Apply **Flat Discount** to `Sales In` using a `Value decrease` | `Sales In Trade Expenses = Value decrease * #products in Sales In order * Achievement Rate %` | Applied per product. Example: a 10,000 VND decrease is set for Distributor 1, Brand A. 10,000 VND is subtracted from the GSV of every unit belonging to Brand A sold to Distributor 1. If Distributor 1 orders 100 units of Product A1, Sales In Trade Expenses = 100 × 10,000 = 1,000,000 VND. |
+| Apply **Flat Discount** to `Sales Out with Distributor reimbursement` using a `% decrease` | `Sales In Trade Expenses = Sales Out GSV * %Discount * Achievement Rate %` | Applied per product. Example: a 10% decrease is set for Channel 1, Brand A. The 10% decrease applies to every product belonging to Brand A sold to Channel 1, then is allocated to the distributors that serve that brand and channel. |
+| Apply **Flat Discount** to `Sales Out with Distributor reimbursement` using a `value decrease` | `Sales In Trade Expenses = Value decrease * #products in Sales Out order * Achievement Rate %` | Applied per product. Example: a 10,000 VND decrease is set for Channel 1, Brand A. 10,000 VND is subtracted from the Sales In GSV of every product belonging to Brand A sold to Channel 1. If Channel 1 orders 100 units of Product A1, Sales In Trade Expenses = 100 × 10,000 = 1,000,000 VND, then allocated to the distributors serving that brand and channel. |
+
+### Volume Rebate Incentive event
+
+| Section | Requirement | Note |
+| --- | --- | --- |
+| Apply **Volume Rebate Incentive** to `Sales In` using a `value target`, with the rebate as a `% discount` on a given `product segment` | If the distributor in the selected segment matches the condition: `Sales In Trade Expenses = Sales In GSV of volume impact products * %Discount * Achievement Rate %` | Applied per distributor. Example: for Distributor 1, the condition is to buy 100,000,000 VND of Brand A, and the impact is a 10% discount on Brand B. If Distributor 1 orders 250,000,000 VND of Products A1 and A2 (Brand A) plus 1,000 units of B1 and 50 units of B2, Distributor 1 receives a 10% discount on the GSV of the 1,000 B1 and 50 B2. |
+| Apply **Volume Rebate Incentive** to `Sales In` using a `value target`, with the rebate as a `value decrease` on a given `product segment` | If the distributor in the selected segment matches the condition: `Sales In Trade Expenses = Value Decrease * Achievement Rate %` | Applied per distributor. Example: for Distributor 1, the condition is to buy 100,000,000 VND of Brand A, and the impact is a 10,000,000 VND discount on Brand B. If Distributor 1 orders 250,000,000 VND of Brand A plus 1,000 B1 and 50 B2, Distributor 1 receives a 10,000,000 VND discount on the GSV of those B products. |
+| Apply **Volume Rebate Incentive** to `Sales Out with Distributor reimbursement` using a `value target`, with the rebate as a `% discount` on a given `product segment` | If customers in the selected segment match the condition: `Sales In Trade Expenses = Sales Out GSV of impact products * %Discount * Achievement Rate %` | Applied per SIMCEL CustomerRef. Example: for Channel 1, the condition is to buy 10,000,000 VND of Brand A, and the impact is a 10% discount on Brand B. If a Channel 1 customer orders 22,000,000 VND of Brand A and 5,000,000 VND of Brand B, that customer is discounted 500,000 VND, and that trade expense is subtracted from the distributors serving that customer. |
+| Apply **Volume Rebate Incentive** to `Sales Out with Distributor reimbursement` using a `value target`, with the rebate as a `value decrease` on a given `product segment` | If customers in the selected segment match the condition: `Sales In Trade Expenses = Value Decrease * Achievement Rate %` | Applied per SIMCEL CustomerRef. Example: for Channel 1, the condition is to buy 10,000,000 VND of Brand A, and the impact is a 1,000,000 VND discount on Brand B. If a Channel 1 customer orders 22,000,000 VND of Brand A and 5,000,000 VND of Brand B, that customer is discounted 1,000,000 VND, and that trade expense is subtracted from the distributors serving that customer. |
+
+### Bundle Discount event
+
+| Section | Requirement | Note |
+| --- | --- | --- |
+| Apply **Bundle Discount** to `Sales In` using a `volume condition`, with the impact set as a `% discount` on a `volume of products` | If the distributor in the selected segment matches the condition: `Sales In Trade Expenses = Sales In GSV of volume impact products * %Discount * #times condition is met * Achievement Rate %` | Applied per distributor. Example 1: for Distributor 1, the condition is to buy 10 units of Product A, and the impact is 100% off 5 units of Product B. If the distributor orders 102 A and 100 B, 50 units of B are discounted at 100%. Example 2: the condition is to buy 10 A and 5 B, and the impact is 10% off 10 A and 5 B. If the distributor orders 102 A and 100 B, 100 units of A and 50 units of B are discounted at 10%. |
+| Apply **Bundle Discount** to `Sales Out with Distributor reimbursement` using a `volume condition`, with the impact set as a `% discount` on a `volume of products` | If customers in the selected segment match the condition: `Sales In Trade Expenses = Sales Out GSV of impact products * %Discount * #times condition is met * Achievement Rate %` | Applied per SIMCEL CustomerRef. Example 1: for Channel 1, the condition is to buy 10 units of Product A, and the impact is 100% off 5 units of Product B. If a Channel 1 customer orders 102 A and 100 B, 50 units of B are discounted at 100%, and that trade expense is subtracted from the distributors serving that customer. Example 2: the condition is to buy 10 A and 5 B, and the impact is 10% off 10 A and 5 B. If a Channel 1 customer orders 102 A and 100 B, 100 units of A and 50 units of B are discounted at 10%. |

@@ -1,50 +1,95 @@
 ---
-title: Pivot table
-description: Cross-tabulate KPIs across any dimension for flexible, interactive analysis.
+title: "Pivot table"
+description: "Interactively explore, organize, filter, and summarize KPIs across datasets."
 ---
 
-The Pivot Table is a powerful analysis tool for slicing and dicing your KPI data across multiple dimensions. Build custom views to answer specific business questions.
+This widget is a dynamic tool for interactively exploring, organizing, filtering, and summarizing KPIs across datasets.
 
-## How to access
+To access this tool, click **Pivot Table** under the Tools section on the left-side panel.
 
-Navigate to **Tools > Pivot Table** from the sidebar.
+<Frame caption="Opening the Pivot Table from the Tools section of the left-side panel">
+  ![The SIMCEL left-side navigation panel with the Tools section expanded and Pivot Table highlighted](/images/tools/pivot-table-1.png)
+</Frame>
 
 ## Key features
 
 ### Dynamic data selection
-Choose datasets and time periods (Actuals, Budgets, Plans) to populate the pivot table.
+
+You can choose datasets and time periods (for example Actuals, Budgets, Plans) to populate the pivot table.
+
+<Frame caption="Selecting datasets and time periods to populate the pivot table">
+  ![Pivot Table dataset and time period selectors at the top of the table, used to choose which data populates the view](/images/tools/pivot-table-2.png)
+</Frame>
 
 ### Customizable rows and columns
-Click the **Fields** button on the right-side panel to access the Field List. Drag and drop fields to arrange them dynamically as rows or columns.
 
-<Frame caption="Screenshot: Pivot table with Fields panel open showing field configuration">
-  <img src="/images/tools/pivot-table-fields-panel.png" alt="Pivot table with the Fields panel open on the right side, showing available fields with drag handles and the current row, column, and value field configuration" />
+To access the Field List, click the **Fields** button on the right-side panel of the table.
+
+<Frame caption="The Fields button on the right-side panel of the table">
+  ![The right-side panel of the Pivot Table showing the Fields button used to open the Field List](/images/tools/pivot-table-3.png)
+</Frame>
+
+Select and drag-and-drop fields to arrange them dynamically as rows and columns.
+
+<Frame caption="Dragging fields into the rows and columns areas of the Field List">
+  ![The Field List showing available fields being dragged into the rows and columns areas to arrange the pivot table layout](/images/tools/pivot-table-4.png)
+</Frame>
+
+You can open the Field List settings to customize the visualization.
+
+<Frame caption="The Field List settings used to customize the pivot table visualization">
+  ![The Field List settings panel open over the Pivot Table, showing the configured row, column, and value fields](/images/tools/pivot-table-5.png)
 </Frame>
 
 ### Summarization options
-Apply summary functions to numerical data:
-- **Sum** - Total of all values
-- **Average** - Mean value
-- **Count** - Number of records
-- **Max / Min** - Highest or lowest value
 
-Summary functions are found next to each value field in the Field List settings.
+The Pivot Table provides summary functions such as Sum, Average, Count, and Max/Min for numerical data.
+
+<Frame caption="Choosing a summary function for a value field">
+  ![The summary function menu next to a value field, listing Sum, Average, Count, Max, and Min options](/images/tools/pivot-table-6.png)
+</Frame>
+
+You can find the summary functions right next to each value field, directly in the Field List settings.
 
 ### Multi-level grouping
-Create hierarchical groupings by dragging multiple fields. For example, group by **Channel > Sub Channel** to see totals at each level.
+
+The Pivot Table supports hierarchical grouping (for example Channel > Sub Channel) by dragging and dropping fields within the Field List settings.
+
+<Frame caption="A hierarchical grouping of Channel and Sub Channel in the pivot table">
+  ![Pivot Table with multi-level grouping applied, showing Sub Channel totals nested beneath each Channel](/images/tools/pivot-table-7.png)
+</Frame>
 
 ### Filtering and sorting
-Click **Filters** on the right panel to filter any field by value or alphabetical order. Use the sorting icon next to each field header to sort ascending or descending.
+
+To access the filters, click the **Filters** button on the right-side panel of the table.
+
+<Frame caption="The Filters button on the right-side panel of the table">
+  ![The right-side panel of the Pivot Table showing the Filters button](/images/tools/pivot-table-8.png)
+</Frame>
+
+You can filter every field, such as the dataset and the columns, by value or alphabetical order.
+
+<Frame caption="Filtering a field by value or alphabetical order">
+  ![The filter panel for a Pivot Table field, with options to filter the values by value or in alphabetical order](/images/tools/pivot-table-9.png)
+</Frame>
+
+You can reach the sort feature through the sorting icon right next to each field, directly in the pivot table.
+
+<Frame caption="The sorting icon next to a field header in the pivot table">
+  ![A Pivot Table field header with its sorting icon, used to sort the field ascending or descending](/images/tools/pivot-table-10.png)
+</Frame>
 
 ### Drill-down capability
-Expand summary values to view the detailed underlying data. Drill-down is available when there are at least 3 grouping fields.
 
-<Frame caption="Screenshot: Pivot table showing expanded drill-down from a summary row into detailed data">
-  <img src="/images/tools/pivot-table-drilldown.png" alt="Pivot table showing an expanded drill-down from a summary row into detailed underlying data, with multiple grouping levels visible and sub-rows indented beneath their parent summary row" />
+You can expand summary values to view the detailed underlying data. The drill-down function becomes accessible when there are at least 3 grouping fields.
+
+<Frame caption="Expanding a summary value to reveal the detailed underlying data">
+  ![Pivot Table with a summary row expanded to show the detailed underlying records beneath it](/images/tools/pivot-table-11.png)
 </Frame>
 
 ### Save and load configurations
-Save your customized pivot table layout for reuse. Reload saved configurations to quickly return to your preferred view.
+
+You can save customized pivot table configurations for reuse.
 
 ## Dimensions available
 
@@ -61,7 +106,3 @@ Save your customized pivot table layout for reuse. Reload saved configurations t
 - **Demand by brand over time** - Put Brand on rows, Time on columns, Demand Value as the value
 - **Cost breakdown by facility** - Put Location on rows, cost KPIs as values
 - **Scenario comparison** - Put Scenario on columns to compare all KPIs across planning scenarios
-
-<Tip>
-The Pivot Table uses server-side processing, so it can handle large datasets efficiently even with millions of records.
-</Tip>

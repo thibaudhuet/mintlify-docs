@@ -1,0 +1,123 @@
+---
+title: "Set Base Demand"
+description: "Manage and assign demand events to adjust base demand with past or future impacts."
+---
+
+## Demand events
+
+Under the **IBP** section on the left-hand side panel, click **Event Management**.
+
+<Frame caption="Event Management in the left sidebar, under the IBP section">
+  ![SIMCEL left sidebar with the Event Management option highlighted under the IBP section](/images/demand/set-base-demand-1.png)
+</Frame>
+
+On the Event Management page you can see the list of events. Click **New** to create a new event.
+
+<Frame caption="The New button on the Event Management page">
+  ![Event Management page listing existing events, with the New button highlighted](/images/demand/set-base-demand-2.png)
+</Frame>
+
+You can choose between multiple types of events:
+
+- **Demand Adjustment** - Increase or decrease demand due to internal or external events.
+- **New Demand Stream** - Manually create future demand for new products.
+- **Forecast Override** - Manually override the initial future demand forecasted by SIMCEL.
+- **Pricing Adjustment** - Manually set or adjust the price of your products.
+- **Trade Terms** - Model trade expenses and calculate the net sales value.
+
+<Frame caption="The available event types">
+  ![New event dialog showing the event type options: Demand Adjustment, New Demand Stream, Forecast Override, Pricing Adjustment, and Trade Terms](/images/demand/set-base-demand-3.png)
+</Frame>
+
+## Create and assign an unplanned event
+
+Imagine demand decreased by 40% in May 2023. Create an event to capture it.
+
+<Steps>
+  <Step title="Name the event">
+    Name the new event **May 2023 drop**.
+  </Step>
+  <Step title="Select the event type">
+    Select **Demand Adjustment**.
+  </Step>
+  <Step title="Name the version">
+    Name the version **V1**.
+  </Step>
+  <Step title="Set the period">
+    Select the period from **Jan 2023** to **May 2023**.
+  </Step>
+  <Step title="Set the impact">
+    In the **Delta Adjustment** section, set the value to **-40%**.
+  </Step>
+  <Step title="Describe the event">
+    Write a description of the event. This is optional.
+  </Step>
+  <Step title="Save">
+    Click **Save**.
+  </Step>
+</Steps>
+
+<Frame caption="Configuring the May 2023 drop demand adjustment event">
+  ![Demand Adjustment event form with the event name, version, period from January to May 2023, and a -40% delta adjustment](/images/demand/set-base-demand-4.png)
+</Frame>
+
+<Note>
+There are two methods for adjusting values:
+
+- **By percentage** - For example, a demand decrease of 40%.
+- **By absolute value** - For example, a decrease of 50,000 units.
+
+Switch between these options in the unit selection.
+</Note>
+
+## Assign the event to actual
+
+Go back to the **Demand Planning** page by choosing **Demand** in the left side panel.
+
+<Frame caption="Returning to Demand Planning from the left sidebar">
+  ![SIMCEL left sidebar with the Demand option selected, returning to the Demand Planning page](/images/demand/set-base-demand-5.png)
+</Frame>
+
+To assign the event to **Actual** and adjust the **Base Demand**, click the menu button next to **Actual** and click **Edit**.
+
+<Frame caption="The Edit option in the Actual dataset menu">
+  ![Demand Planning page with the Actual dataset menu open and the Edit option highlighted](/images/demand/set-base-demand-6.png)
+</Frame>
+
+Select the newly created event **May 2023 drop**, then click **Save**.
+
+<Frame caption="Selecting the May 2023 drop event for the Actual dataset">
+  ![Edit Actual dialog with the May 2023 drop event selected from the list of available events](/images/demand/set-base-demand-7.png)
+</Frame>
+
+<Check>
+You have assigned an unplanned event to the Actual plan, and you can already see the change on the Base Demand.
+</Check>
+
+<Frame caption="Base Demand updated after the event is assigned">
+  ![Demand chart showing the Base Demand line adjusted after the May 2023 drop event is applied to Actual](/images/demand/set-base-demand-8.png)
+</Frame>
+
+## Adjust base demand with realized performance
+
+Go back to the Event Management page, expand **May 2023 drop**, and click **Duplicate**.
+
+<Frame caption="Duplicating an existing event">
+  ![Event Management page with the May 2023 drop event expanded and the Duplicate action highlighted](/images/demand/set-base-demand-9.png)
+</Frame>
+
+Edit the version name to **[user initials]-realized**, set the demand impact to decrease by 20% only, and click **Save**.
+
+<Frame caption="Editing the duplicated event version to a -20% impact">
+  ![Duplicated Demand Adjustment event with a renamed version and the delta adjustment changed to -20%](/images/demand/set-base-demand-10.png)
+</Frame>
+
+<Frame caption="The duplicated event version saved">
+  ![Event Management showing the original event and the new realized version saved alongside it](/images/demand/set-base-demand-11.png)
+</Frame>
+
+Assign the newly duplicated event to **Actual** and click **Save**.
+
+<Check>
+You have adjusted your Base Demand with the actual performance of a planned trade and marketing event.
+</Check>

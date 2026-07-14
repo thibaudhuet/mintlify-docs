@@ -1,0 +1,91 @@
+---
+title: "Homepage"
+description: "Read the landing dashboard: key metric cards, YTD and YTG projections, and fiscal year achievement."
+---
+
+## Overview
+
+<Frame caption="The Homepage dashboard you see on login">
+  ![SIMCEL Homepage dashboard showing three key metric cards, the YTD and YTG projections bar chart, and the fiscal year achievement donut](/images/business-explorer/homepage-1.png)
+</Frame>
+
+The **Homepage** is the landing dashboard you see on login. It gives an at-a-glance view of your fiscal-year performance — **Net Sales**, **Gross Margin**, and **EBIT** — so you can assess business health without opening any plan or scenario. The year selector in the top-right sets which fiscal year the whole page reflects.
+
+The page has three parts: three **key metric cards**, the **YTD & YTG Projections** bar chart, and the **Fiscal Year Achievement** donut.
+
+## Key metric cards
+
+<Frame caption="The three key metric cards summarizing the fiscal year">
+  ![Key metric cards for Net Sales Value, Gross Margin, and EBIT, each with YTD and YTG splits, a vs last year trend, and a sparkline](/images/business-explorer/homepage-2.png)
+</Frame>
+
+Three cards across the top summarize the fiscal year:
+
+- **Net Sales Value** — total net sales (currency).
+- **Gross Margin** — gross profit as a percentage of net sales.
+- **EBIT** — earnings before interest and tax (currency).
+
+Each card splits the year into **YTD** (year-to-date actuals, up to the latest actual data) and **YTG** (year-to-go, the remaining months from the Tactical plan), with the **FY Total** being the two combined. Each card also shows a **vs last year** trend (red when below last year) and the full-year reference figure.
+
+The small inline line on each card is a **sparkline**: a solid segment for the actual (YTD) portion, a dot at the transition point, and a dashed segment for the forecast (YTG) portion. This lets you see how much of the year is actuals versus projection at a glance.
+
+## YTD & YTG projections
+
+<Frame caption="The YTD & YTG Projections grouped bar chart">
+  ![Grouped bar chart splitting the fiscal year into 12 months, comparing Actual, Budget Plan, and Tactical Plan series](/images/business-explorer/homepage-3.png)
+</Frame>
+
+This grouped bar chart breaks the fiscal year into 12 months and compares three series:
+
+- **Actual (YTD)** — consolidated actuals, shown only for months up to the latest actual date.
+- **Budget Plan** — grey — shown for the year-to-go (remaining) months, per the budget scenario.
+- **Tactical Plan** — red — shown for the year-to-go months, per the tactical scenario.
+
+The month where actuals end (April, in the example) shows all three bars side by side as the transition point. Earlier months show only Actual, and later months show only Budget and Tactical.
+
+<Frame caption="The metric drop-down and hover tooltip on the projections chart">
+  ![Projections bar chart with the metric drop-down open and a tooltip showing a bar value alongside its variance versus the other series](/images/business-explorer/homepage-4.png)
+</Frame>
+
+Use the **metric drop-down** in the top-right of the chart to switch between **Net Sales Value** and **EBIT**. Hovering over a bar shows the value plus the variance versus the other series (for example, Tactical vs Actual and vs Budget). Months with no data are labelled accordingly in the tooltip.
+
+## Fiscal year achievement
+
+<Frame caption="The Fiscal Year Achievement donut in FY view">
+  ![Fiscal year achievement donut with three concentric rings for Time Elapsed, Net Sales Value, and EBIT, plus view and dataset toggles](/images/business-explorer/homepage-5.png)
+</Frame>
+
+This donut shows how far through the year you are versus how much you have achieved. Two controls sit at the top-right:
+
+- **View toggle** — FY, Quarterly, or Monthly.
+- **Dataset toggle** — Budget or Tactical. This sets which plan the achievement is measured against (it changes the year-to-go denominator), so the percentages update when you switch.
+
+The donut shows three concentric rings:
+
+| Ring | What it measures |
+| --- | --- |
+| **Time Elapsed** | How much of the fiscal year has passed (days elapsed ÷ total days). |
+| **Net Sales Value** | Actual YTD ÷ (actual YTD + plan YTG). |
+| **EBIT** | The same achievement formula, applied to EBIT. |
+
+```text
+Achievement = Actual YTD / (Actual YTD + Plan YTG)
+Time Elapsed = Days elapsed / Total days in fiscal year
+```
+
+<Tip>
+  If a metric ring is ahead of the **Time Elapsed** ring, you are tracking ahead of pace.
+</Tip>
+
+<Frame caption="The Quarterly view of fiscal year achievement">
+  ![Quarterly achievement view showing four mini ring-pairs for Q1 through Q4, each with Net Sales and EBIT achievement](/images/business-explorer/homepage-6.png)
+</Frame>
+
+The **Quarterly** view replaces the rings with four mini ring-pairs (Q1–Q4), each showing Net Sales and EBIT achievement for that quarter (actual ÷ plan for the three-month window). The **Monthly** view does the same across all 12 months.
+
+## What you will see in edge cases
+
+- **No actual data yet** — cards show empty or zero values, achievement rings show 0%, and the bar chart shows no Actual bars.
+- **No Tactical plan** — the donut defaults to Budget mode and the Tactical option is hidden; the bar chart shows only Actual and Budget.
+- **No Budget plan** — the donut defaults to Tactical mode and the Budget option is hidden; the bar chart shows only Actual and Tactical.
+- **Start of the fiscal year** — YTD values are near zero but still shown, the sparkline dot is held at a minimum position so it stays visible, and the **Time Elapsed** ring shows roughly one month's worth (~8%).

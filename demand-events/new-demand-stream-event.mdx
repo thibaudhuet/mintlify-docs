@@ -1,0 +1,150 @@
+---
+title: "New Demand Stream Event"
+description: "Add new product or customer demand with no history, or adjust forecasts using internal estimates."
+---
+
+## Definition
+
+A New Demand Stream event is usually created when you need to account for demand without prior historical data. In other words, it covers launching a new product or establishing a connection with a new group of customers.
+
+A New Demand Stream event also refines existing demand forecasts for products that already have historical sales records. It lets you integrate your internal demand estimates (Sales Out) to adjust the baseline forecast.
+
+## Creating a New Demand Stream event
+
+Click **Event** in the left side panel to open the SIMCEL Event Management page.
+
+<Frame caption="The SIMCEL Event Management page">
+  ![Event Management page showing the event timeline and the list of existing events](/images/demand-events/new-demand-stream-event-1.png)
+</Frame>
+
+To create a New Demand Stream event:
+
+<Steps>
+  <Step title="Create the event">
+    - Click **New**.
+    - Select **New Demand Stream**.
+    - Click **Add**.
+  </Step>
+</Steps>
+
+<Frame caption="Selecting New Demand Stream as the event type">
+  ![Event type selector with the New Demand Stream option](/images/demand-events/new-demand-stream-event-2.png)
+</Frame>
+
+<Frame caption="The New Demand Stream definition screen">
+  ![New Demand Stream editor showing the impact definition area for the selected segment](/images/demand-events/new-demand-stream-event-3.png)
+</Frame>
+
+This screen gives you access to the definition of the new demand stream and its related impact on the selected segment.
+
+## Create a New Demand Stream for a New Product Introduction (NPI)
+
+<Note>
+To create an event reflecting a New Product Introduction, update the master data beforehand to include the new product and its related data.
+</Note>
+
+Now create an event with an NPI on the overall business.
+
+<Steps>
+  <Step title="Name the event">
+    - Name the new event.
+    - Name the version.
+    - Select the period.
+  </Step>
+  <Step title="Select the new product">
+    In the **New product** menu, select a product reference.
+  </Step>
+  <Step title="Select the product proxy">
+    In the **Product proxy** drop-down, type and select a product reference.
+  </Step>
+  <Step title="Provide the monthly demand">
+    Provide the **monthly demand** for the new demand stream. You can type each month's value, or copy a row from a spreadsheet and paste it into SIMCEL.
+
+    Click **Save** to save the impact.
+  </Step>
+  <Step title="Save the event">
+    Save the event once you have finished editing.
+  </Step>
+</Steps>
+
+<Frame caption="Naming the new demand stream event and version">
+  ![New Demand Stream event editor with the event name and version name fields filled in](/images/demand-events/new-demand-stream-event-4.png)
+</Frame>
+
+<Frame caption="Selecting the period for the new demand stream">
+  ![Impact editor with the period date range selected](/images/demand-events/new-demand-stream-event-5.png)
+</Frame>
+
+<Frame caption="Selecting the new product in the New product menu">
+  ![New product menu open with a product reference selected](/images/demand-events/new-demand-stream-event-6.png)
+</Frame>
+
+<Tip>
+To create a New Demand Stream, you must first select a single unique product in the **Select Product** search box. This enables the product proxy drop-down.
+</Tip>
+
+<Frame caption="Selecting a product reference as the product proxy">
+  ![Product proxy drop-down with a reference product selected](/images/demand-events/new-demand-stream-event-7.png)
+</Frame>
+
+<Note>
+Selecting a proxy tells SIMCEL to use the historical demand profile from the proxy product to allocate the new product's demand to lower-level segments, such as channel, province, or customer reference.
+</Note>
+
+<Frame caption="Entering the monthly demand for the new demand stream">
+  ![Monthly demand grid with values entered for each month of the launch period](/images/demand-events/new-demand-stream-event-8.png)
+</Frame>
+
+## Create a New Demand Stream with multiple customer segment impacts
+
+<Note>
+You can also create an NDS/NPI event and set a specific impact per segment, which is useful when the product introduction happens differently across customer segments.
+</Note>
+
+<Steps>
+  <Step title="Create the event">
+    - Create a New Demand Stream reflecting a New Product Introduction.
+    - Name the event and the version.
+  </Step>
+  <Step title="Add the first impact">
+    - Click **Add** to set up a new impact.
+    - Set up the period.
+    - In **Target Customer Scope** under **Launch Definition**, select a customer segment.
+    - Update the **Monthly Demand** value, or keep it unchanged.
+    - Click **Save** to save the impact.
+  </Step>
+  <Step title="Add a second impact">
+    - Click **+ Add** within this event to add one more NPI.
+    - Enter the same product and product proxy information as the first segment, but select a different customer segment in the customer drop-down.
+    - Define the monthly demand value for this extra NPI.
+  </Step>
+  <Step title="Save the event">
+    Save the event.
+  </Step>
+</Steps>
+
+<Frame caption="Selecting a customer segment in the Target Customer Scope">
+  ![Launch Definition panel with the Target Customer Scope drop-down showing a selected customer segment](/images/demand-events/new-demand-stream-event-9.png)
+</Frame>
+
+<Frame caption="Setting the monthly demand for the first customer segment">
+  ![Monthly demand grid for the first customer segment impact](/images/demand-events/new-demand-stream-event-10.png)
+</Frame>
+
+<Frame caption="Adding a second impact to the same event">
+  ![Event editor with the + Add button used to create an additional NPI impact](/images/demand-events/new-demand-stream-event-11.png)
+</Frame>
+
+<Frame caption="Selecting a different customer segment for the second impact">
+  ![Second impact showing the same product and proxy but a different customer segment selected](/images/demand-events/new-demand-stream-event-12.png)
+</Frame>
+
+<Frame caption="Setting the monthly demand for the second customer segment">
+  ![Monthly demand grid for the second NPI impact](/images/demand-events/new-demand-stream-event-13.png)
+</Frame>
+
+This creates an NDS event for a new product where the demand stream is set for two specific customer segments only.
+
+<Warning>
+If the chosen segment is unavailable for the proxy product — meaning the proxy lacks data or a demand pattern for that segment — no sales data is generated, even if you set a ramp-up period for that segment.
+</Warning>

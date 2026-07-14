@@ -21,46 +21,61 @@
         ]
       },
       {
-        "group": "Platform",
+        "group": "Demand Planning",
         "pages": [
-          "platform/navigation",
-          "platform/homepage",
-          "platform/plans-and-scenarios"
+          {
+            "group": "Explore & Analyze Demand",
+            "pages": [
+              "demand/introduction",
+              "demand/explore-actual",
+              "demand/tactical-plan",
+              "demand/plan-initialization-continuity",
+              "demand/committed-plan",
+              "demand/forecast-settings",
+              "demand/forecast-algorithm",
+              "demand/set-base-demand",
+              "demand/analytics",
+              "demand/planning-accuracy"
+            ]
+          },
+          {
+            "group": "Demand Events & Scenarios",
+            "pages": [
+              "demand-events/scenario",
+              "demand-events/demand-adjustment-event",
+              "demand-events/forecast-override-event",
+              "demand-events/new-demand-stream-event",
+              "demand-events/new-demand-stream-logic",
+              "demand-events/pricing-adjustment-event",
+              "demand-events/trade-terms"
+            ]
+          }
         ]
       },
       {
-        "group": "Demand",
+        "group": "Stock In Trade",
         "pages": [
-          "demand/overview",
-          "demand/forecast-algorithms",
-          "demand/forecast-accuracy",
-          "demand/stock-in-trade"
+          "stock-in-trade/overview",
+          "stock-in-trade/calculation-logic",
+          "stock-in-trade/drp-physical-network"
         ]
       },
       {
-        "group": "Supply",
+        "group": "Supply Simulation",
         "pages": [
-          "supply/overview",
-          "supply/simulation"
+          "supply-simulation/overview",
+          "supply-simulation/running-simulation",
+          "supply-simulation/supply-explorer"
         ]
       },
       {
-        "group": "Finance",
+        "group": "Business Explorer",
         "pages": [
-          "finance/overview"
-        ]
-      },
-      {
-        "group": "Carbon",
-        "pages": [
-          "carbon/overview"
-        ]
-      },
-      {
-        "group": "Scenarios & Events",
-        "pages": [
-          "scenarios/managing-scenarios",
-          "scenarios/event-management"
+          "business-explorer/overview-and-navigation",
+          "business-explorer/homepage",
+          "business-explorer/kpi-table",
+          "business-explorer/pl-waterfall",
+          "business-explorer/kpi-tracker-table"
         ]
       },
       {
@@ -68,15 +83,26 @@
         "pages": [
           "tools/pivot-table",
           "tools/kpi-drivers",
-          "tools/portfolio-explorer",
           "tools/plan-realization",
-          "tools/spreadsheets"
+          "tools/spreadsheets",
+          "tools/portfolio-explorer"
         ]
       },
       {
         "group": "Collaboration",
         "pages": [
-          "collaboration/overview"
+          "collaboration/introduction",
+          "collaboration/navigation-between-linked-objects",
+          "collaboration/object-detail-view-drawers",
+          "collaboration/contextual-comments",
+          "collaboration/task-management",
+          "collaboration/activity-log"
+        ]
+      },
+      {
+        "group": "Carbon",
+        "pages": [
+          "carbon/overview"
         ]
       },
       {
@@ -90,6 +116,68 @@
       "anchors": []
     }
   },
+  "redirects": [
+    {
+      "source": "/platform/navigation",
+      "destination": "/quickstart"
+    },
+    {
+      "source": "/getting-started/navigation",
+      "destination": "/quickstart"
+    },
+    {
+      "source": "/getting-started/introduction-to-simcel",
+      "destination": "/"
+    },
+    {
+      "source": "/platform/homepage",
+      "destination": "/business-explorer/homepage"
+    },
+    {
+      "source": "/platform/plans-and-scenarios",
+      "destination": "/demand/tactical-plan"
+    },
+    {
+      "source": "/demand/overview",
+      "destination": "/demand/introduction"
+    },
+    {
+      "source": "/demand/forecast-algorithms",
+      "destination": "/demand/forecast-algorithm"
+    },
+    {
+      "source": "/demand/forecast-accuracy",
+      "destination": "/demand/planning-accuracy"
+    },
+    {
+      "source": "/demand/stock-in-trade",
+      "destination": "/stock-in-trade/overview"
+    },
+    {
+      "source": "/supply/overview",
+      "destination": "/supply-simulation/overview"
+    },
+    {
+      "source": "/supply/simulation",
+      "destination": "/supply-simulation/running-simulation"
+    },
+    {
+      "source": "/finance/overview",
+      "destination": "/business-explorer/kpi-table"
+    },
+    {
+      "source": "/scenarios/managing-scenarios",
+      "destination": "/demand-events/scenario"
+    },
+    {
+      "source": "/scenarios/event-management",
+      "destination": "/demand-events/demand-adjustment-event"
+    },
+    {
+      "source": "/collaboration/overview",
+      "destination": "/collaboration/introduction"
+    }
+  ],
   "logo": {
     "light": "/images/logo.png",
     "dark": "/images/SIMCELLogo2024_white(1).svg"

@@ -1,0 +1,193 @@
+---
+title: "Calculation Logic"
+description: "View detailed formulas used to calculate Sales In, Sales Out, Closing Stock, and SIT across scenarios."
+---
+
+## Formula - actual
+
+Actual figures come from uploaded data and are never editable.
+
+| Section | Requirement | Source | Editable |
+|---|---|---|---|
+| Actual Sales Out month n (Ac.S.Out n) | Displayed in boxes | From Actual Sales Out upload | No |
+| Actual Sales Out month n (Ac.S.Out n) | Displayed in value | From Actual Sales Out upload | No |
+| Actual Sales In month n (Ac.S.In n) | Displayed in boxes | From Actual Sales In upload | No |
+| Actual Sales In month n (Ac.S.In n) | Displayed in value | From Actual Sales In upload | No |
+| Actual Closing Stock month n (Ac.Cl.S n) | Displayed in boxes | From Distributor Inventory upload | No |
+| Actual Closing Stock month n (Ac.Cl.S n) | Displayed in value | From Distributor Inventory upload | No |
+
+### Actual SIT month n (Ac.SIT n)
+
+Displayed in days. Not editable.
+
+```text
+Ac.Cl.S.Value.n / Sum (Ac.S.Out Box.n→x * Product.Value.n→x) * n→x*30
+```
+
+- This calculation can be applied at any level.
+- n→x is the number of months to consider and is specific to each workspace.
+- Ac.Cl.S.Value.n is the closing stock value and can be expressed considering either listed price or Distributor GSV.
+- Product.Value can be listed price or Distributor GSV depending on each workspace.
+
+## Formula - unconstrained
+
+### Future Sales Out month n (Fu.S.Out n)
+
+Displayed in boxes: from the scenario Sales Out forecast. Not editable.
+
+Displayed in value (not editable):
+
+```text
+Fu.S.Out box * Product Value
+```
+
+- This calculation can only be applied at terminal level (distributor-product).
+
+### Future Sales In month n (Fu.S.In n)
+
+Displayed in boxes. Editable.
+
+```text
+Fu.S.InBox.n = Sum(Fu.S.OutBox.n→x) / n*30 * Fu.SITn - Fu.Cl.SBox.n-1 + Fu.S.OutBox.n
+
+or
+
+Fu.S.InBox.n = Fu.CLSBox.n - Ac.Cl.SBox.n-1 + Fu.S.OutBox.n
+```
+
+- This calculation can be applied at any level.
+- n→x is the number of months to consider and is specific to each workspace.
+
+In value. Editable.
+
+```text
+Fu.S.InValue.n = Fu.S.In Box.n * Product Value
+```
+
+- This calculation can only be applied at terminal level (distributor-product).
+- Product.Value can be listed price or Distributor GSV depending on each workspace.
+
+### Future Closing Stock month n (Fu.CLS n)
+
+In boxes. Editable.
+
+```text
+Fu.CLSBox.n = Ac.Cl.SBox.n-1 - Fu.S.OutBox.n + Fu.S.InBox.n
+
+or
+
+Fu.CLSBox.n = Sum(Fu.S.OutBox.n→x / n*30 * Fu.SITn
+```
+
+- This calculation can be applied at any level.
+- n→x is the number of months to consider and is specific to each workspace.
+
+In value. Editable.
+
+```text
+Fu.CLSGSV.n = Fu.CLSBox.n * Product Value
+```
+
+- This calculation can be applied at any level.
+- Product.Value can be listed price or Distributor GSV depending on each workspace.
+
+### Future SIT month n (Fu.SIT n)
+
+Displayed in days. Editable. Sourced from the Distributor SIT target file (this can only be applied at terminal level, distributor-product), or calculated as:
+
+```text
+Fu.Cl.S.Value.n / Sum (Fu.S.Out Box.n→x * Product Value n→x) * n*30
+```
+
+- This calculation can be applied at any level.
+- n→x is the number of months to consider and is specific to each workspace.
+- Fu.Cl.S.Value.n is the closing stock value and can be expressed considering either listed price or Distributor GSV.
+- Product.Value can be listed price or Distributor GSV depending on each workspace.
+
+## Formula - constrained
+
+### Constrained Future Sales In month n (Con.Fu.S.In n)
+
+Displayed in boxes: from the scenario DemandFullfilmentMetrics. Not editable.
+
+Displayed in Gross Sales Value (not editable):
+
+```text
+Con.Fu.S.In box * Product Value
+```
+
+- This calculation can only be applied at terminal level (distributor-product).
+
+### Constrained Future Sales Out month n (Con.Fu.S.Out n)
+
+Displayed in Gross Sales Value. Not editable.
+
+```text
+Con.Fu.S.Outbox.n * Product Value
+```
+
+- This calculation can only be applied at terminal level (distributor-product).
+
+Displayed in boxes. Not editable.
+
+```text
+If month n = Future Plan starting month:
+If Fu.S.Outbox.n < or = Con.Fu.S.Inbox.n + Ac.Cl.Sbox.n-1
+Then Con.Fu.S.Out n = Fu.S.Outbox.n
+Else Con.Fu.S.Out n = Con.Fu.S.Inbox.n + Ac.Cl.Sbox.n-1
+```
+
+```text
+If month n >= Future Plan starting month +1:
+If Fu.S.Outbox.n < or = Con.Fu.S.Inbox.n + Fu.Cl.Sbox.n-1
+Then Con.Fu.S.Out n = Fu.S.Outbox.n
+Else Con.Fu.S.Out n = Con.Fu.S.Inbox.n + Fu.Cl.Sbox.n-1
+```
+
+- These calculations can only be applied at terminal level (distributor-product).
+
+### Constrained Future Closing Stock month n (Con.Fu.CLS n)
+
+Displayed in Gross Sales Value. Not editable.
+
+```text
+Con.Fu.CLSbox.n * Product Value
+```
+
+- This calculation can only be applied at terminal level (distributor-product).
+
+Displayed in boxes. Not editable.
+
+```text
+If month n = Future Plan starting month:
+Con.Fu.CLSbox.n = Ac.Cl.Sbox.n-1 - Con.Fu.S.Outbox.n + Con.Fu.S.Inbox.n
+```
+
+```text
+If month n >= Future Plan starting month +1:
+Con.Fu.CLSbox.n = Con.Fu.Cl.Sbox.n-1 - Con.Fu.S.Outbox.n + Con.Fu.S.Inbox.n
+```
+
+- These calculations can only be applied at terminal level (distributor-product).
+
+### Constrained Future SIT month n (Con.Fu.SIT n)
+
+Displayed in days. Not editable.
+
+```text
+Sum (Con.Fu.S.Out Box.n→x * Product Value n→x) * n*30
+```
+
+- This calculation can be applied at any level.
+
+## Notes
+
+- If you make an adjustment in value (Sales In or Closing Stock), the tool first converts it into an adjustment in volume, performs the recalculation, and then translates it back to value.
+- The table displays a warning icon if your adjustments result in negative numbers. You need to address these discrepancies by expanding the table and identifying the source. If you decide to simulate anyway, any negative Sales In is treated as 0.
+
+<Frame caption="The warning icon shown when adjustments produce negative numbers">
+  ![SIT table row displaying a warning icon next to values that have become negative after an adjustment](/images/stock-in-trade/calculation-logic-1.png)
+</Frame>
+
+- If the Sales Out of 3 consecutive periods is null, the SIT is not calculated and NAN is displayed instead.
+- If any editable value is 0, the aggregated level cannot redistribute the lower levels because redistribution is based on the child ratio (which is 0 in this case). You need to edit the atomic level (distributor-product).

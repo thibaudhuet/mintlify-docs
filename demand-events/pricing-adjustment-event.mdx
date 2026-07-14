@@ -1,0 +1,139 @@
+---
+title: "Pricing Adjustment Event"
+description: "Adjust prices in scenarios and see their financial impact instantly."
+---
+
+The **Pricing Adjustment Events** feature allows planners to modify prices in scenarios and immediately see their financial impact. These adjustments provide accurate revenue calculations, support customer-specific negotiations, and ensure KPIs reflect the true financial impact of pricing changes.
+
+There are three types of price adjustments, depending on which level of the commercial model you want to impact.
+
+## Listed Price event
+
+- **Scope**
+  - Acts as the catalog price and is used to calculate secondary demand and sales values across all customers, if and only if those customers do not have a specific Secondary Customer Price set for them.
+  - Set at the product level (no customer distinction).
+- **Used in**: `Secondary Demand Value`, `Secondary Gross Sales Value`, and consequently `Secondary Trade Expenses` and `Secondary Net Sales Value`.
+- **Purpose**: represent the catalog price of a product in the market before discounts.
+- **When to use**: apply when changing the general product price across all markets, for example a new list price announcement or a general price increase.
+
+## Secondary Customer Price event
+
+- **Scope**
+  - Defines customer-specific prices that override the listed price when available, ensuring accurate secondary sales per customer.
+  - Set at the Product x Secondary Customer level.
+- **Used in**: `Secondary Demand Value`, `Secondary Gross Sales Value`, and consequently `Secondary Trade Expenses` and `Secondary Net Sales Value`.
+- **Purpose**: capture customer-specific price agreements that differ from the listed price.
+- **When to use**: apply when you need exact pricing per customer, instead of broad discounts or list-based assumptions.
+
+## Primary Customer Price event
+
+- **Scope**
+  - Represents the negotiated selling price to distributors and is used for primary demand and sales values.
+  - Set at the Product x Primary Customer level.
+- **Used in**: `Primary Demand Value`, `Primary Gross Sales Value`, and consequently `Primary Trade Expenses`, `Primary Net Sales Value`, and all of the P&L down to `EBIT`.
+- **Purpose**: reflect the negotiated price at which distributors purchase products before discounts.
+- **When to use**: apply when simulating changes in primary sales revenue and distributor agreement scenarios.
+
+## Fallback and adjustment logic
+
+In SIMCEL, both **Product Value Master** data (uploaded via ETL) and **Pricing Adjustment Events** can influence the final price used in scenarios.
+
+For Secondary Demand and Sales Value, there are two possible sources in the **Product Value Master (PVM)**:
+
+- **SP_PVM** — Secondary Customer Price defined in Product Value Master (per `ProductID`, `CustomerRef`).
+- **LP_PVM** — Listed Price defined in Product Value Master (per `ProductID`).
+
+And two possible sources in the **Pricing Event**:
+
+- **SP_Event** — Secondary Customer Price Event (per `ProductID`, `CustomerRef`).
+- **LP_Event** — Listed Price Event (per `ProductID`).
+
+For a given set of Product and Customer, the system applies the following rules to determine which input to use and how events are applied:
+
+| Input available \ Event assigned | LP_Event | SP_Event | SP_Event + LP_Event |
+| --- | --- | --- | --- |
+| **LP_PVM** | Use **LP_PVM** as baseline, then apply the **LP_Event** adjustment | Use **LP_PVM** as baseline, then apply the **SP_Event** adjustment (acts as a customer-specific override) | **Ignore LP_Event**. Use **SP_PVM** as baseline, then apply the **SP_Event** adjustment |
+| **SP_PVM + LP_PVM** | **Ignore LP_Event**. Still use **SP_PVM** (the customer-specific price takes priority) | Use **SP_PVM** as baseline, then apply the **SP_Event** adjustment | **Ignore LP_Event**. Use **SP_PVM** as baseline, then apply the **SP_Event** adjustment |
+
+<Note>
+  A customer-specific price always takes priority over a listed price. Whenever an `SP` source is available for the segment, the `LP_Event` is ignored.
+</Note>
+
+## How to create a Pricing Adjustment event
+
+<Steps>
+  <Step title="Create a new Pricing Adjustment event">
+    Navigate to the **Event Management** page. Click **New Event** and select **Pricing Adjustment**, then fill in the basic details:
+
+    - **Event Name** — for example, `Secondary Price - Beer`
+    - **Version Name** — optional, to track iterations
+
+    <Frame caption="Creating a new Pricing Adjustment event">
+      ![New event dialog on the Event Management page with Pricing Adjustment selected as the event type, showing the Event Name and Version Name fields](/images/demand-events/pricing-adjustment-event-1.png)
+    </Frame>
+  </Step>
+
+  <Step title="Select the price type">
+    Set up the period, for example April to July 2026, then choose which price level the event applies to:
+
+    - **Listed Price** — product level, the same for all customers.
+    - **Distributor Price** — Product x Primary Customer level.
+    - **Secondary Customer Price** — Product x Secondary Customer level, a customer-specific price.
+
+    <Frame caption="Selecting the price type and the event period">
+      ![Price type selector showing Listed Price, Distributor Price and Secondary Customer Price options alongside the event period date range](/images/demand-events/pricing-adjustment-event-2.png)
+    </Frame>
+  </Step>
+
+  <Step title="Define the impacted segments">
+    Select the products and customers the event should affect. Depending on the event type, you can filter further by:
+
+    - **Secondary Customer** — for Secondary Customer Price events
+    - **Primary Customer** — for Primary Customer Price events
+    - **Locations** — if geography is relevant
+
+    You can add multiple segments by saving the current impact and adding a new one with the **+ Add** button.
+
+    <Frame caption="Defining the products and customers affected by the event">
+      ![Impacted segment configuration with product and customer search boxes and the Add button for creating additional impacts](/images/demand-events/pricing-adjustment-event-3.png)
+    </Frame>
+  </Step>
+
+  <Step title="Add adjustments">
+    For each selected segment, define one or more adjustments:
+
+    1. **Set Price** — replace the baseline with a fixed value, for example `120,000 VND`.
+    2. **Absolute Adjustment** — increase or decrease by a fixed amount, for example `+20,000 VND`.
+    3. **Percentage Adjustment** — increase or decrease by a percentage, for example `-30%`.
+
+    You can add multiple adjustments with different validity periods.
+
+    <Frame caption="Adding price adjustments to a segment">
+      ![Adjustment panel showing Set Price, Absolute Adjustment and Percentage Adjustment options with their validity periods](/images/demand-events/pricing-adjustment-event-4.png)
+    </Frame>
+  </Step>
+
+  <Step title="Finalize the event">
+    Add an optional **Description** for notes or context, then click **Submit** to save the event.
+  </Step>
+</Steps>
+
+## Order of adjustments
+
+Adjustments are always applied in the following order:
+
+```text
+Set Price -> Absolute Adjustments -> Percentage Adjustments
+```
+
+### Example
+
+Starting from a baseline **Listed Price** of `100,000 VND`:
+
+| Step | Adjustment | Resulting price |
+| --- | --- | --- |
+| 1 | Set Price | `90,000 VND` |
+| 2 | Absolute Adjustment (+5,000) | `95,000 VND` |
+| 3 | Percentage Adjustment (+10%) | `104,500 VND` |
+
+The final price is `104,500 VND`.
