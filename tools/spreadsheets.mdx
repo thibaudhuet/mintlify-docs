@@ -1,152 +1,223 @@
 ---
-title: Spreadsheets
-description: An in-app spreadsheet editor wired into SIMCEL's planning model.
+title: "Spreadsheets"
+description: "An in-app spreadsheet editor wired into SIMCEL's planning model, with templates, MASTER() matching, and the Lana AI assistant."
 ---
 
-SIMCEL Sheets is a familiar spreadsheet editor built for supply chain work. Data you enter can feed directly into plans, scenarios, and events without leaving the platform.
+## Overview
 
-## How to access
+**SIMCEL Sheets** is an in-app spreadsheet editor built for supply chain work. It looks and behaves like a familiar spreadsheet, but it is wired into SIMCEL's planning model, so the data you enter can feed directly into plans, scenarios, and events without leaving the platform.
 
-Navigate to **Tools > Spreadsheets** from the sidebar.
+What sets it apart from a generic spreadsheet:
+
+- **Templates** - pre-structured layouts for specific purposes (forecast input, pricing adjustments, scenario overrides). A template knows what data format is expected and how to submit it.
+- **SIMCEL formulas** - a `MASTER()` formula that fuzzy-matches free text (product, customer, or location names) against your workspace's master data.
+- **Lana AI assistant** - an embedded assistant that can read selected cells, understand the template, and suggest values.
+- **Match to Master** - a workflow to map raw text values to canonical SIMCEL records.
+- **System sheets** - certain templates become first-class objects in the planning model. For example, a validated Forecast Input sheet becomes a selectable data source in the Plan Drawer.
+
+You will find Spreadsheets under the **Tools** section in the left sidebar.
 
 ## What is a SIMCEL Sheet?
 
-A grid of cells (rows x columns) where each cell can hold:
-- **Plain text or numbers** - Displayed as entered
-- **Formulas** - Prefixed with `=`, evaluated automatically
-- **Formatting** - Bold, italic, font size, alignment, number format, colors, borders
+<Frame caption="The SIMCEL Sheets editor">
+  ![The SIMCEL Sheets editor showing the grid of cells with the toolbar and formula bar above it](/images/tools/spreadsheets-1.png)
+</Frame>
+
+A SIMCEL Sheet is a grid of cells (rows x columns A-Z). Each cell can hold:
+
+- **Plain text or numbers** - displayed as entered.
+- **A formula** - prefixed with `=`, evaluated automatically and shown as the computed result.
+- **Formatting** - bold, italic, font size, alignment, number format, colors, and borders.
 
 Sheets are named documents saved to your workspace, and can optionally be linked to a plan or scenario for downstream use.
 
-<Frame caption="Screenshot: SIMCEL Sheets editor showing the grid, toolbar, and formula bar">
-  <img src="/images/tools/spreadsheets-editor.png" alt="SIMCEL Sheets editor showing the grid with cells containing text, numbers, and formulas, with the toolbar visible above including font controls, formatting options, and number format selectors, and a formula bar displaying the active cell's formula" />
-</Frame>
-
-## Editing
+## Navigation and editing
 
 ### Grid interactions
 
-| Action | How |
-|--------|-----|
-| Select cell | Click |
-| Select range | Click and drag, or Shift+click |
-| Select whole column/row | Click the header |
-| Edit cell | Start typing (overwrite) or F2 (edit without clearing) |
-| Confirm and move | Enter (down), Tab (right), Escape (cancel) |
-| Navigate | Arrow keys when not editing |
+<Frame caption="Selecting and editing cells in the grid">
+  ![A selected range of cells in the SIMCEL Sheets grid, with the active cell outlined](/images/tools/spreadsheets-2.png)
+</Frame>
+
+- **Select a cell** - click. **Select a range** - click and drag, or Shift+click. **Select a whole column or row** - click its header.
+- **Edit a cell** - start typing to overwrite (Excel-style), or press F2 to edit without clearing.
+- **Confirm and move** - Enter moves down, Tab moves right. Escape cancels the edit.
+- **Navigate** - arrow keys when not editing.
 
 ### Toolbar
 
-Font family, size, bold/italic/underline/strikethrough, text alignment, number format (currency, percentage, decimal places), text and background colors, borders, and format painter.
+<Frame caption="The formatting toolbar above the formula bar">
+  ![The SIMCEL Sheets toolbar with font family and size selectors, bold, italic, underline and strikethrough toggles, alignment, number format, color pickers, borders, and format painter](/images/tools/spreadsheets-3.png)
+</Frame>
+
+The toolbar above the formula bar handles cell formatting:
+
+- **Font family and size** - drop-down selectors.
+- **Bold / Italic / Underline / Strikethrough** - toggle buttons that reflect the active cell's state.
+- **Text alignment** - left, center, right.
+- **Number format** - currency ($), percentage (%), and increase/decrease decimal places.
+- **Text and background color** - color pickers.
+- **Borders** - a menu for all borders, outside, individual sides, or none.
+- **Format painter** - copy formatting from one cell and apply it to another cell or range.
+
+### Formula bar
+
+<Frame caption="The formula bar showing the raw value of the active cell">
+  ![The SIMCEL Sheets formula bar displaying the raw formula stored in the active cell](/images/tools/spreadsheets-4.png)
+</Frame>
+
+The formula bar shows the raw value (formula or text) of the active cell. Editing here is the same as editing in the cell.
 
 ### Fill handle
 
-Drag the small square at the bottom-right of a selection to auto-fill copies. Formula references increment automatically (e.g., `=MASTER(A2)` becomes `=MASTER(A3)`).
-
-### Copy and paste
-
-Standard shortcuts (Ctrl+C / V / X). Paste supports CSV data from Excel or Google Sheets.
-
-## Formulas
-
-Start any formula with `=`. Available categories:
-
-| Category | Functions |
-|----------|----------|
-| **Math** | SUM, PRODUCT, ROUND, ABS, SQRT, POWER, MOD |
-| **Statistical** | AVERAGE, MIN, MAX, COUNT, COUNTA, MEDIAN |
-| **Text** | UPPER, LOWER, LEN, CONCATENATE, LEFT, RIGHT, MID, TRIM |
-| **Logical** | IF |
-
-### The MASTER() formula
-
-`=MASTER(ref)` fuzzy-matches a cell value against your workspace master data (products, customers, locations) and returns the best canonical match.
-
-```
-=MASTER(A2)                    → Best-matching canonical name
-=MASTER(A2, "brands")          → Brand of the matched product
-=MASTER(A2, "productId")       → Product ID of the matched product
-=MASTER(A2, "category")        → Category of the matched product
-```
-
-**Match confidence:**
-- **80%+** - Confident match, resolved value shown directly
-- **20-79%** - Uncertain match, shown with `~` prefix
-- **Below 20%** - `#NO_MATCH` error
-- **In progress** - `#RESOLVING` while lookup runs
-
-<Frame caption="Screenshot: MASTER formula results showing matched, uncertain, and unmatched cells">
-  <img src="/images/tools/spreadsheets-master-formula.png" alt="Spreadsheet cells showing MASTER formula results: cells with a green highlight for confident matches at 80% or above, cells with a tilde prefix indicating uncertain matches between 20 and 79%, and a #NO_MATCH error for values below the confidence threshold" />
+<Frame caption="Dragging the fill handle to copy cells down a column">
+  ![The small square fill handle at the bottom-right of a cell selection, being dragged down to fill the cells below](/images/tools/spreadsheets-5.png)
 </Frame>
 
-### Match to Master workflow
+The fill handle is the small square at the bottom-right of a selection. Drag it down or right to fill copies of the source cells. Formula references increment automatically. For example, `=MASTER(A2)` becomes `=MASTER(A3)` one row down.
 
-For bulk matching:
-1. Select cells containing raw values
-2. Right-click > **Match to SIMCEL**
-3. Pick entity type (Products / Customers / Locations)
-4. Click **Search** - results show original value, best match with score %, and dropdown for alternatives
-5. Review, accept or reject per row, click **Apply**
+### Copy, paste, and cut
 
-Matched cells update with a subtle green highlight. Use **Fix All** to auto-apply best suggestions for uncertain matches.
+Use the standard shortcuts (Ctrl+C / V / X). Paste supports CSV data, so you can move data to and from Excel or Google Sheets. Pasting a multi-cell range fills outward from the active cell.
 
-<Frame caption="Screenshot: Match to Master dialog showing match suggestions with scores and Accept/Reject controls">
-  <img src="/images/tools/spreadsheets-match-to-master.png" alt="Match to Master dialog showing a table with original raw values in one column, best match suggestions with score percentages in another, a dropdown for selecting alternative matches, and Accept and Reject buttons for each row" />
+### Insert and delete rows and columns
+
+Right-click any row or column header to insert above/below or left/right, or to delete. Column widths are resizable by dragging the right edge of a column header.
+
+### Cell context menu
+
+<Frame caption="The right-click context menu for a cell">
+  ![The SIMCEL Sheets cell context menu listing Ask Lana, Match to Master, copy, paste, cut, and clear contents](/images/tools/spreadsheets-6.png)
 </Frame>
 
-## Normal sheets vs. system sheets
-
-| Type | Purpose | Downstream integration |
-|------|---------|----------------------|
-| **Normal Sheet** | Free-form spreadsheet for calculations, notes, scratch work | None |
-| **System Sheet** | Created from a template, linked to SIMCEL's planning model | Creates/updates plans, events, or scenarios on submission |
-
-### System sheet templates
-
-<AccordionGroup>
-  <Accordion title="Forecast Input">
-    Enter demand targets by product and sub-channel across time. Once verified, the sheet becomes a selectable data source in the Plan Drawer.
-
-    - Layout: Header row with Product / Sub-Channel / month columns (Mon-YY format)
-    - Submit: Click **Verify Forecast Input**
-    - System checks: at least one data row, valid month headers, sheet saved
-    - Success: Green "Validated" badge appears
-  </Accordion>
-
-  <Accordion title="Pricing Adjustment">
-    Capture price changes across products and date range. On submission, creates an event version in Event Management.
-
-    - Metadata: Event name, version name, description in dedicated cells
-    - Data: Product x price type x monthly values (YYYY-MM format)
-    - Supported price types: Listed Price, Distributor Price, Secondary Price
-    - Submit: Click **Submit** to create/update the event version
-  </Accordion>
-
-  <Accordion title="Forecast Override">
-    Override statistical forecasts with manual targets. Same metadata structure and submission mechanism as other templates.
-  </Accordion>
-
-  <Accordion title="New Demand Stream">
-    Define demand for new products without historical data. Same metadata structure and submission mechanism.
-  </Accordion>
-</AccordionGroup>
-
-<Frame caption="Screenshot: System sheet template selector showing available templates and a preview">
-  <img src="/images/tools/spreadsheets-system-sheet-templates.png" alt="System sheet template selector showing available templates including Forecast Input, Pricing Adjustment, Forecast Override, and New Demand Stream, with a preview of the Forecast Input template layout showing the header row and column structure" />
-</Frame>
+Right-click any cell for **Ask Lana**, **Match to Master**, copy/paste/cut, and clear contents.
 
 ## Saving and opening
 
-- **Save** - Click Save (top-right); first save prompts for a sheet name
-- **Open** - Click Open to see the sheet list: New Blank Sheet, New System Sheet (templates), and My Sheets
-- **Clear** - Empties the current grid
+<Frame caption="The Open Sheet panel listing blank, system, and saved sheets">
+  ![The Open Sheet panel with options for New Blank Sheet and New System Sheet, and a My Sheets list showing each sheet's template type, cell count, and last-modified date](/images/tools/spreadsheets-7.png)
+</Frame>
+
+- **Save** - click **Save** (top-right). On a new sheet, a **Save Spreadsheet** dialog asks for a name. Saved sheets persist to your workspace, and the last sheet you opened is restored on your next visit.
+- **Open** - click **Open** to see the **Open Sheet** panel. From there you can start a **New Blank Sheet**, start a **New System Sheet** (template-based), or reopen any sheet under **My Sheets**, each listed with its template type, cell count, and last-modified date. You can also delete sheets from this panel.
+- **Clear** - empties the current grid.
+
+## Formula system
+
+<Frame caption="The built-in Formula Reference">
+  ![The Formula Reference panel listing the available formulas grouped into Math, Statistical, Text, and Logical categories, each with its syntax and an example](/images/tools/spreadsheets-8.png)
+</Frame>
+
+Start any formula with `=`. Formulas evaluate automatically as you edit. A built-in **Formula Reference** (the help icon) lists all available formulas grouped into Math, Statistical, Text, and Logical categories, each with syntax and an example.
+
+Standard formulas include:
+
+| Category | Formulas |
+|----------|----------|
+| **Math** | `SUM`, `PRODUCT`, `ROUND`, `ABS`, `SQRT`, `POWER`, `MOD` |
+| **Statistical** | `AVERAGE` (alias `AVG`), `MIN`, `MAX`, `COUNT`, `COUNTA`, `MEDIAN` |
+| **Text** | `UPPER`, `LOWER`, `LEN`, `CONCATENATE` (alias `CONCAT`), `LEFT`, `RIGHT`, `MID`, `TRIM` |
+| **Logical** | `IF` |
+
+### The MASTER() formula
+
+`=MASTER(ref)` fuzzy-matches the value in a referenced cell against your workspace's master data (products, customers, locations) and returns the best canonical match. Add a field to return a specific attribute: `=MASTER(ref, "field")`.
+
+Supported fields include `productId`, `brands`, `category`, `subCategory`, `channel`, `country`, and `region`. Omitting the field returns the best-matching canonical name.
+
+```text
+A2 = "Coca Cola 330ml"
+B2 = =MASTER(A2)            → "Coca-Cola Classic 330mL"
+C2 = =MASTER(A2, "brands")  → "Coca-Cola"
+```
+
+Match results are shown by confidence. A confident match (80% or above) shows the resolved value directly, an uncertain match (20-79%) shows `~value`, and anything below 20% shows `#NO_MATCH`. While a lookup is running, the cell shows `#RESOLVING`.
+
+**Error states**: `#RESOLVING` (lookup in progress), `#NO_MATCH` (no match above threshold), `#ERROR!` (formula could not be parsed or evaluated).
+
+## Match to Master
+
+When you paste product, customer, or location names from an outside source (an ERP export, an Excel file, an email), they rarely match SIMCEL's canonical names exactly. **Match to Master** bridges that gap with a guided fuzzy-matching workflow.
+
+<Steps>
+  <Step title="Select the raw values">
+    Select the cells containing the raw values, for example "coke can 330" or "walmart US east".
+  </Step>
+  <Step title="Open Match to Master">
+    Right-click and choose **Match to SIMCEL**.
+  </Step>
+  <Step title="Pick the entity type">
+    Choose Products, Customers, or Locations.
+  </Step>
+  <Step title="Search">
+    Click **Search**. A results table shows each original value, its best-match candidate with a score percentage, and a drop-down to pick an alternative.
+  </Step>
+  <Step title="Review and apply">
+    Accept or reject each row, then click **Apply**. Matched cells update to the canonical value and get a subtle green highlight.
+  </Step>
+</Steps>
+
+You can open a **validation panel** to summarize matched (80% or above), uncertain (20-79%), and unmatched (`#NO_MATCH`) cells. A **Fix All** button auto-applies the best suggestion for every uncertain or unmatched cell.
+
+<Tip>
+`=MASTER()` uses the same matching engine under the hood, but runs automatically per cell. Use the dialog-based Match to Master when you want to review candidates before accepting, or for bulk operations.
+</Tip>
+
+## Normal sheets vs system sheets
+
+<Frame caption="Choosing between a blank sheet and a system sheet template">
+  ![The New System Sheet template selector, showing the available templates alongside the option to create a plain blank sheet](/images/tools/spreadsheets-9.png)
+</Frame>
+
+**Normal sheet** - a regular spreadsheet you create, name, and fill freely. It has no downstream integration, and is good for calculations, scratch work, or planning notes.
+
+**System sheet** - a sheet created from a template that is integrated into SIMCEL's planning model. System sheets add a submission action (**Verify** or **Submit**) and track a status such as draft or validated. On submission, they create or update something in a plan, event, or scenario.
+
+Template types include:
+
+| Template | Creates | Downstream effect |
+|----------|---------|-------------------|
+| **Forecast Input** | Plan | Validates, then becomes selectable in the Plan Drawer |
+| **Pricing Adjustment** | Event | Creates or updates an event version with pricing data |
+
+## Forecast Input template
+
+<Frame caption="The Forecast Input template, with product, sub-channel, and month columns">
+  ![The Forecast Input system sheet showing the header row, the Product and Sub-Channel columns, and monthly columns in Mon-YY format with numeric demand values](/images/tools/spreadsheets-10.png)
+</Frame>
+
+The **Forecast Input** sheet is the main way planners enter demand targets by product and sub-channel across a time horizon. Once verified, it becomes available as a data source when configuring a demand import in the Plan Drawer.
+
+The template enforces a layout: a header row, then a row defining Product / Sub-Channel / month columns (in `Mon-YY` format, for example `Jan-25`), then one data row per product x sub-channel combination with numeric monthly values.
+
+To submit, fill the template, then click **Verify Forecast Input**. The system checks that at least one data row exists, the month headers are valid, and the sheet has been saved. On success, the action bar shows a green **Validated** badge and the sheet appears in the Plan Drawer's Forecast Input selector. Reopening a validated sheet restores the Validated badge automatically.
+
+## Pricing Adjustment template
+
+<Frame caption="The Pricing Adjustment template, with event metadata and monthly price rows">
+  ![The Pricing Adjustment system sheet showing event name, version name, and description metadata cells above data rows of product and price type with monthly values in YYYY-MM columns](/images/tools/spreadsheets-11.png)
+</Frame>
+
+The **Pricing Adjustment** template captures price changes across a set of products and a date range. On submission, it creates an event version in SIMCEL's event management system.
+
+The template carries event metadata (event name, version name, description) in dedicated cells, followed by data rows of product x price type x monthly values. Month columns use `YYYY-MM` format. The supported price types are listed price, distributor price, and secondary price.
+
+To submit, fill in the metadata and price rows, then click **Submit**. SIMCEL reads the metadata, transforms the data rows, infers the date range from the month columns, and creates or updates the event version. On success, the template clears and a confirmation appears.
+
+<Note>
+The **Forecast Override** and **New Demand Stream** templates work the same way, with the same metadata structure and submission mechanism. They just carry different data and create different event types.
+</Note>
 
 ## Lana AI assistant
 
-An embedded AI assistant that can read selected cells and suggest values:
+<Frame caption="Asking Lana for cell-level suggestions and applying them to the grid">
+  ![Animation of the Ask Lana dialog receiving a selected range, replying with suggested cell values and reasons, and writing them into the grid with Apply All](/images/tools/spreadsheets-12.gif)
+</Frame>
 
-1. Select cells
-2. Right-click > **Ask Lana**
-3. Describe what you need
-4. Lana returns cell-level suggestions
-5. Click **Apply All** to write suggestions into the grid
+Lana is SIMCEL's AI assistant, embedded directly in Sheets. You can select cells, describe what you need, and receive cell-level suggestions you can apply to the grid.
+
+To use it, right-click a cell or range and choose **Ask Lana**. Lana receives the selected cells and their values, any detectable column headers, and the active template type as context. In the dialog, type your question. Lana replies with text and, where applicable, a list of suggested cell-to-new-value changes, each with a short reason. Click **Apply All** to write the suggestions into the grid.
+
+<Note>
+The Lana integration is live and functional. The specific use cases for each template, such as suggesting forecast values from historical context, flagging data-quality issues, or explaining formula results, are still being defined and will be documented as they are validated.
+</Note>

@@ -1,0 +1,71 @@
+---
+title: "Forecast Algorithm"
+description: "Overview of forecasting models and strategies used in SIMCEL for demand prediction."
+---
+
+## Context
+
+Demand forecasting is the starting point in supply chain planning. You use it to project the demand that the business will receive from the market at different horizons.
+
+In SIMCEL, the forecast can be generated using different models, all of which take an unbiased historical demand as their input: the **Base Demand**.
+
+## Types of forecast models in SIMCEL
+
+### Prophet
+
+Prophet is a time series forecasting algorithm developed by Meta (Facebook). It can be used for demand forecasting by decomposing time series data into trend, seasonality, and holiday components.
+
+### STL
+
+STL (Seasonal-Trend decomposition procedure based on Loess) is a time series decomposition algorithm. It can be used for demand forecasting by separating the time series data into three components: trend, seasonal, and residual.
+
+### AdaBoost (ADA)
+
+AdaBoost (Adaptive Boosting) is a machine learning algorithm that can be used for demand forecasting by combining multiple weak learners (simple models) to make more accurate predictions. It works by iteratively adjusting the weights of the training data to focus on the most difficult cases, giving more weight to misclassified data points.
+
+### Random Forest (RF)
+
+Random Forest is a machine learning algorithm that can be used for demand forecasting by building an ensemble of decision trees. It randomly selects a subset of the input features and data points, then grows multiple decision trees on the sub-sampled data. The algorithm aggregates the predictions of the individual trees to produce a final forecast.
+
+### XGBoost (XGB)
+
+XGBoost (Extreme Gradient Boosting) is a machine learning algorithm that can be used for demand forecasting. It is a more advanced version of the Gradient Boosting algorithm and is designed to handle large and complex datasets. XGBoost builds an ensemble of weak decision trees and iteratively improves their performance by minimizing a loss function.
+
+### Extra Trees Regressor (ETR)
+
+Extra Trees Regressor (ETR) is a machine learning algorithm that can be used for demand forecasting by constructing an ensemble of decision trees. It is similar to Random Forest, but with some key differences in the way the trees are constructed.
+
+### Decision Trees (DT)
+
+Decision Trees are a machine learning algorithm that can be used for demand forecasting by constructing a tree-like model of decisions and their possible consequences. Each internal node of the tree represents a decision based on one of the input features, and each leaf node represents a demand forecast.
+
+### Light Gradient-Boosting Machine (LightGBM)
+
+LightGBM, a gradient-boosting framework, excels at handling large datasets and high-dimensional features with greater efficiency and less memory usage than XGBoost. Its distinctive leaf-wise tree growth algorithm allows for faster training and more accurate results, which is especially beneficial in time series forecasting. XGBoost grows trees depth-wise and can be slower on large datasets, whereas LightGBM's approach is more efficient on such data, often leading to faster execution with comparable or improved accuracy.
+
+### Naive forecasting
+
+There are several different methods for naive forecasting:
+
+- Take the previous lag for each time step in the forecast horizon, creating a forecast that is the same as the training data shifted by -1 time step.
+- Take the value at the last time step (last observation) and propagate this value across the forecast horizon.
+- Incorporate seasonal information by taking the value at the previous lag = -N, where N is the seasonal period.
+
+<Tip>
+Naive forecasting methods are often used to provide a baseline for comparison with other forecasting algorithms.
+</Tip>
+
+## Forecast strategies
+
+To add explainability to forecasting, SIMCEL applies different strategies that give you more control over the kind of result you want.
+
+### Recursive vs. non-recursive forecast
+
+- **Recursive forecasting** - A model is trained to predict the next value. If several values are being predicted, each value is predicted one at a time. The model's predictions are then used as the new training data, recomputing the features and predicting the next step. This approach is generally faster, but bias in the forecast compounds and accuracy is generally lower.
+- **Non-recursive forecasting** - If the goal is to predict N steps ahead, N different models are trained, where each model predicts the value at one specific step. One model predicts the next value, another predicts the value two steps ahead, and so on. This can be very time-consuming, but it can also provide better results.
+
+### Target transform
+
+Target transform is a pre-processing technique where the target (in demand forecasting, the quantity) is transformed to eliminate or account for various factors, such as trend or seasonality, or to normalize the data.
+
+- **Taking the difference at the seasonal period** - This accounts for seasonality. With this transformation step, the result captures seasonality better, at the cost of some computational resources and run time.

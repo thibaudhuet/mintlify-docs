@@ -1,0 +1,194 @@
+---
+title: "Overview"
+description: "Key definitions for SIT, sales flows, and gross sales values in distributor tracking."
+---
+
+## Term definitions
+
+- **SIT (Stock In Trade)** - The stock level (in days) for the specified distributor and product at the given period end.
+- **Closing Stock** - The distributor's inventory records at the period's end (either in unit or value).
+- **Sales-Out** - Sales from the distributors to their customers (pharmacies, hospitals, and so on). Also referred to as secondary sales (either in unit or value).
+- **Sales In** - Sales to the distributors. Also referred to as primary sales (either in unit or value).
+- **Distributor GSV** - The price at which the company sells the product to its distributors.
+- **Customer GSV** - The price at which the distributor sells the product to its customers.
+
+## Navigation
+
+Click **Stock-In-Trade** under the IBP section on the left side panel to navigate to the SIT page.
+
+<Frame caption="The Stock-In-Trade entry in the IBP section of the left side panel">
+  ![Left side navigation panel with the Stock-In-Trade option highlighted under the IBP section](/images/stock-in-trade/overview-1.png)
+</Frame>
+
+On this page, there are 3 main widgets:
+
+<Frame caption="The three main widgets on the SIT page">
+  ![Stock In Trade page showing the page filter, the SIT chart, and the SIT table](/images/stock-in-trade/overview-2.png)
+</Frame>
+
+- **Page Filter** - Replicates the functionality of the Demand Planning page. However, the Customer filter is replaced by the Distributor filter.
+- **SIT Chart**
+- **SIT Table**
+
+Similar to the Demand Planning page, the SIT page offers the same functionalities for interacting with scenarios.
+
+<Frame caption="Scenario controls on the SIT page">
+  ![SIT page header showing the scenario selection and comparison controls shared with the Demand Planning page](/images/stock-in-trade/overview-3.png)
+</Frame>
+
+## SIT chart
+
+In the SIT chart, you can compare:
+
+- **Stock Days** (bar - in days)
+- **Primary Sales** (dashed line - in either value or unit)
+- **Secondary Sales** (dashed and dotted line - in either value or unit)
+- **Stock Value** (solid line - in either value or unit)
+
+<Frame caption="The SIT chart comparing stock days, primary sales, secondary sales, and stock value">
+  ![SIT chart with stock days as bars, primary and secondary sales as dashed lines, and stock value as a solid line](/images/stock-in-trade/overview-4.png)
+</Frame>
+
+## SIT table
+
+The **SIT Table** allows you to edit the scenario's **Stock Days**, **Stock Value**, and **Primary Sales** by segment.
+
+Like the **Demand Table**, the **SIT Table** can also drill down for detailed data on finer segments.
+
+<Frame caption="The SIT table with drill-down into finer segments">
+  ![SIT table showing metrics by segment with expandable rows for drilling down to finer segments](/images/stock-in-trade/overview-5.png)
+</Frame>
+
+By default, you can only see and edit the SIT target.
+
+<Frame caption="The SIT table showing only the SIT target row by default">
+  ![SIT table row displaying the SIT target values across months](/images/stock-in-trade/overview-6.png)
+</Frame>
+
+When you click the drop-down button, you can also see the value of the **Stock Value**, **Secondary Sales**, and **Primary Sales**. However, Secondary Sales is not an editable value on this screen because it comes from the Demand Planning page.
+
+<Frame caption="Expanding the drop-down to reveal stock value, secondary sales, and primary sales">
+  ![Expanded SIT table row showing stock value, secondary sales, and primary sales beneath the SIT target](/images/stock-in-trade/overview-7.png)
+</Frame>
+
+## SIT modes: unconstrained vs constrained
+
+SIMCEL operates in two distinct SIT planning modes, each reflecting a different stage of the scenario lifecycle and the nature of data used in the calculations.
+
+<Frame caption="The SIT mode indicator distinguishing unconstrained and constrained planning">
+  ![SIT page showing the mode indicator for unconstrained versus constrained planning](/images/stock-in-trade/overview-8.png)
+</Frame>
+
+### 1. Unconstrained mode
+
+This is the default mode when a scenario is created but **before simulation is triggered**. All KPIs on the SIT page are calculated based on:
+
+- **Unconstrained Secondary Sales** - Planned downstream sales from distributor to market, prior to any restriction from stock availability.
+- **Unconstrained Primary Sales** - Planned inbound supply from upstream (for example, corporate to distributor), without taking supply constraints into account.
+- **Gross Value** basis for financials - discounts, rebates, and other trade terms are not applied yet.
+
+In **Unconstrained Mode**, all metrics are editable except Secondary Sales, which is populated from the demand plan.
+
+### 2. Constrained mode
+
+This mode becomes available **after a simulation is run**. The simulation aligns product availability (based on inventory and supply plan) with demand, resulting in constrained flows. KPIs are recalculated based on:
+
+- **Constrained Primary Sales** - Actual feasible supply to distributor based on inventory and replenishment limits.
+- **Constrained Secondary Sales** - Expected downstream sales based on Sales In and available inventory at the distributor.
+- Still computed on a **Gross Value** basis in the SIT module (even if trade terms are simulated elsewhere).
+
+In **Constrained Mode**, none of the metrics are editable.
+
+## Unconstrained mode - adjusting metrics for a specific scenario (SIT table)
+
+In the SIT table, numbers highlighted with a subtle grey background can be edited. You can adjust the following:
+
+- Stock Days (days)
+- Stock Value (unit or value)
+- Primary Sales (unit or value)
+
+To edit a number, click it. An edit box appears for you to make changes.
+
+<Frame caption="Editing an editable metric directly in the SIT table">
+  ![SIT table cell with a grey background opened into an edit box for changing the value](/images/stock-in-trade/overview-9.png)
+</Frame>
+
+<Note>
+  - Secondary Sales is configured on the Demand Planning page using events. Editing these figures directly on this page is not permitted.
+  - Adjustments you make cannot be undone.
+</Note>
+
+### Editing SIT target / closing stock
+
+When you create a scenario, SIMCEL uses the standard SIT targets (defined per product-distributor) and computes the other metrics accordingly.
+
+When you edit the SIT target or Closing Stock for a specific segment, the system carries out these steps:
+
+1. Calculate the related Closing Stock / SIT target, and Sales In at that level using the new SIT value.
+2. Update the Closing Stock, Sales In, and SIT at that level for the following months.
+3. Re-calculate the Closing Stock values for the child levels based on the percentage increase or decrease of the direct parent.
+4. Re-calculate the impact on Sales In and SIT for the child level, including the following months.
+5. Adjust the Closing Stock and Sales In values for the parent levels to ensure they equal the total of their direct children.
+6. Re-calculate the SIT for the parent level.
+
+<Note>
+  Refer to the **Calculation Logic** section for the specific formulas.
+</Note>
+
+### Editing Sales In
+
+When you edit the Sales In for a specific segment, the system carries out these steps:
+
+1. Calculate the related Closing Stock and SIT at that level using the new Sales In value.
+2. Update the Closing Stock, Sales In, and SIT at that level for the following months.
+3. Re-allocate the Sales In values for the child levels based on the percentage increase or decrease of the direct parent.
+4. Re-calculate the impact on Closing Stock and SIT for the child level.
+5. Adjust the Sales In and Closing Stock values for the parent levels to ensure they equal the total of the child levels.
+6. Re-calculate the SIT for the parent level.
+
+<Note>
+  Refer to the **Calculation Logic** section for the specific formulas.
+</Note>
+
+### Quick SIT metrics setting
+
+In the SIT table, you can configure SIT metrics (Stock Days, Stock Value, Primary Sales) across a continuous range of months by entering a single value in a selected month and applying it forward through the remaining plan timeline.
+
+To do a quick SIT metrics setting for a scenario:
+
+<Steps>
+  <Step title="Select the starting month and metric">
+    Select the starting month and the metric you want to edit quickly.
+
+    <Frame caption="Selecting the starting month and metric for a quick setting">
+      ![SIT table with a starting month column and a metric row selected for quick editing](/images/stock-in-trade/overview-10.png)
+    </Frame>
+  </Step>
+  <Step title="Enter the new value">
+    Click the number within that month and metric. An edit box appears for you to make changes.
+
+    <Frame caption="Entering a new value in the edit box">
+      ![SIT table cell opened into an edit box with a new value being typed](/images/stock-in-trade/overview-11.png)
+    </Frame>
+  </Step>
+  <Step title="Apply the value forward">
+    After you enter the new number, look to the left of the edit box to find a checkmark with a right arrow. Click it.
+
+    <Frame caption="The checkmark with a right arrow that applies the value forward">
+      ![Edit box in the SIT table showing the checkmark and right-arrow control to the left](/images/stock-in-trade/overview-12.png)
+    </Frame>
+  </Step>
+  <Step title="Confirm in the dialogue">
+    A dialogue appears, showing:
+
+    1. The SIT metric being quickly set (Stock Days, Stock Value, or Primary Sales). For example, **Stock Days**.
+    2. The edited month. For example, **2026-04-01**.
+    3. The ending month of the plan. For example, **2027-03-31**.
+
+    <Frame caption="The quick setting confirmation dialogue">
+      ![Dialogue showing the SIT metric, the edited month, the plan end month, and an Apply button](/images/stock-in-trade/overview-13.png)
+    </Frame>
+
+    Click **Apply** to confirm your choice and let the system recalculate everything to align with your new settings.
+  </Step>
+</Steps>

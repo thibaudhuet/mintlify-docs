@@ -1,0 +1,88 @@
+---
+title: "Plan Initialization & Continuity"
+description: "Create and link plans across cycles to ensure seamless supply chain continuity."
+---
+
+## Introduction
+
+SIMCEL lets you create interconnected plans to simulate your supply chain over different periods. Each plan's output informs the next, ensuring continuity. The back-end process of initializing new plans from the existing list is what maintains this seamless chain.
+
+This page covers the rules and processes for plan creation, initialization, and continuity.
+
+## Key concepts
+
+- **Actual data** - Historical supply chain data such as inventory, sales, and production output.
+- **Primary scenarios** - Each plan includes one primary scenario, which determines the plan's output. In reality, the implementation of the plan is based on this scenario.
+- **Plan dependencies** - Dependencies between plans are inferred from their start times. A plan depends on the latest prior plan.
+
+<Frame caption="Plan dependencies are inferred from plan start times">
+  ![Timeline diagram showing successive plans, with each plan depending on the latest plan that starts before it](/images/demand/plan-initialization-continuity-1.png)
+</Frame>
+
+- **Future plans** - Any plan with a start date later than the actual plan end date.
+
+<Frame caption="Future plans start after the end of the actual data period">
+  ![Timeline diagram distinguishing the actual data period from future plans that begin after the actual plan end date](/images/demand/plan-initialization-continuity-2.png)
+</Frame>
+
+- **Forecast base** - A statistical demand projection based on historical sales, excluding past demand events that influenced those sales. It serves as the preliminary input for the planning exercise in SIMCEL.
+
+## Plan initialization
+
+Plan initialization in SIMCEL is a back-end procedure that ensures the system handles the creation of new plans accurately. These are the key steps that run when a plan is created.
+
+<Steps>
+  <Step title="Run the forecaster">
+    SIMCEL uses the selected forecasting method to generate Sales Out forecasts (sales from primary to secondary customers).
+  </Step>
+  <Step title="Update the forecast base">
+    SIMCEL checks the primary scenario of the previous plan (the dependent plan). The outcome depends on whether that scenario contains events:
+
+    - **No events applied** - If no events were applied to the primary scenario, the forecaster result becomes the forecast base of the new plan without any adjustments.
+    - **Events found** - If any events were applied in the previous plan's primary scenario, all of these events are used to shape the forecaster result. This adjusted forecast then becomes the forecast base of the new plan.
+  </Step>
+</Steps>
+
+## Plan continuity
+
+Plan continuity in SIMCEL ensures that each planning period connects smoothly to the next.
+
+### Data source for the plan connection
+
+- **Connecting with actual data** - If the selected plan connects with actual data, it uses that actual data as the reference for parameters.
+- **Connecting without actual data** - If the plan does not connect with actual data, it uses the primary scenario from the preceding plans. In SIMCEL, this subset of data is called **Update Current**.
+
+### Ending stock initialization
+
+The ending stock from the selected reference data (determined in the previous step) is used as the initial inventory for the new plan.
+
+## How it works
+
+SIMCEL runs simulations in daily steps, starting from an initial dataset and progressing one day at a time.
+
+### Example
+
+**Context:**
+
+- **Actual data** - October 2021 to December 31, 2023
+- **Future plans:**
+  - Quarter 1 - 2024 (Plan 1): January 1, 2024, to December 2025
+  - Quarter 2 - 2024 (Plan 2): April 1, 2024, to March 2026
+
+**Quarter 1 - 2024**
+
+As the first plan, it uses actual data from October 2021 to December 31, 2023, to generate input for the entire period. Within Quarter 1 - 2024, you can create multiple scenarios, but only one scenario is selected as the primary scenario.
+
+**Quarter 2 - 2024**
+
+This plan depends on the Quarter 1 - 2024 plan. Because the actual data for January to March 2024 is missing, the Quarter 2 plan uses the primary scenario forecast from the Quarter 1 plan for this period (Update Current). The initial inventory for Quarter 2 is therefore based on the end-month inventory level of March 30, 2024, from the primary scenario of the Quarter 1 plan.
+
+<Frame caption="Quarter 2 initializes from the Quarter 1 primary scenario when actual data is missing">
+  ![Timeline diagram showing the Quarter 2 plan taking its initial inventory from the March 2024 ending stock of the Quarter 1 primary scenario](/images/demand/plan-initialization-continuity-3.png)
+</Frame>
+
+When you update the actual data for January to March 2024, the Quarter 2 plan uses the updated actual data directly for inventory initialization, rather than the forecast from the Quarter 1 plan.
+
+<Frame caption="Quarter 2 initializes from actual data once it is uploaded">
+  ![Timeline diagram showing the Quarter 2 plan taking its initial inventory from newly uploaded actual data for January to March 2024 instead of the Quarter 1 forecast](/images/demand/plan-initialization-continuity-4.png)
+</Frame>

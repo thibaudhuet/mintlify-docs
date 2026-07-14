@@ -1,0 +1,76 @@
+---
+title: "Overview"
+description: "Simulate supply plans and assess their impact on inventory, constraints, and fulfillment metrics."
+---
+
+## Introduction
+
+The Supply Plan Simulation feature in SIMCEL lets you model and analyze the impacts of your supply plans on inventory levels and sales to distributors and secondary customers. This feature is essential for ensuring that supply chain operations are optimized and responsive to projected demand.
+
+## Terminology
+
+- **Unconstrained Sales In (Distributor Demand)** - The total demand from distributors without considering any supply constraints. This reflects the ideal scenario where the supply fully meets the distributor's demand.
+- **Constrained Sales In** - The projected sales to distributors after accounting for supply constraints such as production capacity, available stock, and product shelf-life.
+- **Supply Plan** - The projected volume of products to be supplied from various sources during the planning period.
+- **Constrained Sales Out** - The sales to end customers, considering the available supply from distributors after accounting for constraints.
+
+## Logic flow
+
+### 1. Supply plan integration
+
+The simulation begins by uploading the planned shipment quantities. These quantities establish the inflow to the company's warehouse stock for the simulation period.
+
+### 2. Initial stock
+
+The initial stock level for the simulation is calculated using the closing stock of the previous period, either from actual data or from the previous plan if actual data has not been uploaded yet.
+
+For example, the February 2024 plan uses the closing stock figures from January 2024 - either the actual closing stock if it was uploaded, or the January 2024 plan if actual data is not yet available.
+
+### 3. Sales and inventory simulation
+
+- The simulation operates at the most detailed level, considering individual products and distributors.
+- **Monthly calculation** - For each month, the tool adds the supply quantity to the beginning inventory.
+- **Demand fulfillment** - The resulting inventory level is compared with the Unconstrained Sales In.
+- **Constraint application** - If the inventory level meets or exceeds the unconstrained demand, the Constrained Sales In equals the Unconstrained Sales In. Otherwise, the Constrained Sales In is limited to the available stock.
+- **Warehouse closing stock** - The closing stock for the month is calculated as:
+
+```text
+Closing stock = Opening stock + Supply quantity - Constrained Sales In
+```
+
+### 4. Metrics recalculation
+
+- With the new Constrained Sales In, the distributor's constrained metrics are recalculated, including Closing Stock, Stock In Trade, and Sales Out.
+- This ensures that all metrics accurately reflect the impact of supply constraints on distributor demand fulfillment.
+
+<Frame caption="The supply simulation logic flow from supply plan to recalculated distributor metrics">
+  ![Diagram of the supply simulation flow showing supply plan inflow, warehouse inventory, constrained sales in, and recalculated distributor metrics](/images/supply-simulation/overview-1.png)
+</Frame>
+
+## Simulation output in SIMCEL SaaS
+
+In the download section of each scenario, you can access several files that contain the output of the simulation. These files provide detailed insights into the simulation results.
+
+### 1. Simulation Sales In
+
+- Contains the **Unconstrained Sales In** data for each product-distributor per month.
+- This data comes from the SIT calculations. If the Sales In is negative (due to the SIT parameters), it is treated as null.
+
+### 2. Demand Fulfillment Metric
+
+- Provides a breakdown of distributor demand into individual orders.
+- Includes information on the company's warehouse serving capability, indicating which orders were fulfilled in full and which faced partial fulfillment or stock outs.
+
+### 3. Detailed Inventory Metrics
+
+- Offers a comprehensive record of inventory levels within the company's warehouse throughout the simulation period.
+- Includes monitoring of opening and closing stock levels, including stock movements from quantities received from suppliers, quantities shipped to distributors, and any adjustments made because products exceeded their shelf life.
+
+### 4. Atomic KPIs
+
+- Encompasses all the granular data used to compute the KPIs of the scenario. It also includes master information such as product details, distributor information, and location data.
+- Allows for ad hoc analysis and the creation of custom reports to monitor specific aspects of supply chain performance.
+
+<Frame caption="The scenario download section listing the simulation output files">
+  ![Download section of a scenario showing the simulation sales in, demand fulfillment metric, detailed inventory metrics, and atomic KPIs files](/images/supply-simulation/overview-2.png)
+</Frame>

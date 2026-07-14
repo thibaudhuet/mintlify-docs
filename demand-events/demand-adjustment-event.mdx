@@ -1,0 +1,100 @@
+---
+title: "Demand Adjustment Event"
+description: "Create and manage event that adjust demand based on trade or marketing impacts."
+---
+
+## Definition
+
+A **Demand Adjustment Event** is a specific occurrence or planned activity that is expected to cause a significant deviation from the typical demand patterns for a product or customer segment. These events can lead to either an increase or a decrease in demand and are essential for accurate demand planning. Demand adjustment events help you anticipate changes in demand so you can adjust your supply chain operations proactively.
+
+## Access the Event Management page
+
+Click **Event Management** in the left side panel to open the SIMCEL Event Management page.
+
+<Frame caption="The SIMCEL Event Management page">
+  ![Event Management page showing the event timeline and the list of demand events](/images/demand-events/demand-adjustment-event-1.png)
+</Frame>
+
+## Filter events in the event timeline
+
+The event timeline provides the same filters as the demand planning page. You can filter events by their impacted segments.
+
+<Frame caption="Filtering the event timeline by impacted segment">
+  ![Event timeline with the filter panel open, showing product and customer segment filters](/images/demand-events/demand-adjustment-event-2.png)
+</Frame>
+
+You can open the Event Management page inside a tactical plan and create demand planning events there.
+
+## Create trade and marketing events
+
+### Event with one impact on sub-segments
+
+<Steps>
+  <Step title="Name the new event">
+    Enter a name for the event.
+  </Step>
+  <Step title="Select the event type">
+    Select **Demand Adjustment** as the event type.
+  </Step>
+  <Step title="Name the version">
+    Enter a version name for this set of impacts.
+  </Step>
+  <Step title="Add the impact">
+    Click **Add Impacts** and, in the new box:
+
+    - Select the period.
+    - In the **product search box**, type and select the product segments.
+    - In the **customer search box**, type and select the customer segments.
+    - Select **% Percent** to adjust demand by percentage, or **# Units** to adjust by absolute units.
+    - In the **Delta Adjustment** section, set the adjustment value manually.
+    - Save the impact.
+  </Step>
+  <Step title="Save the event">
+    Click **Save** to store the event.
+  </Step>
+</Steps>
+
+<Frame caption="A demand adjustment event with a single impact on a sub-segment">
+  ![Event editor showing one impact box with period, product segment, customer segment, and delta adjustment fields](/images/demand-events/demand-adjustment-event-3.png)
+</Frame>
+
+### Event with multiple impacts on multiple segments
+
+<Steps>
+  <Step title="Name the new event">
+    Enter a name for the event.
+  </Step>
+  <Step title="Select the event type">
+    Select **Demand Adjustment** as the event type.
+  </Step>
+  <Step title="Name the version">
+    Enter a version name for this set of impacts.
+  </Step>
+  <Step title="Add the first affected segment">
+    Click **Add Impacts** and, in the new box:
+
+    - In the **product search box**, type and select the product segment.
+    - In the **customer search box**, type and select the customer segment.
+    - Select **% Percent** to adjust demand by percentage, or **# Units** to adjust by absolute units.
+    - In the **Delta Adjustment** section, set the adjustment value manually.
+    - Select the period.
+    - Save the impact.
+  </Step>
+  <Step title="Add the second affected segment">
+    Click **Add Impacts** again and, in the new box:
+
+    - In the **product search box**, type and select the product segment.
+    - In the **customer search box**, type and select the customer segment.
+    - Select **% Percent** to adjust demand by percentage, or **# Units** to adjust by absolute units.
+    - In the **Delta Adjustment** section, set the adjustment value manually.
+    - Select the period.
+    - Save the impact.
+  </Step>
+  <Step title="Save the event">
+    Click **Save** to store the event with both impacts.
+  </Step>
+</Steps>
+
+<Frame caption="A demand adjustment event with impacts on two different segments">
+  ![Event editor showing two stacked impact boxes, each targeting a different product and customer segment](/images/demand-events/demand-adjustment-event-4.png)
+</Frame>

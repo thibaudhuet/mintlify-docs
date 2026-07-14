@@ -1,0 +1,170 @@
+---
+title: "Analytics"
+description: "Customize and analyze demand metrics with flexible tables, filters, and saved segments."
+---
+
+<Note>
+This section gives demand planners advanced, flexible analytics tools for the demand planning process, improving your capacity to analyze demand data across different periods and business segments.
+</Note>
+
+## Select datasets to display as data series
+
+You can display many datasets as data series at the same time, so you can analyze the different data dimensions that are relevant to your planning. Click **Add Dataset**, then select the specific data series you want to show. In the illustration below, the user is displaying **Base Demand**.
+
+<Frame caption="Adding a dataset as a data series">
+  ![Add Dataset control open, with Base Demand being selected from the list of available data series](/images/demand/analytics-1.png)
+</Frame>
+
+## Select a color per dataset
+
+You can set a new color per dataset, except for Actual, Committed, and Last Plan, so you can visually distinguish between the different data series in the analytics charts and table.
+
+<Frame caption="Choosing a color for a dataset">
+  ![Color picker open for a dataset, letting you assign a distinct color to that data series in the charts and table](/images/demand/analytics-2.png)
+</Frame>
+
+## Analyze data with the demand table
+
+### Defining the segment hierarchy
+
+To define and save the segment hierarchy used to display the demand breakdown, click the settings icon and go to the **Select Segments** tab.
+
+<Frame caption="The Select Segments tab in the table settings">
+  ![Table settings dialog open on the Select Segments tab, where the segment hierarchy for the demand breakdown is defined and saved](/images/demand/analytics-3.png)
+</Frame>
+
+### Adjusting the number scale
+
+To adjust the number scale, click the letter in the upper right of the table and select **Dynamic (D)**, **Billion (B)**, **Million (M)**, **Thousand (K)**, or **Unit (U)**:
+
+- **Dynamic** - Automatically formats to the first thousand. For example, 10,000,000,000 becomes 10B and 1,000,000 becomes 1M.
+- **Billion** - Automatically formats to billions. For example, 10,000,000,000 becomes 10B and 1,000,000 becomes 0.001B.
+- **Million** - Automatically formats to millions. For example, 10,000,000,000 becomes 10,000M and 1,000,000 becomes 1M.
+- **Thousand** - Automatically formats to thousands. For example, 10,000,000,000 becomes 10,000,000K and 1,000,000 becomes 1,000K.
+- **Unit** - Keeps the original figure. For example, 10,000,000,000 stays 10,000,000,000.
+
+<Frame caption="The number scale selector in the upper right of the table">
+  ![Number scale selector open above the demand table, offering Dynamic, Billion, Million, Thousand, and Unit formats](/images/demand/analytics-4.png)
+</Frame>
+
+### Adjusting the number of decimals
+
+You can adjust the number of decimals in the table by clicking add or remove decimals, or by setting the number of decimals directly in the upper right corner of the table.
+
+<Frame caption="The decimal controls in the upper right corner of the table">
+  ![Demand table toolbar with the add decimals and remove decimals controls used to set decimal precision](/images/demand/analytics-5.png)
+</Frame>
+
+### Switching the table display to year-to-year
+
+Switch the table display to year-to-year by clicking the **Y2Y** icon to compare demand values on an annual basis.
+
+<Frame caption="The Y2Y icon in the demand table toolbar">
+  ![Demand table toolbar with the Y2Y icon highlighted, which switches the table into year-to-year comparison mode](/images/demand/analytics-6.png)
+</Frame>
+
+<Frame caption="The demand table in year-to-year mode">
+  ![Demand table displaying values compared on an annual basis after year-to-year mode is enabled](/images/demand/analytics-7.png)
+</Frame>
+
+### Selecting the value comparison method
+
+You can select how the value of a dataset is compared, so you can analyze the data according to different comparison metrics. Choose one of the following options in the dropdown:
+
+- **Contribution** - Displays the contribution to the total of the dataset.
+- **Growth (%)** - Shows the value compared to last year as a percentage. It only displays when year-to-year mode is active.
+- **Growth (abs)** - Shows the value compared to last year as an absolute value. It only displays when year-to-year mode is active.
+- **Comparison (%)** - Displays the value compared against the highlighted scenario as a percentage.
+- **Comparison (abs)** - Shows the value compared against the highlighted scenario as an absolute value.
+
+<Frame caption="The value comparison method dropdown">
+  ![Dropdown listing the value comparison options: Contribution, Growth (%), Growth (abs), Comparison (%), and Comparison (abs)](/images/demand/analytics-8.png)
+</Frame>
+
+### Selecting actual periods for viewing average monthly demand
+
+You can select the associated actual period to view the average monthly demand for the past 12 months (P12M), past 9 months (P9M), past 6 months (P6M), and past 3 months (P3M), so you can analyze trends and performance over different time frames.
+
+<Frame caption="Selecting the actual period for the average monthly demand KPIs">
+  ![Period selector offering P12M, P9M, P6M, and P3M for the average monthly demand run-rate KPIs](/images/demand/analytics-9.png)
+</Frame>
+
+<Note>
+The KPIs reflect monthly average **actual** sales performance over the last 12, 9, 6, or 3 months. This analysis only includes the most recent sales data within the chosen period.
+
+For instance, if sales data is available from October 2021 to January 2024 but you filter for May 2024 to April 2025, the run rates show as **N/A**, because there is no data in the future period.
+</Note>
+
+### Customizing the analytics display through settings
+
+Use the settings icon to select which analytics metrics are displayed and in which order, so you can tailor the analytics view to your needs. The metric formulas are provided in the appendix.
+
+<Frame caption="Choosing which analytics metrics are displayed and in what order">
+  ![Analytics settings dialog with a list of metrics that can be toggled on or off and reordered](/images/demand/analytics-10.png)
+</Frame>
+
+## Apply page filters
+
+### Month range filter
+
+Select the period you want to focus on.
+
+<Frame caption="The month range filter">
+  ![Month range filter open, letting you select the start and end months of the period under analysis](/images/demand/analytics-11.png)
+</Frame>
+
+### Segment filters
+
+Select the segments you want to focus on.
+
+<Frame caption="The segment filters">
+  ![Segment filter panel with customer, product, and location segment options available for selection](/images/demand/analytics-12.png)
+</Frame>
+
+### Creating saved segments
+
+The **Saved Segment** feature lets you save a combination of filters, such as customer, product, and location, for easy retrieval in future analysis. This helps you concentrate on the aspects that are most important to you or your business, and makes navigation easier.
+
+<Frame caption="Saving a combination of filters as a segment">
+  ![Filter panel with a combination of customer, product, and location filters applied, ready to be saved as a segment](/images/demand/analytics-13.png)
+</Frame>
+
+Click **Save as a Segment** and set the segment name, for example **Non Tender Pharmacy Chain**. You can then retrieve this segment from the saved segments dropdown.
+
+<Frame caption="Retrieving a saved segment from the dropdown">
+  ![Saved segments dropdown listing previously saved filter combinations, such as Non Tender Pharmacy Chain](/images/demand/analytics-14.png)
+</Frame>
+
+You can also use a saved segment when creating events. When you choose a pre-defined saved segment, the filter is applied automatically.
+
+<Frame caption="Applying a saved segment while creating an event">
+  ![Event creation form with a saved segment selected, automatically applying the stored customer, product, and location filters](/images/demand/analytics-15.png)
+</Frame>
+
+## Appendix: analytic metric formulas
+
+For simplicity, assume the following notation:
+
+```text
+N    = Total number of periods (months, quarters, etc.) in the fiscal year
+YTDn = Year-To-Date value at month n, where n ranges from 1 to N
+YTGn = Year-To-Go value starting from month n+1 to the end of the fiscal year
+D    = Total number of periods used for averages or totals for half-year or quarter metrics
+```
+
+| Analytic | Formula | Notes |
+|---|---|---|
+| **FY Total** (Fiscal Year Total) | The sum of values for each period within the fiscal year. | The full year must be selected to be displayed |
+| **FY Average** (Fiscal Year Average) | The average of values over the fiscal year. | The full year must be selected to be displayed |
+| **Quarter Total** | The sum of values for each period within the quarter. | The full quarter must be selected to be displayed |
+| **Quarter Average** | The average of values over the quarter. | The full quarter must be selected to be displayed |
+| **Half-year Total** | The sum of values for the first or second half of the fiscal year. | The full half-year must be selected to be displayed |
+| **Half-year Average** | The average of values over the first or second half of the fiscal year. | The full half-year must be selected to be displayed |
+| **YTD Total** (Year-To-Date Total) | The sum of values from the start of the fiscal year up to the start of the plan (excluded). | The full year must be selected to be displayed |
+| **YTD Average** (Year-To-Date Average) | The average of values from the start of the fiscal year up to the start of the plan (excluded). | The full year must be selected to be displayed |
+| **YTG Total** (Year-To-Go Total) | The sum of values from the start of the plan to the end of the fiscal year. | The full year must be selected to be displayed |
+| **YTG Average** (Year-To-Go Average) | The average of values from the start of the plan to the end of the fiscal year. | The full year must be selected to be displayed |
+| **Diff YTD-YTG** | The difference between YTD Total and YTG Total. | The full year must be selected to be displayed |
+| **% Diff YTD-YTG** | The percentage difference between YTD Total and YTG Total. | The full year must be selected to be displayed |
+| **Diff Average YTD-YTG** | The difference between YTD Average and YTG Average. | The full year must be selected to be displayed |
+| **% Diff Average YTD-YTG** | The percentage difference between YTD Average and YTG Average. | The full year must be selected to be displayed |

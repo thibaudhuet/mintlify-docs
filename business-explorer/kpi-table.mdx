@@ -1,0 +1,70 @@
+---
+title: "KPI Table"
+description: "Reference for every performance metric available in the KPI Table widget, with its formula and notes."
+---
+
+The **KPI Table** provides a summary of all the performance metrics for the plan.
+
+<Frame caption="The KPI Table widget in the Business Explorer">
+  ![KPI table showing performance metrics for the plan across scenario columns](/images/business-explorer/kpi-table-1.png)
+</Frame>
+
+## Available metrics and formulas
+
+| SIMCEL standard term | Formula | Notes |
+| --- | --- | --- |
+| Administration (CUR) | `Sumif(CostMaster, Group Level 2 = Administration)` | |
+| Average Inventory Value (CUR) | `Sum(Month End Inventory Volume * COGS) / # months` | This KPI can be converted. Conversion rate is set per month and year. |
+| COGS (CUR) | `COGS` | |
+| COGS as % of Primary NSV (%) | `COGS / Net Sales In` | |
+| Constrained Distributor Closing Stock Value (CUR) | See SIT - Calculation Logic | This KPI can be converted. Conversion rate is set per month and year. |
+| Constrained Distributor Closing Stock Volume (UNIT) | See SIT - Calculation Logic | |
+| Constrained SIT (DAYS) | See SIT - Calculation Logic | |
+| Customer Delivery (CUR) | | |
+| Distribution Cost (CUR) | | |
+| Distributor Secondary Demand Volume (UNIT) | `Sum(UnconstrainedSalesOut, Origin = Distributor)` | |
+| Distributor Secondary Gross Demand Value (CUR) | `Distributor Secondary Demand Volume * Listed Price` | |
+| Distributor Secondary Gross Sales Value (CUR) | `Sumif(ConstrainedSalesOutGSV, Origin = Distributor)` | |
+| Distributor Secondary Sales Volume (UNIT) | `Sum(ConstrainedSalesOut, Origin = Distributor)` | |
+| D-P-M (CUR) | `Supply Chain Cost + Promotion + Medical Affairs Cost`<br />or `Transport + Storage and Handling + Promotion + Medical Affairs Cost` | |
+| D-P-M as % of Primary NSV (%) | `D-P-M / Net Sales In Value` | |
+| D-P-M-A (CUR) | `D-P-M + Administration` | |
+| D-P-M-A as % of Primary NSV (%) | `D-P-M-A / Net Sales In Value` | |
+| EBIT (CUR) | `Gross Profit - Transport - Storage and Handling - Promotion - Medical Affairs - Administration`<br />or `Gross Profit - D-P-M-A` | |
+| EBIT as % of Primary NSV (%) | `EBIT / FIE Net Sales Value` | |
+| Gross Margin (%) | `Gross Profit / Net FIE Sales` | |
+| Gross Profit (CUR) | `ConstrainedSalesInGSV - TradeExpenses - COGS` | |
+| Inbound CO2 Emission (KG) | See CO2 Computation | |
+| Medical Affairs (CUR) | | |
+| Outbound CO2 Emission (KG) | See CO2 Computation | |
+| Primary Demand Value (CUR) | `Sumif(DemandValue, Facility Type = Distributor)` | |
+| Primary Demand Volume (UNIT) | `Sumif(OrderQuantity, Facility Type = Distributor)` | |
+| Primary Gross Sales Value (CUR) | `Sumif(ConstrainedSalesInGSV, Facility Type = Distributor)` | |
+| Primary Net Sales Value (CUR) | `Sumif(ConstrainedSalesInGSV, Facility Type = Distributor) - Sumif(Trade Expense, Facility Type = Distributor)` | |
+| Primary Sales Volume (UNIT) | `Sumif(DispatchQuantity, Facility Type = Distributor)` | |
+| Primary Case Fill Rate (%) | `Primary Sales Volume / Primary Demand Volume` | |
+| Primary Trade Expenses (CUR) | `Sumif(Trade Expense, Facility Type = Distributor)` | |
+| Profit Before Marketing (CUR) | | |
+| Promotion (CUR) | `Sumif(CostMaster, Group Level 2 = Promotion)` | |
+| Secondary Case Fill Rate (%) | `Local Sales Volume / Local Demand Volume` | |
+| Secondary Demand Value (CUR) | `Secondary Demand Volume * Listed Price` | |
+| Secondary Demand Volume (UNIT) | `Sumif(UnconstrainedSalesOut, Facility Type = Customer)` | |
+| Secondary Gross Sales (CUR) | `Sumif(ConstrainedSalesOutGSV, Facility Type = Customer)` | |
+| Secondary Net Sales (CUR) | `Local Gross Sales Value - Local Trade Expenses` | |
+| Secondary Sales Volume (UNIT) | `Sumif(ConstrainedSalesOut, Facility Type = Customer)` | |
+| Secondary Trade Expenses (CUR) | `Sumif(Trade Expense, Facility Type = Customer)` | |
+| Stock Transfer (CUR) | | |
+| Storage (CUR) | | |
+| Storage and Distribution (CUR) | | |
+| Storage and Handling (CUR) | `Sumif(CostMaster, Group Level 2 = Storage & Handling)` | |
+| Storage CO2 Emission (KG) | See CO2 Computation | |
+| Supply Chain Cost (CUR) | `Transport + Storage and Handling` | |
+| Total CO2 Emission (KG) | `Inbound CO2 Emission + Storage CO2 Emission + Outbound CO2 Emission` | |
+| Transport (CUR) | `Sumif(CostMaster, Group Level 2 = Transport)` | |
+| Unconstrained Distributor Closing Stock GSV (CUR) | See SIT - Calculation Logic | |
+| Unconstrained Distributor Closing Stock Volume (UNIT) | See SIT - Calculation Logic | |
+| Unconstrained SIT (DAYS) | See SIT - Calculation Logic | |
+
+<Note>
+  Metrics marked **See SIT - Calculation Logic** or **See CO2 Computation** are derived by dedicated engines. Refer to the corresponding calculation logic articles for details.
+</Note>

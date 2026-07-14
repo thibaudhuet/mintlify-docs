@@ -1,0 +1,191 @@
+---
+title: "Supply Explorer"
+description: "Visualize finished goods supply and inventory trends across sources and warehouses."
+---
+
+<Note>
+  When a simulation is finished, you can access the supply metrics in the **Supply Explorer** to evaluate the physical flow of your demand and supply plan.
+</Note>
+
+## Overview
+
+The **Supply Explorer** page provides vital insights into your supply chain by visualizing how well your supply plan fulfills demand, along with finished goods supply and inventory trends. This guide walks through how to navigate the page, apply filters, and interpret the widgets.
+
+## Navigation
+
+From the left-hand navigation sidebar, under the **IBP** section, select **Supply Planning**.
+
+<Frame caption="Accessing the Supply Explorer page from the IBP section of the sidebar">
+  ![Left navigation sidebar with Supply Planning selected under the IBP section](/images/supply-simulation/supply-explorer-1.png)
+</Frame>
+
+## Filters
+
+<Frame caption="The filter bar at the top of the Supply Explorer page">
+  ![Filter bar showing the product, origin, destination, and date range controls](/images/supply-simulation/supply-explorer-2.png)
+</Frame>
+
+A filter bar sits at the top of the page, letting you scope every chart on the page to a specific slice of your network:
+
+- **Product** - Filter by product or product group, or leave as *All Products*.
+- **Origin** - Filter by the supplying locations. Leave as *All Origins* to include every source.
+- **Destination** - Filter by the receiving locations. Leave as *All Destinations* to include every delivery point.
+- **Date range** - Set the planning horizon for the view (for example, *02/2026 - 01/2027*).
+
+## Order Fulfilment
+
+The **Order Fulfilment** widget shows, period by period, how much of your demand is met (Fulfilled) versus unmet (Unfulfilled) under the selected scenario. It pairs a stacked column chart with a set of comparison metric cards.
+
+### 1. Reading the chart
+
+<Frame caption="The Order Fulfilment stacked column chart">
+  ![Stacked column chart showing fulfilled quantity in dark and unfulfilled quantity in red for each period](/images/supply-simulation/supply-explorer-3.png)
+</Frame>
+
+- Each column represents one period across the selected date range, with the y-axis showing **Quantity (Unit)**.
+- Columns are split into a **Fulfilled** (dark) portion and an **Unfulfilled** (red) portion, so you can see at a glance where demand goes unmet.
+- Hover over any column to open a tooltip with the period's detail: **Order Quantity**, **Fulfilled Quantity**, **Unfulfilled Quantity**, **Unfulfilled Value**, and **Order Fulfilment %**.
+
+### 2. Scope selector
+
+<Frame caption="The scope drop-down at the top-right of the chart">
+  ![Scope drop-down listing All, Secondary Sales, Primary Sales, Stock Transfers, and Supply Sources](/images/supply-simulation/supply-explorer-4.png)
+</Frame>
+
+Use the scope drop-down (top-right of the chart) to choose which flow you are analyzing:
+
+- **All**
+- **Secondary Sales**
+- **Primary Sales**
+- **Stock Transfers**
+- **Supply Sources**
+
+### 3. Time granularity
+
+<Frame caption="The D / W / M / Q / FY time granularity control">
+  ![Time granularity toggle offering daily, weekly, monthly, quarterly, and full-year grouping](/images/supply-simulation/supply-explorer-5.png)
+</Frame>
+
+Toggle the period grouping using the **D / W / M / Q / FY** control:
+
+- **D** - Daily
+- **W** - Weekly
+- **M** - Monthly
+- **Q** - Quarterly
+- **FY** - Full year
+
+### 4. Comparison metric cards
+
+<Frame caption="The comparison metric cards to the right of the chart">
+  ![Three metric cards showing order fulfilment percentage, unfulfilled value, and unfulfilled volume with a scenario comparison delta](/images/supply-simulation/supply-explorer-6.png)
+</Frame>
+
+To the right of the chart, three cards summarize key fulfilment metrics for the current scenario and compare them against another scenario you select. Use the scenario picker on each card to choose the comparison scenario (one at a time). Each card shows the current scenario's value, the comparison scenario's value, and the percentage delta between them:
+
+- **Order Fulfilment (%)** - The share of demand that is met.
+- **Unfulfilled Value (VND)** - The value of unmet demand.
+- **Unfulfilled Volume (Units)** - The volume of unmet demand.
+
+The delta is color-coded so you can quickly spot where one scenario outperforms another.
+
+## Order Fulfilment Details
+
+The **Order Fulfilment Details** widget presents the underlying data behind the Order Fulfilment chart as a table, for the currently selected scenario. It supports two view modes, scope filtering, and configurable columns.
+
+### 1. View modes
+
+Toggle between the two modes using the **Aggregated / Atomic** control (top-right of the widget).
+
+**Aggregated** - Rows are grouped into an expandable hierarchy (for example, *Scenario 1* to product categories such as *Beverages*, *Snacks*, *Medication*). Click the chevron on any row to drill down into its children. Each row shows roll-up totals for the selected metrics.
+
+<Frame caption="The Order Fulfilment Details table in Aggregated view">
+  ![Aggregated table with an expandable scenario row broken down into product categories and roll-up metric totals](/images/supply-simulation/supply-explorer-7.png)
+</Frame>
+
+**Atomic** - Every individual record is listed as its own flat row (for example, by *Product ID*, *Origin Ref*, *Destination Ref*, *Date*, *Category*, *Channel*), with a **Total** row summarizing all records. The atomic view is paginated, with controls to move between pages and set the number of rows shown per page.
+
+<Frame caption="The Order Fulfilment Details table in Atomic view">
+  ![Atomic table listing individual records with product ID, origin, destination, date, category, and channel columns plus pagination controls](/images/supply-simulation/supply-explorer-8.png)
+</Frame>
+
+### 2. Scope selector
+
+Use the scope drop-down to filter the table to a specific flow (matching the chart scope): **All**, **Secondary Sales**, **Primary Sales**, **Stock Transfers**, or **Supply Sources**.
+
+<Frame caption="The scope drop-down for the details table">
+  ![Scope drop-down on the Order Fulfilment Details widget filtering the table by flow type](/images/supply-simulation/supply-explorer-9.png)
+</Frame>
+
+### 3. Sorting
+
+Click the sort arrows beside any metric column header (for example, *Order Quantity*, *Order Fulfilment %*, *Unfulfilled Value*) to sort the table by that column.
+
+<Frame caption="Sorting the details table by a metric column">
+  ![Details table column header with sort arrows used to order rows by that metric](/images/supply-simulation/supply-explorer-10.png)
+</Frame>
+
+### 4. Settings - Organize Detail Results
+
+Click the gear icon to open the **Organize Detail Results** dialog, where you choose which fields appear in the table. Drag fields between the **All Fields** list and the **Selection** list, and reorder within the Selection list to set column order. There are two tabs.
+
+**Select Segments** - The dimensions used to break down or group the data. Available fields include *Brands*, *Sub Category*, *Product ID*, *Product Name*, *Product Range*, *Product Type*, *Strategic Segment*, *Sub Channel*, and more. For example, you might select *Category* and *Channel*.
+
+<Frame caption="The Select Segments tab of the Organize Detail Results dialog">
+  ![Organize Detail Results dialog on the Select Segments tab with All Fields and Selection lists](/images/supply-simulation/supply-explorer-11.png)
+</Frame>
+
+**Select Analytics** - The metrics shown as columns. Available fields include *Fulfilled Quantity*, *Unfulfilled Volume (UoM)*, and *Root Cause*. For example, you might select *Order Quantity*, *Order Fulfilment %*, and *Unfulfilled Value (VND)*.
+
+<Frame caption="The Select Analytics tab of the Organize Detail Results dialog">
+  ![Organize Detail Results dialog on the Select Analytics tab listing available metric fields and the current selection](/images/supply-simulation/supply-explorer-12.png)
+</Frame>
+
+Click **Save** to apply your changes, or **Cancel** to discard them.
+
+## Inventory Evolution
+
+The **Inventory Evolution** widget tracks how on-hand inventory develops over time against storage capacity, while flagging periods of unfulfilled demand. It combines a dual-axis chart with three summary metric cards, all scoped to the currently selected scenario (for example, *Budget Forecast Base 2026*).
+
+<Frame caption="The Inventory Evolution widget with its dual-axis chart and summary cards">
+  ![Dual-axis chart plotting on-hand inventory, storage capacity, and unfulfilled demand, with summary metric cards below](/images/supply-simulation/supply-explorer-13.png)
+</Frame>
+
+### 1. Reading the chart
+
+The chart plots three series on two y-axes:
+
+- **On-Hand Inventory** (blue line) - The inventory level for each period, measured against the left axis, **Inventory (Unit)**.
+- **Storage Capacity** (dotted line) - The maximum holding capacity, shown for comparison against the inventory line.
+- **Unfulfilled Demand** (red bands) - Periods where demand goes unmet, measured against the right axis, **Unfulfilled (Unit)**. A warning marker highlights any period in which unfulfilled demand is detected.
+
+Hover over any period to open a tooltip with the exact figures: **On-Hand Inventory**, **Storage Capacity**, **Unfulfilled Demand**, and a flag noting whether unfulfilled demand was detected in that period.
+
+### 2. Time granularity
+
+Toggle the period grouping using the **M / Q / FY** control (top-right):
+
+- **M** - Monthly
+- **Q** - Quarterly
+- **FY** - Full year
+
+### 3. Summary metric cards
+
+Below the chart, three cards summarize inventory health for the selected scenario, each showing the current value and its change versus the comparison baseline:
+
+- **Avg Inventory Value** - The average value of inventory held over the filtered period (for example, *9.03T VND*).
+- **Average DIO** - Days Inventory Outstanding, the average number of days inventory is held before it is used or sold (for example, *127.3 days*).
+- **Stockout** - The share of periods or demand affected by a stockout (for example, *0.0%*).
+
+### 4. Context footer
+
+The footer confirms the current view settings - the granularity and facility scope (for example, *Monthly view - All facilities*) on the left, and the last-updated timestamp plus active scenario (for example, *Last updated: May 25, 2026 - Scenario: Budget Forecast Base 2026*) on the right.
+
+## Order fulfilment formulas
+
+The fulfilment metrics shown in the Supply Explorer are derived as follows:
+
+```text
+Order Fulfillment % = (Fulfilled Quantity / Total Demand) x 100
+Unfulfilled Volume  = Total Demand - Fulfilled Quantity
+Unfulfilled Value   = Unfulfilled Volume x Unit Price
+```
