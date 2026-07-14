@@ -17,9 +17,7 @@
         "group": "Getting Started",
         "pages": [
           "index",
-          "quickstart",
-          "getting-started/introduction-to-simcel",
-          "getting-started/navigation"
+          "quickstart"
         ]
       },
       {
@@ -121,7 +119,15 @@
   "redirects": [
     {
       "source": "/platform/navigation",
-      "destination": "/getting-started/navigation"
+      "destination": "/quickstart"
+    },
+    {
+      "source": "/getting-started/navigation",
+      "destination": "/quickstart"
+    },
+    {
+      "source": "/getting-started/introduction-to-simcel",
+      "destination": "/"
     },
     {
       "source": "/platform/homepage",

@@ -1,72 +1,136 @@
 ---
 title: "Quick start"
-description: "Get up and running with SIMCEL in a few steps."
+description: "Get up and running with SIMCEL, and learn your way around the interface."
 ---
 
-## Step 1: Log in to your workspace
+## Get started in five steps
 
-Navigate to your SIMCEL workspace URL and sign in using your organization credentials. SIMCEL uses single sign-on (SSO), so you can log in with your existing company account.
+<Steps>
+  <Step title="Log in to your workspace">
+    Navigate to your SIMCEL workspace URL and sign in using your organization credentials. SIMCEL uses single sign-on (SSO), so you can log in with your existing company account.
 
-Once signed in, you will land on the **Homepage** where you can see key metrics, projections, and fiscal year achievements at a glance.
+    Once signed in, you land on the **Homepage**, where you can see key metrics, projections, and fiscal year achievements at a glance.
+  </Step>
 
-## Step 2: Select a plan
+  <Step title="Select a plan">
+    Use the **Plan bar** at the top of the screen to select your active plan. SIMCEL supports two plan types:
 
-Use the **Plan Bar** at the top of the screen to select your active plan. SIMCEL supports two plan types:
+    - **Budget plan** — the long-range planning cycle
+    - **Tactical plan** — shorter-term operational planning for immediate adjustments
 
-- **Budget plan** - Annual planning cycle with a longer time horizon
-- **Tactical plan** - Short-term operational planning for immediate adjustments
+    Click the plan name in the top bar to switch between available plans. See [Tactical plan](/demand/tactical-plan) for how the two horizons relate.
+  </Step>
 
-Click on the plan name in the top bar to switch between available plans.
+  <Step title="Choose your scenario">
+    The **Scenario bar** displays your active scenarios. Each plan can hold multiple scenarios to compare different planning assumptions:
 
-## Step 3: Choose your scenario
+    - **Forecast Base** — the auto-generated baseline forecast (read-only)
+    - **Primary scenario** — your main working scenario
+    - **Custom scenarios** — additional what-if scenarios you create
 
-The **Scenario Bar** displays your active scenarios. Each plan can have multiple scenarios to compare different planning assumptions:
+    Click a scenario chip to toggle its visibility in charts and tables. See [Scenario](/demand-events/scenario) for the full lifecycle.
+  </Step>
 
-- **Forecast Base** - The auto-generated baseline forecast (read-only)
-- **Primary scenario** - Your main working scenario
-- **Custom scenarios** - Additional what-if scenarios you create
+  <Step title="Explore your modules">
+    Use the **sidebar** on the left to move between modules. The full map is in [Navigating the interface](#navigating-the-interface) below.
+  </Step>
 
-Click on scenario chips in the top bar to toggle their visibility on charts and tables.
+  <Step title="Apply filters">
+    Use the **Filter bar** at the top to narrow your view by **Products**, **Customers**, and **Date range**. Filters apply across every chart and table on the current page.
+  </Step>
+</Steps>
 
-## Step 4: Explore your modules
+## Navigating the interface
 
-Use the **sidebar menu** on the left to navigate between modules:
+The SIMCEL interface is organized into four main areas:
 
-| Module | What you'll find |
-| --- | --- |
-| **Business Explorer** | High-level KPI dashboard with P&L summary |
-| **Demand** | Demand forecasts, trends, and breakdowns |
-| **Stock-In-Trade** | Inventory planning and safety stock analysis |
-| **Supply** | Order fulfillment rates and simulation tools |
-| **Events** | Event impact modeling and management |
-| **CO2** | Carbon emissions tracking and trends |
+1. **Sidebar** (left) — module navigation
+2. **Top bar** — plan selection, scenario bar, filters, and user settings
+3. **Content area** (center) — charts, tables, and dashboards
+4. **Events panel** (right, collapsible) — event log and impact details
 
-## Step 5: Apply filters
+### Sidebar menu
 
-Use the **filter bar** at the top to narrow your view:
+The sidebar is your main navigation hub, organized into sections.
 
-- **Products** - Filter by specific products, brands, or categories
-- **Customers** - Filter by customer, channel, or region
-- **Date range** - Focus on a specific time window
+**IBP (Integrated Business Planning)**
 
-Filters apply across all charts and tables on the current page.
+| Page | Description |
+|------|-------------|
+| **Business Explorer** | High-level KPI dashboard and P&L overview |
+| **Demand** | Demand planning with forecasts, trends, and breakdowns |
+| **Stock-In-Trade** | Inventory planning and safety stock monitoring |
+| **Supply** | Order fulfillment tracking and supply simulation |
+| **Events** | Event and impact management for scenario planning |
+| **CO2** | Carbon emissions reporting and analysis |
+
+**Collaboration**
+
+| Page | Description |
+|------|-------------|
+| **Tasks** | Task creation, assignment, and tracking across your team |
+
+**Tools**
+
+| Page | Description |
+|------|-------------|
+| **Pivot Table** | Cross-tabulate KPIs across any dimension |
+| **KPI Drivers** | Visualize relationships between KPIs |
+| **Plan Realization** | Compare actual results against your plan |
+| **Spreadsheets** | Spreadsheet-based data editing |
+| **Portfolio Explorer** | Hierarchical sunburst visualization of your data |
+
+**Data and Client Admin** (admin only)
+
+| Page | Description |
+|------|-------------|
+| **Data Management** | Upload, validate, and process data |
+| **Users** | Manage user accounts and permissions |
+| **Workspace** | Configure workspace settings and module access |
+| **Product Master** | Manage your product catalog |
+| **Customer Master** | Manage your customer directory |
+
+<Note>
+  Some pages may not be visible depending on your workspace configuration and the modules enabled for your organization.
+</Note>
+
+### Top bar
+
+The top bar provides contextual controls that apply to your current view:
+
+- **Plan bar** — displays the currently selected plan. Click to switch between Budget and Tactical plans.
+- **Scenario bar** — shows active scenarios as colored chips. Click a chip to toggle its visibility in charts and tables. You can also create new scenarios from here.
+- **Filter bar** — narrow your data by **Products** (name, brand, category, or type), **Customers** (name, channel, or region), and **Date range**.
+- **Currency switcher** — change the display currency.
+- **Help** — access in-app guidance and tours.
+- **User menu** — switch organizations and manage your account.
+
+### Page-level controls
+
+Most module pages include additional controls:
+
+- **Period toggle** — switch between Monthly (M) and Fiscal Year (FY) views
+- **UOM selector** — choose the unit of measure
+- **Numeric scale** — format numbers as Default, Billions (B), Millions (M), Thousands (k), or Units (U)
+- **Decimal places** — adjust precision from 0 to 4 decimal places
+- **Refresh** — reload the current data
 
 ## Next steps
 
 <CardGroup cols={2}>
-  <Card title="Navigate the platform" icon="compass" href="/business-explorer/overview-and-navigation">
-    Learn the full layout and navigation structure.
-  </Card>
-
-  <Card title="Manage plans and scenarios" icon="layer-group" href="/demand/tactical-plan">
-    Understand how plans and scenarios work together.
-  </Card>
-
   <Card title="Explore demand planning" icon="chart-line" href="/demand/introduction">
     Dive into demand forecasting and analysis.
   </Card>
 
+  <Card title="Manage scenarios" icon="layer-group" href="/demand-events/scenario">
+    Create, compare, and promote planning scenarios.
+  </Card>
+
   <Card title="Run a simulation" icon="play" href="/supply-simulation/running-simulation">
     Learn how to run your first supply simulation.
+  </Card>
+
+  <Card title="KPI glossary" icon="book" href="/reference/kpi-glossary">
+    Every metric SIMCEL calculates, with its formula.
   </Card>
 </CardGroup>
