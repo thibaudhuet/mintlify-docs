@@ -92,7 +92,6 @@
         "group": "Collaboration",
         "pages": [
           "collaboration/introduction",
-          "collaboration/navigation-between-linked-objects",
           "collaboration/object-detail-view-drawers",
           "collaboration/contextual-comments",
           "collaboration/task-management",
